@@ -50,7 +50,7 @@ export const RIDES: Ride[] = [
   riders: ["Tom", "Anita", "Darren", "Charlie"],
   description: "Annual spokeys ride for 2026.",
   photos: [
-    `${base}photos/chiltern-loop/marlow.jpg`,
+    `${base}photos/spokeys-2026-bristol-to-yatton/PXL_20260503_133025574.jpg`,
   ],
   color: "#2a9d8f",
 }
