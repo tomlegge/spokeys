@@ -1,6 +1,6 @@
 # Spokeys
 
-Interactive maps of bike rides for the Spokeys cycling group.
+Interactive maps of bike rides for the Spokeys cycling group. This is in development and was built with Claude Code
 
 A static React + Leaflet site. Drop a GPX (or KML) file into `public/rides/`, append a row to `src/data/rides.ts`, push — your route shows up on the map with stats, an elevation profile, and a photo gallery.
 
