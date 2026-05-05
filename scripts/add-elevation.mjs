@@ -16,7 +16,9 @@ import { readFile, writeFile } from "node:fs/promises";
 import { argv, exit } from "node:process";
 
 const API = "https://api.open-meteo.com/v1/elevation";
-const BATCH_SIZE = 100; // Open-Meteo allows up to 100 coords per request.
+const BATCH_SIZE = 100;       // Open-Meteo allows up to 100 coords per request.
+const BATCH_DELAY_MS = 1100;  // Pace ourselves between batches on shared IPs.
+const MAX_RETRIES = 6;        // Total attempts per batch on transient failures.
 
 function parseArgs(argv) {
   const args = { force: false, files: [], help: false };
@@ -28,29 +30,72 @@ function parseArgs(argv) {
   return args;
 }
 
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+async function fetchWithRetry(url) {
+  let lastError;
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    let res;
+    try {
+      res = await fetch(url);
+    } catch (err) {
+      lastError = err;
+      const waitMs = Math.min(60000, 1000 * 2 ** (attempt - 1));
+      console.log(`  network error (${err.message || err}), waiting ${Math.round(waitMs / 1000)}s before retry ${attempt}/${MAX_RETRIES}...`);
+      await sleep(waitMs);
+      continue;
+    }
+
+    if (res.ok) return res;
+
+    if (res.status === 429 || res.status >= 500) {
+      const retryAfter = res.headers.get("retry-after");
+      let waitMs;
+      if (retryAfter) {
+        const n = parseInt(retryAfter, 10);
+        waitMs = Number.isFinite(n) ? n * 1000 : 60000;
+      } else if (res.status === 429) {
+        waitMs = 60000 + Math.floor(Math.random() * 5000);
+      } else {
+        waitMs = Math.min(60000, 1000 * 2 ** (attempt - 1));
+      }
+      const body = (await res.text()).slice(0, 200);
+      console.log(`  ${res.status} from Open-Meteo, waiting ${Math.round(waitMs / 1000)}s before retry ${attempt}/${MAX_RETRIES}... (${body})`);
+      lastError = new Error(`Open-Meteo returned ${res.status}: ${body}`);
+      await sleep(waitMs);
+      continue;
+    }
+
+    throw new Error(`Open-Meteo returned ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  }
+  throw lastError || new Error("Open-Meteo: retries exhausted");
+}
+
 async function fetchElevations(coords) {
   const out = new Array(coords.length);
+  const totalBatches = Math.ceil(coords.length / BATCH_SIZE);
   for (let i = 0; i < coords.length; i += BATCH_SIZE) {
+    const batchNum = i / BATCH_SIZE + 1;
     const batch = coords.slice(i, i + BATCH_SIZE);
     const lats = batch.map((c) => c.lat).join(",");
     const lons = batch.map((c) => c.lon).join(",");
     const url = `${API}?latitude=${lats}&longitude=${lons}`;
-    const res = await fetch(url);
-    if (!res.ok) {
-      throw new Error(
-        `Open-Meteo returned ${res.status}: ${(await res.text()).slice(0, 200)}`
-      );
+
+    if (totalBatches > 1) {
+      console.log(`  batch ${batchNum}/${totalBatches} (${batch.length} pts)`);
     }
+
+    const res = await fetchWithRetry(url);
     const data = await res.json();
     if (!Array.isArray(data.elevation) || data.elevation.length !== batch.length) {
-      throw new Error(
-        `Unexpected response: ${JSON.stringify(data).slice(0, 200)}`
-      );
+      throw new Error(`Unexpected response: ${JSON.stringify(data).slice(0, 200)}`);
     }
     for (let j = 0; j < batch.length; j++) out[i + j] = data.elevation[j];
-    // Be polite between batches.
+
     if (i + BATCH_SIZE < coords.length) {
-      await new Promise((r) => setTimeout(r, 250));
+      await sleep(BATCH_DELAY_MS);
     }
   }
   return out;
@@ -58,8 +103,6 @@ async function fetchElevations(coords) {
 
 async function processFile(path, { force }) {
   const original = await readFile(path, "utf8");
-
-  // Matches <trkpt ...>...</trkpt> and self-closing <trkpt .../>.
   const trkptRe = /<trkpt\b([^>]*?)\s*(\/>|>([\s\S]*?)<\/trkpt>)/g;
 
   const tasks = [];
@@ -78,12 +121,7 @@ async function processFile(path, { force }) {
     tasks.push({
       start: m.index,
       end: m.index + m[0].length,
-      attrs,
-      isSelfClose,
-      inner,
-      lat,
-      lon,
-      hasEle,
+      attrs, isSelfClose, inner, lat, lon, hasEle,
       needsFill: !hasEle || force,
     });
   }
@@ -93,20 +131,12 @@ async function processFile(path, { force }) {
     return;
   }
 
-  const toFetch = tasks
-    .filter((t) => t.needsFill)
-    .map((t) => ({ lat: t.lat, lon: t.lon }));
-
-  console.log(
-    `${path}: ${tasks.length} trkpts, ${toFetch.length} need elevation${
-      force ? " (force overwrite)" : ""
-    }`
-  );
+  const toFetch = tasks.filter((t) => t.needsFill).map((t) => ({ lat: t.lat, lon: t.lon }));
+  console.log(`${path}: ${tasks.length} trkpts, ${toFetch.length} need elevation${force ? " (force overwrite)" : ""}`);
   if (toFetch.length === 0) return;
 
   const elevations = await fetchElevations(toFetch);
 
-  // Walk tasks in reverse so byte offsets stay valid as we splice.
   let updated = original;
   let fetchIdx = toFetch.length - 1;
   for (let i = tasks.length - 1; i >= 0; i--) {
@@ -120,15 +150,11 @@ async function processFile(path, { force }) {
     if (t.isSelfClose) {
       replacement = `<trkpt${t.attrs}><ele>${eleStr}</ele></trkpt>`;
     } else if (t.hasEle) {
-      const newInner = t.inner.replace(
-        /<ele>[^<]*<\/ele>/,
-        `<ele>${eleStr}</ele>`
-      );
+      const newInner = t.inner.replace(/<ele>[^<]*<\/ele>/, `<ele>${eleStr}</ele>`);
       replacement = `<trkpt${t.attrs}>${newInner}</trkpt>`;
     } else {
       replacement = `<trkpt${t.attrs}><ele>${eleStr}</ele>${t.inner}</trkpt>`;
     }
-
     updated = updated.slice(0, t.start) + replacement + updated.slice(t.end);
   }
 
@@ -140,12 +166,12 @@ async function main() {
   const args = parseArgs(argv);
   if (args.help || args.files.length === 0) {
     console.log(
-      `Usage: node scripts/add-elevation.mjs [--force] <file.gpx> [file2.gpx ...]\n\n` +
-        `Fills in missing <ele> tags in GPX trackpoints using the free\n` +
-        `Open-Meteo elevation API (no API key required).\n\n` +
-        `Options:\n` +
-        `  -f, --force   Overwrite existing elevation values too.\n` +
-        `  -h, --help    Show this help.\n`
+      "Usage: node scripts/add-elevation.mjs [--force] <file.gpx> [file2.gpx ...]\n\n" +
+      "Fills in missing <ele> tags in GPX trackpoints using the free\n" +
+      "Open-Meteo elevation API (no API key required).\n\n" +
+      "Options:\n" +
+      "  -f, --force   Overwrite existing elevation values too.\n" +
+      "  -h, --help    Show this help.\n"
     );
     exit(args.help ? 0 : 1);
   }
