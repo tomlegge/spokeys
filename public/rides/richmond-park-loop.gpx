@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Spokeys" xmlns="http://www.topografix.com/GPX/1/1">
+  <trk>
+    <name>Richmond Park Loop</name>
+    <trkseg>
+      <trkpt lat="51.4358" lon="-0.2935"><ele>32</ele><time>2026-04-12T08:00:00Z</time></trkpt>
+      <trkpt lat="51.4378" lon="-0.2920"><ele>35</ele><time>2026-04-12T08:01:30Z</time></trkpt>
+      <trkpt lat="51.4400" lon="-0.2900"><ele>40</ele><time>2026-04-12T08:03:00Z</time></trkpt>
+      <trkpt lat="51.4425" lon="-0.2880"><ele>45</ele><time>2026-04-12T08:04:30Z</time></trkpt>
+      <trkpt lat="51.4450" lon="-0.2855"><ele>48</ele><time>2026-04-12T08:06:00Z</time></trkpt>
+      <trkpt lat="51.4470" lon="-0.2820"><ele>50</ele><time>2026-04-12T08:07:45Z</time></trkpt>
+      <trkpt lat="51.4485" lon="-0.2785"><ele>55</ele><time>2026-04-12T08:09:30Z</time></trkpt>
+      <trkpt lat="51.4495" lon="-0.2745"><ele>58</ele><time>2026-04-12T08:11:00Z</time></trkpt>
+      <trkpt lat="51.4500" lon="-0.2700"><ele>56</ele><time>2026-04-12T08:12:30Z</time></trkpt>
+      <trkpt lat="51.4495" lon="-0.2660"><ele>52</ele><time>2026-04-12T08:14:00Z</time></trkpt>
+      <trkpt lat="51.4480" lon="-0.2625"><ele>48</ele><time>2026-04-12T08:15:30Z</time></trkpt>
+      <trkpt lat="51.4460" lon="-0.2595"><ele>44</ele><time>2026-04-12T08:17:00Z</time></trkpt>
+      <trkpt lat="51.4435" lon="-0.2575"><ele>40</ele><time>2026-04-12T08:18:30Z</time></trkpt>
+      <trkpt lat="51.4405" lon="-0.2565"><ele>36</ele><time>2026-04-12T08:20:00Z</time></trkpt>
+      <trkpt lat="51.4375" lon="-0.2570"><ele>34</ele><time>2026-04-12T08:21:30Z</time></trkpt>
+      <trkpt lat="51.4345" lon="-0.2585"><ele>32</ele><time>2026-04-12T08:23:00Z</time></trkpt>
+      <trkpt lat="51.4320" lon="-0.2610"><ele>30</ele><time>2026-04-12T08:24:30Z</time></trkpt>
+      <trkpt lat="51.4300" lon="-0.2645"><ele>28</ele><time>2026-04-12T08:26:00Z</time></trkpt>
+      <trkpt lat="51.4290" lon="-0.2685"><ele>26</ele><time>2026-04-12T08:27:30Z</time></trkpt>
+      <trkpt lat="51.4288" lon="-0.2725"><ele>25</ele><time>2026-04-12T08:29:00Z</time></trkpt>
+      <trkpt lat="51.4295" lon="-0.2765"><ele>27</ele><time>2026-04-12T08:30:30Z</time></trkpt>
+      <trkpt lat="51.4310" lon="-0.2805"><ele>29</ele><time>2026-04-12T08:32:00Z</time></trkpt>
+      <trkpt lat="51.4325" lon="-0.2845"><ele>30</ele><time>2026-04-12T08:33:30Z</time></trkpt>
+      <trkpt lat="51.4340" lon="-0.2890"><ele>31</ele><time>2026-04-12T08:35:00Z</time></trkpt>
+      <trkpt lat="51.4358" lon="-0.2935"><ele>32</ele><time>2026-04-12T08:36:30Z</time></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

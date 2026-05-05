@@ -1,0 +1,352 @@
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --text: #1f2933;
+  --muted: #5b6b7a;
+  --border: #dde3ea;
+  --accent: #0077b6;
+  --danger: #c0392b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 14px rgba(0, 0, 0, 0.06);
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 56px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+.brand:hover {
+  text-decoration: none;
+}
+.brand-mark {
+  font-size: 1.4rem;
+}
+
+.app-nav {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+.app-main > * {
+  flex: 1;
+  min-width: 0;
+}
+
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+/* ---------------- Home page (map + sidebar) ---------------- */
+
+.home {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  grid-template-rows: 1fr;
+  width: 100%;
+  min-height: 0;
+}
+
+.ride-sidebar {
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  overflow-y: auto;
+}
+
+.sidebar-head {
+  padding: 1.25rem 1.25rem 0.5rem;
+}
+.sidebar-head h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+.sidebar-sub {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.ride-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0.75rem 1.25rem;
+}
+
+.ride-card {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  background: var(--surface);
+  transition: transform 0.08s ease, box-shadow 0.12s ease;
+}
+.ride-card:hover,
+.ride-card.is-selected {
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+
+.ride-color {
+  width: 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.ride-card-body {
+  flex: 1;
+  min-width: 0;
+}
+.ride-card-title {
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+.ride-card-title a {
+  color: var(--text);
+}
+.ride-card-meta {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.ride-card-stats {
+  margin-top: 0.4rem;
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+.ride-error {
+  color: var(--danger);
+}
+
+.map-pane {
+  position: relative;
+  height: 100%;
+}
+
+/* ---------------- Ride detail ---------------- */
+
+.ride-detail {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+  overflow-y: auto;
+}
+
+.back-link {
+  font-size: 0.9rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.ride-detail-head h1 {
+  margin: 0 0 0.25rem;
+}
+.ride-meta {
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+.ride-description {
+  margin: 0 0 1.25rem;
+  font-size: 1.02rem;
+  max-width: 60ch;
+}
+
+.ride-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ride-map {
+  height: 480px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.ride-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.65rem 0.85rem;
+}
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.ride-section {
+  margin-top: 1.75rem;
+}
+.ride-section h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+}
+
+/* ---------------- Photos ---------------- */
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.5rem;
+}
+.photo-thumb {
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+.photo-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+  padding: 2rem;
+}
+.photo-lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 6px;
+}
+.photo-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* ---------------- About ---------------- */
+
+.about-page {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+  overflow-y: auto;
+}
+.about-page code {
+  background: #eef2f6;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.92em;
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 800px) {
+  .home {
+    grid-template-columns: 1fr;
+    grid-template-rows: 320px 1fr;
+  }
+  .ride-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ride-detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .ride-map {
+    height: 360px;
+  }
+}
