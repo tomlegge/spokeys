@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write   # needed so the elevation step can commit fixes back to main
   pages: write
   id-token: write
 
@@ -19,12 +19,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Use the default GITHUB_TOKEN to push the elevation commit.
+          # Pushes made with GITHUB_TOKEN do NOT retrigger workflows,
+          # which is exactly what we want (no infinite loop).
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
 #          cache: npm
+
+      - name: Fill in missing elevation on GPX files
+        run: |
+          shopt -s nullglob
+          files=(public/rides/*.gpx)
+          if [ ${#files[@]} -gt 0 ]; then
+            node scripts/add-elevation.mjs "${files[@]}"
+          else
+            echo "No GPX files found."
+          fi
+
+      - name: Commit elevation updates back to repo
+        run: |
+          if git diff --quiet -- public/rides; then
+            echo "No elevation changes to commit."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/rides
+          git commit -m "chore: auto-fill GPX elevation [skip ci]"
+          git push
 
       - name: Install dependencies
         run: npm install
