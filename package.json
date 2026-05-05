@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "add-elevation": "node scripts/add-elevation.mjs"
   },
   "dependencies": {
     "chart.js": "^4.4.7",

@@ -61,8 +61,13 @@ If you want `rides.example.com`:
    - From a GPS computer or Strava: export as GPX.
    - From Google Earth: right-click your path → "Save Place As..." → KML.
 2. **Save it** to `public/rides/`. Pick a tidy filename like `chiltern-loop-2026-05-01.gpx`.
-3. **Add photos (optional)**: drop them in `public/photos/<slug>/`.
-4. **Edit `src/data/rides.ts`** and add an entry:
+3. **Fill in elevation (if missing)**: many phone trackers and route planners save GPX without elevation, which leaves the elevation chart and gain/loss stats empty. Run:
+   ```bash
+   npm run add-elevation -- public/rides/chiltern-loop-2026-05-01.gpx
+   ```
+   This calls the free [Open-Meteo elevation API](https://open-meteo.com/en/docs/elevation-api) (no API key, ~30m DEM) and writes `<ele>` tags back into the file. Add `--force` to overwrite existing elevations.
+4. **Add photos (optional)**: drop them in `public/photos/<slug>/`.
+5. **Edit `src/data/rides.ts`** and add an entry:
    ```ts
    {
      slug: "chiltern-loop",
@@ -77,8 +82,8 @@ If you want `rides.example.com`:
      color: "#2a9d8f",
    },
    ```
-5. **Test locally**: `npm run dev`, open http://localhost:5173, confirm the route shows up.
-6. **Push**: `git add . && git commit -m "Add Chiltern Loop" && git push`. GitHub Actions builds and publishes within a minute.
+6. **Test locally**: `npm run dev`, open http://localhost:5173, confirm the route shows up.
+7. **Push**: `git add . && git commit -m "Add Chiltern Loop" && git push`. GitHub Actions builds and publishes within a minute.
 
 ## Project layout
 
