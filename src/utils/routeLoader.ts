@@ -240,7 +240,7 @@ function computeBounds(
  * inflate the climbing total — this matches what most route platforms do.
  */
 function computeStats(points: LatLngEle[]): RouteStats {
-  const ELE_NOISE_M = 8;
+  const ELE_NOISE_M = 9;
   let distance = 0;
   let gain = 0;
   let loss = 0;
