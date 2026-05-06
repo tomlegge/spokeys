@@ -62,6 +62,18 @@ export const RIDES: Ride[] = [
     color: "#e63946",
   },
   {
+    slug: "spokeys-2025-wiltshire-way",
+    title: "Spokeys 2025 - Wiltshire Way",
+    date: "2025-05-30",
+    file: `${base}rides/Spokeys2025.kml`,
+    riders: ["Tom", "Charlie", "Anita"],
+    description:
+      "The Wiltshire Way ride with some scenic views, good food and no rain.",
+    photos: [
+    ],
+    color: "#26cd3a",
+  },
+  {
   slug: "spokeys-2026-bristol-to-yatton",
   title: "Spokeys 2026 - Bristol to Yatton",
   date: "2026-05-01",
