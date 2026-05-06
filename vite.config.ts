@@ -1,10 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// IMPORTANT: When deploying to GitHub Pages at https://<user>.github.io/<repo>/
-// set base to "/<repo>/". For a project repo named "spokeys" set base: "/spokeys/".
-// If you use a custom domain or deploy at the root, set base: "/".
+// Served from the custom domain https://www.spokeys.uk/, so the site lives at
+// the root path. If you ever revert to https://<user>.github.io/spokeys/, change
+// base back to "/spokeys/".
 export default defineConfig({
   plugins: [react()],
-  base: "/spokeys/",
+  base: "/",
 });
