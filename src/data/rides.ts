@@ -65,7 +65,7 @@ export const RIDES: Ride[] = [
     slug: "spokeys-2025-wiltshire-way",
     title: "Spokeys 2025 - Wiltshire Way",
     date: "2025-05-30",
-    file: `${base}rides/Spokeys2025.kml`,
+    file: `${base}rides/Spokeys2025.gpx`,
     riders: ["Tom", "Charlie", "Anita"],
     description:
       "The Wiltshire Way ride with some scenic views, good food and no rain.",
