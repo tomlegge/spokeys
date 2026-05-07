@@ -29,6 +29,25 @@ export type Ride = {
 
 export const RIDES: Ride[] = [
   {
+    slug: "spokeys-2021-jurassic-coast",
+    title: "Spokeys 2021 - Jurassic Coast",
+    date: "2021-05-30",
+    file: `${base}rides/Spokeys2021.gpx`,
+    riders: ["Tom", "Darren", "Anita", "Charlie", "Gary", "Tim", "Aiden", "Steve"],
+    description:
+      "The Jurassic Coast ride between Southampton and Exmouth, with support from Steve and Catherine",
+    photos: [
+    `${base}photos/spokeys-2021-jurassic-coast/spokeys_2021_1.jpg`,
+    `${base}photos/spokeys-2021-jurassic-coast/spokeys_2021_2.jpg`,
+    `${base}photos/spokeys-2021-jurassic-coast/spokeys_2021_3.jpg`,
+    `${base}photos/spokeys-2021-jurassic-coast/spokeys_2021_4.jpg`,
+    `${base}photos/spokeys-2021-jurassic-coast/spokeys_2021_5.jpg`,
+    `${base}photos/spokeys-2021-jurassic-coast/spokeys_2021_6.jpg`,
+    `${base}photos/spokeys-2021-jurassic-coast/spokeys_2021_7.jpg`,
+    ],
+    color: "#e63946",
+  },
+  {
     slug: "spokeys-2024-devon-c2c",
     title: "Spokeys 2024 - Devon Coast to Coast",
     date: "2024-05-30",
