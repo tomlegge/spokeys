@@ -33,7 +33,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2021 - Jurassic Coast",
     date: "2021-05-30",
     file: `${base}rides/Spokeys2021.gpx`,
-    riders: ["Tom", "Darren", "Anita", "Charlie", "Gary", "Tim", "Aiden", "Steve"],
+    riders: ["Tom", "Darren", "Anita", "Charlie", "Gary", "Tim", "Aiden", "Steve", "Nick"],
     description:
       "The Jurassic Coast ride between Southampton and Exmouth, with support from Steve and Catherine",
     photos: [
