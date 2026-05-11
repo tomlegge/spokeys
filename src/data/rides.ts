@@ -29,11 +29,41 @@ export type Ride = {
 
 export const RIDES: Ride[] = [
   {
+    slug: "spokeys-2018-coast-and-castles",
+    title: "Spokeys 2018 - Newcastle to Edinburgh - Coast and Castles",
+    date: "2018-05-30",
+    file: `${base}rides/Spokeys2018.gpx`,
+    riders: ["Darren", "Anita", "Tom", "Gary", "Steve E", "Ciaran", "Peter", "Stew"],
+    description:
+      "A ride from Newcastle to Edinburgh, with a night sleeping on the floor of Stew's friend Si in Walsend, a campsite overlooking Lindisfarne, a campsite by a river and a final night wild camping on the beach at Dunbar.",
+    photos: [
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (1).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (2).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (3).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (4).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (5).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (6).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (7).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (8).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (9).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (10).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (11).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (12).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (13).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (14).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (15).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (16).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (17).jpeg`,
+    `${base}photos/spokeys-2018-coast-and-castlesy/spokeys2018 (18).jpeg`,
+    ],
+    color: "#093cf4",
+  },
+  {
     slug: "spokeys-2019-lord-whisky",
     title: "Spokeys 2019 - Lord Whisky Sportive",
     date: "2019-05-30",
     file: `${base}rides/Spokeys2019.gpx`,
-    riders: ["Darren", "Anita (not riding this year)", "Charlie", "Steve", "Steve E", "Gary", "Peter", "Tom (BBQ only"],
+    riders: ["Darren", "Anita (not riding this year)", "Charlie", "Steve", "Steve E", "Gary", "Peter", "Tom (BBQ only)"],
     description:
       "A sportive to celebrate the 10th anniverary of Spokeys with a BBQ at Charlie and Claire's house the night before",
     photos: [
