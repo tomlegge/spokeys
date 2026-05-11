@@ -29,11 +29,24 @@ export type Ride = {
 
 export const RIDES: Ride[] = [
   {
+    slug: "spokeys-2015-nightride",
+    title: "Spokeys 2015 - A nightride from Guildford to Christchurch",
+    date: "2015-06-20",
+    file: `${base}rides/Nightride_2015_Guildford_to_Christchurch.gpx`,
+    riders: ["Stu", "Anita", "Tom"],
+    description:
+      "A nightride from Guildford to Christchurch, going via the New Forest and finishing on the beach and Christchurch.",
+    photos: [
+ 
+    ],
+    color: "#ed098a",
+  },
+  {
     slug: "spokeys-2018-coast-and-castles",
     title: "Spokeys 2018 - Newcastle to Edinburgh - Coast and Castles",
     date: "2018-05-30",
     file: `${base}rides/Spokeys2018.gpx`,
-    riders: ["Darren", "Anita", "Tom", "Gary", "Steve E", "Ciaran", "Peter", "Stew"],
+    riders: ["Darren", "Anita", "Tom", "Gary", "Steve E", "Ciaran", "Peter", "Stu"],
     description:
       "A ride from Newcastle to Edinburgh, with a night sleeping on the floor of Stew's friend Si in Walsend, a campsite overlooking Lindisfarne, a campsite by a river and a final night wild camping on the beach at Dunbar.",
     photos: [
