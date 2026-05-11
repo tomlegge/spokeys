@@ -37,7 +37,7 @@ export const RIDES: Ride[] = [
     description:
       "A nightride from Guildford to Christchurch, going via the New Forest and finishing on the beach and Christchurch.",
     photos: [
- 
+      `${base}photos/spokeys-2015-nightride/christchurch-beach.jpg`
     ],
     color: "#ed098a",
   },
