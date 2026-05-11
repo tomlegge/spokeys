@@ -29,6 +29,18 @@ export type Ride = {
 
 export const RIDES: Ride[] = [
   {
+    slug: "spokeys-2019-lord-whisky",
+    title: "Spokeys 2019 - Lord Whisky Sportive",
+    date: "2019-05-30",
+    file: `${base}rides/Spokeys2019.gpx`,
+    riders: ["Darren", "Anita (not riding this year)", "Charlie", "Steve","others tbc"],
+    description:
+      "A sportive to celebrate the 10th anniverary of Spokeys with a BBQ at Charlie and Claire's house the night before",
+    photos: [
+    ],
+    color: "#95c91d",
+  },
+  {
     slug: "spokeys-2021-jurassic-coast",
     title: "Spokeys 2021 - Jurassic Coast",
     date: "2021-05-30",
@@ -45,7 +57,7 @@ export const RIDES: Ride[] = [
     `${base}photos/spokeys-2021-jurassic-coast/spokeys_2021_6.jpg`,
     `${base}photos/spokeys-2021-jurassic-coast/spokeys_2021_7.jpg`,
     ],
-    color: "#e63946",
+    color: "#452b9b",
   },
   {
     slug: "spokeys-2024-devon-c2c",
