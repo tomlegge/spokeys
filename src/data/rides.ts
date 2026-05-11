@@ -29,6 +29,18 @@ export type Ride = {
 
 export const RIDES: Ride[] = [
   {
+    slug: "spokeys-2015-loire-valley",
+    title: "Spokeys 2015 - Loire Valley",
+    date: "2015-05-20",
+    file: `${base}rides/Spokeys2015.gpx`,
+    riders: ["Stu", "Anita", "Tom", "Darren", "Sophie?", "Costas?", "Iris (child of Sophie and Costas)", "Ciran"],
+    description:
+      "A ride along the Loire Valley, starting in Tours",
+    photos: [
+    ],
+    color: "#ed098a",
+  },
+  {
     slug: "spokeys-2015-nightride",
     title: "Spokeys 2015 - A nightride from Guildford to Christchurch",
     date: "2015-06-20",
