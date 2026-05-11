@@ -122,7 +122,7 @@ export const RIDES: Ride[] = [
     `${base}photos/spokeys-2019-lord-whisky/Spokeys2019 (20).jpeg`,
     `${base}photos/spokeys-2019-lord-whisky/Spokeys2019 (21).jpeg`,
     ],
-    color: "#f4d409",
+    color: "#f40921",
   },
   {
     slug: "spokeys-2021-jurassic-coast",
