@@ -33,7 +33,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2015 - Loire Valley",
     date: "2015-05-20",
     file: `${base}rides/Spokeys2015.gpx`,
-    riders: ["Stu", "Anita", "Tom", "Darren", "Tania", "Kostas", "Iris (child of Tania and Kostas)", "Ciran"],
+    riders: ["Stu", "Anita", "Tom", "Darren", "Tania", "Kostas", "Iris (child of Tania and Kostas)", "Ciaran"],
     description:
       "A ride along the Loire Valley, starting in Tours",
     photos: [
