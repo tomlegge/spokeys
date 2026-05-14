@@ -29,6 +29,18 @@ export type Ride = {
 
 export const RIDES: Ride[] = [
   {
+    slug: "spokeys-2014-c2c",
+    title: "Spokeys 2014 - Coast to Coast",
+    date: "2014-05-20",
+    file: `${base}rides/Spokeys2014.gpx`,
+    riders: ["Stu", "Anita", "Tom", "Darren", "Charlie", "Jamie"],
+    description:
+      "The classic coast to coast ride from Whitehaven to Tynemouth, with a visit to Stu's Mum's house for lunch and a midnight curry in Newcastle.",
+    photos: [
+    ],
+    color: "#00f895a7",
+  },
+  {
     slug: "spokeys-2015-loire-valley",
     title: "Spokeys 2015 - Loire Valley",
     date: "2015-05-20",
