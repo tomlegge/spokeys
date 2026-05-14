@@ -17,7 +17,7 @@ import { argv, exit } from "node:process";
 
 const API = "https://api.open-meteo.com/v1/elevation";
 const BATCH_SIZE = 100;       // Open-Meteo allows up to 100 coords per request.
-const BATCH_DELAY_MS = 20000;  // Pace ourselves between batches on shared IPs.
+const BATCH_DELAY_MS = 480000;  // Pace ourselves between batches on shared IPs.
 const MAX_RETRIES = 6;        // Total attempts per batch on transient failures.
 
 function parseArgs(argv) {
