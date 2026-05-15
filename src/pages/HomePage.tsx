@@ -85,7 +85,7 @@ export default function HomePage() {
           </p>
         </div>
         <ul className="ride-list">
-          {loaded.map((lr) => (
+          {[...loaded].reverse().map((lr) => (
             <li
               key={lr.ride.slug}
               className={
