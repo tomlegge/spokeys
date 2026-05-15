@@ -42,13 +42,15 @@ export const RIDES: Ride[] = [
     description:
       "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
     photos: [
+      `${base}photos/Dunwich-dynamo/IMG_1450.JPG`,
+      `${base}photos/Dunwich-dynamo/IMG_1453.JPG`,
     ],
-    color: "#f82500d5",
-    // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
+    color: "#f800ba",
+    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
   },
   {
-    slug: "spokeys-2011-windors-to-cardiff",
-    title: "Spokeys 2011 - Windors to Cardiff",
+    slug: "spokeys-2011-windor-to-cardiff",
+    title: "Spokeys 2011 - Windor to Cardiff",
     date: "2011-05-30",
     file: `${base}rides/Spokeys2011.gpx`,
     riders: ["Steve", "Charlie", "Anita", "Tom", "Claire", "Jamie", "Steve Moonie", "Mark", "Darren"],
@@ -320,7 +322,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2013-vattern/spokeys_vattern (10).JPG`,
     ],
     color: "#f80000a7",
-    // blogUrl: "https://example.com/blog/spokeys-2013-vattern",
+    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/14/116/",
   },
 
   {
@@ -414,7 +416,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2018 - Newcastle to Edinburgh - Coast and Castles",
     date: "2018-05-30",
     file: `${base}rides/Spokeys2018.gpx`,
-    riders: ["Darren", "Anita", "Tom", "Gary", "Steve E", "Ciaran", "Peter", "Stu"],
+    riders: ["Darren", "Anita", "Tom", "Gary", "Steve E", "Ciaran", "Peter", "Stu", "Nick"],
     description:
       "A ride from Newcastle to Edinburgh, with a night sleeping on the floor of Stew's friend Si in Walsend, a campsite overlooking Lindisfarne, a campsite by a river and a final night wild camping on the beach at Dunbar.",
     photos: [
