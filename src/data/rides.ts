@@ -34,11 +34,24 @@ export type Ride = {
 
 export const RIDES: Ride[] = [
   {
+    slug: "Dunwich-dynamo",
+    title: "Spokeys Dunwich Dynamo 2010, 2011, 2013, 2014",
+    date: "2011-05-30",
+    file: `${base}rides/DunwichDynamo.gpx`,
+    riders: ["Steve (2010, 2011, 2014)", "Charlie (2011)", "Anita (2010, 2011, 2013)", "Tom (2011, 2012, 2014, 2014)", "Darren (2011, 2012, 2013)", "Jamie (2010, 2011, 2013, 2014)", "Stu (2013, 2014)", "Kostas (2014)", "James (2014)"],
+    description:
+      "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
+    photos: [
+    ],
+    color: "#f82500d5",
+    // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
+  },
+  {
     slug: "spokeys-2011-windors-to-cardiff",
     title: "Spokeys 2011 - Windors to Cardiff",
     date: "2011-05-30",
     file: `${base}rides/Spokeys2011.gpx`,
-    riders: ["Steve", "Charlie", "Anita", "Tom", "Claire", "Jamie", "Steve Moonie", "Mark"],
+    riders: ["Steve", "Charlie", "Anita", "Tom", "Claire", "Jamie", "Steve Moonie", "Mark", "Darren"],
     description:
       "A 3 day ride from Windor to Cardiff, including a very late arrival into Cardiff.",
     photos: [
