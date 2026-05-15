@@ -38,7 +38,7 @@ export const RIDES: Ride[] = [
       "A 3 day ride from Windor to Cardiff, including a very late arrival into Cardiff.",
     photos: [
     ],
-    color: "#6cf800a7",
+    color: "#f82500d5",
   },
   {
     slug: "spokeys-2014-prague-to-berlin",
