@@ -214,7 +214,6 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (175).JPG`,
       `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (176).JPG`,
       `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (177).JPG`,
-      `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (178).JPG`,
       `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (179).JPG`,
       `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (180).JPG`,
       `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (181).JPG`,
