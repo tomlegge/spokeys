@@ -217,6 +217,22 @@ a:hover {
   font-size: 1.02rem;
   max-width: 60ch;
 }
+.ride-blog-link {
+  margin: 0 0 1.25rem;
+}
+.ride-blog-link a {
+  display: inline-block;
+  padding: 0.4rem 0.85rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.ride-blog-link a:hover {
+  text-decoration: none;
+  filter: brightness(1.1);
+}
 
 .ride-detail-grid {
   display: grid;

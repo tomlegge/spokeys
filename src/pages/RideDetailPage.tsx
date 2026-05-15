@@ -73,6 +73,17 @@ export default function RideDetailPage() {
         {ride.description && (
           <p className="ride-description">{ride.description}</p>
         )}
+        {ride.blogUrl && (
+          <p className="ride-blog-link">
+            <a
+              href={ride.blogUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read the blog →
+            </a>
+          </p>
+        )}
       </div>
 
       <div className="ride-detail-grid">

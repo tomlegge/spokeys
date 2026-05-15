@@ -10,6 +10,10 @@
  * `slug` becomes the URL: /rides/<slug>
  * `file` is relative to public/, so prefix is `/rides/...`
  *
+ * `blogUrl` (optional): full external URL to a blog post about the ride.
+ * When set, the ride detail page renders a "Read the blog →" button that
+ * opens in a new tab. Leave it off (or commented out) if there's no post.
+ *
  * Use import.meta.env.BASE_URL so paths work in dev (`/`) AND on
  * GitHub Pages (`/spokeys/`). Don't hardcode the prefix.
  */
@@ -25,6 +29,7 @@ export type Ride = {
   description: string;
   photos?: string[]; // paths under public/, relative to BASE_URL
   color?: string; // route line color on the overview map
+  blogUrl?: string; // optional external blog post about this ride
 };
 
 export const RIDES: Ride[] = [
@@ -39,6 +44,7 @@ export const RIDES: Ride[] = [
     photos: [
     ],
     color: "#f82500d5",
+    // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
   },
   {
     slug: "spokeys-2014-prague-to-berlin",
@@ -278,6 +284,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (228).JPG`,
     ],
     color: "#00ecf8e9",
+    // blogUrl: "https://example.com/blog/spokeys-2013-prague-to-berlin",
   },
   {
     slug: "spokeys-2013-vattern",
@@ -300,6 +307,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2013-vattern/spokeys_vattern (10).JPG`,
     ],
     color: "#f80000a7",
+    // blogUrl: "https://example.com/blog/spokeys-2013-vattern",
   },
 
   {
@@ -341,6 +349,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2014-c2c/spokeys_2014 (27).JPG`,
     ],
     color: "#00f895a7",
+    blogUrl: "https://rollbikeroll.wordpress.com/2014/12/30/bike-highlights-of-2014/",
   },
   {
     slug: "spokeys-2015-loire-valley",
@@ -367,6 +376,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2015-loire-valley/spokeys_2015_loire_valley (14).jpeg`,
     ],
     color: "#0595f5",
+    // blogUrl: "https://example.com/blog/spokeys-2015-loire-valley",
   },
   {
     slug: "spokeys-2015-nightride",
@@ -384,6 +394,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2015-nightride/christchurch-beach.jpg`,
     ],
     color: "#ed098a",
+    blogUrl: "https://rollbikeroll.wordpress.com/2015/09/30/wild-horses-and-wild-camping/",
   },
   {
     slug: "spokeys-2018-coast-and-castles",
@@ -434,6 +445,7 @@ export const RIDES: Ride[] = [
     `${base}photos/spokeys-2018-coast-and-castles/spokeys2018 (38).jpeg`,    
     ],
     color: "#093cf4",
+    blogUrl: "https://rollbikeroll.wordpress.com/2018/06/04/coast-and-castles/",
   },
   {
     slug: "spokeys-2019-lord-whisky",
@@ -467,6 +479,7 @@ export const RIDES: Ride[] = [
     `${base}photos/spokeys-2019-lord-whisky/Spokeys2019 (21).jpeg`,
     ],
     color: "#f40921",
+    // blogUrl: "https://example.com/blog/spokeys-2019-lord-whisky",
   },
   {
     slug: "spokeys-2021-jurassic-coast",
@@ -486,6 +499,7 @@ export const RIDES: Ride[] = [
     `${base}photos/spokeys-2021-jurassic-coast/spokeys_2021_7.jpg`,
     ],
     color: "#452b9b",
+    // blogUrl: "https://example.com/blog/spokeys-2021-jurassic-coast",
   },
   {
     slug: "spokeys-2024-devon-c2c",
@@ -519,6 +533,7 @@ export const RIDES: Ride[] = [
     `${base}photos/spokeys-2024-devon-c2c/spokeys_2024_21.jpg`,
     ],
     color: "#e63946",
+    blogUrl: "https://rollbikeroll.wordpress.com/2024/05/30/devon-coast-to-coast-spokeys-returns/",
   },
   {
     slug: "spokeys-2025-wiltshire-way",
@@ -552,6 +567,7 @@ export const RIDES: Ride[] = [
     `${base}photos/spokeys-2025-wiltshire-way/spokeys_2025_1 (21).jpg`, 
     ],
     color: "#26cd3a",
+    blogUrl: "https://rollbikeroll.wordpress.com/2025/06/01/wiltshire-way/",
   },
   {
   slug: "spokeys-2026-bristol-to-yatton",
@@ -593,5 +609,6 @@ export const RIDES: Ride[] = [
     `${base}photos/spokeys-2026-bristol-to-yatton/spokeys_2026_30.jpeg`,
   ],
   color: "#2a9d8f",
+  // blogUrl: "https://example.com/blog/spokeys-2026-bristol-to-yatton",
 }
 ];
