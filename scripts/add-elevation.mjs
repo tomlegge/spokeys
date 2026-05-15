@@ -57,7 +57,7 @@ async function fetchWithRetry(url) {
         const n = parseInt(retryAfter, 10);
         waitMs = Number.isFinite(n) ? n * 1000 : 60000;
       } else if (res.status === 429) {
-        waitMs = 120000 + Math.floor(Math.random() * 5000);
+        waitMs = 12000 + Math.floor(Math.random() * 5000);
       } else {
         waitMs = Math.min(60000, 1000 * 2 ** (attempt - 1));
       }
