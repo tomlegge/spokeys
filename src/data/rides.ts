@@ -29,6 +29,18 @@ export type Ride = {
 
 export const RIDES: Ride[] = [
   {
+    slug: "spokeys-2011-windors-to-cardiff",
+    title: "Spokeys 2011 - Windors to Cardiff",
+    date: "2011-05-30",
+    file: `${base}rides/Spokeys2011-vattern.gpx`,
+    riders: ["Steve", "Charlie", "Anita", "Tom", "Claire", "Jamie", "Steve Moonie?", "TBC"],
+    description:
+      "A 3 day ride from Windor to Cardiff, including a very late arrival into Cardiff.",
+    photos: [
+    ],
+    color: "#6cf800a7",
+  },
+  {
     slug: "spokeys-2014-prague-to-berlin",
     title: "Spokeys 2013 - Prague to Berlin",
     date: "2013-05-30",
