@@ -29,6 +29,29 @@ export type Ride = {
 
 export const RIDES: Ride[] = [
   {
+    slug: "spokeys-2013-vattern",
+    title: "Spokeys 2013 - Halv Vattern Runden",
+    date: "2013-09-05",
+    file: `${base}rides/Spokeys2013-vattern.gpx`,
+    riders: ["Stu", "Anita", "Tom", "James","Jamie"],
+    description:
+      "The half Vattern Runden ride, near the town of Motala in Sweden.",
+    photos: [
+      `${base}photos/spokeys-2013-vattern/spokeys_vattern (1).JPG`,
+      `${base}photos/spokeys-2013-vattern/spokeys_vattern (2).JPG`,
+      `${base}photos/spokeys-2013-vattern/spokeys_vattern (3).JPG`,
+      `${base}photos/spokeys-2013-vattern/spokeys_vattern (4).JPG`,
+      `${base}photos/spokeys-2013-vattern/spokeys_vattern (5).JPG`,
+      `${base}photos/spokeys-2013-vattern/spokeys_vattern (6).JPG`,
+      `${base}photos/spokeys-2013-vattern/spokeys_vattern (7).JPG`,
+      `${base}photos/spokeys-2013-vattern/spokeys_vattern (8).JPG`,
+      `${base}photos/spokeys-2013-vattern/spokeys_vattern (9).JPG`,
+      `${base}photos/spokeys-2013-vattern/spokeys_vattern (10).JPG`,
+    ],
+    color: "#f80000a7",
+  },
+
+  {
     slug: "spokeys-2014-c2c",
     title: "Spokeys 2014 - Coast to Coast",
     date: "2014-05-20",
