@@ -128,6 +128,29 @@ a:hover {
   color: var(--muted);
   font-size: 0.9rem;
 }
+.sidebar-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0.85rem 0 0.25rem;
+  padding: 0.55rem 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.sidebar-total-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.sidebar-total-value {
+  color: var(--accent);
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
 
 .ride-list {
   list-style: none;

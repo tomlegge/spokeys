@@ -74,6 +74,20 @@ export default function HomePage() {
 
   const isLoading = loaded.some((lr) => lr.status === "loading");
 
+  // Running total of distance across every successfully-loaded ride.
+  // Recomputes as routes stream in.
+  const totalDistanceKm = useMemo(
+    () =>
+      loaded.reduce(
+        (sum, lr) =>
+          lr.status === "ready" && lr.data
+            ? sum + lr.data.stats.distanceKm
+            : sum,
+        0,
+      ),
+    [loaded],
+  );
+
   return (
     <div className="home">
       <aside className="ride-sidebar">
@@ -82,6 +96,12 @@ export default function HomePage() {
           <p className="sidebar-sub">
             {RIDES.length} route{RIDES.length === 1 ? "" : "s"}
             {isLoading ? " · loading…" : ""}
+          </p>
+          <p className="sidebar-total">
+            <span className="sidebar-total-label">Total distance</span>
+            <span className="sidebar-total-value">
+              {formatKm(totalDistanceKm)}
+            </span>
           </p>
         </div>
         <ul className="ride-list">
