@@ -36,6 +36,32 @@ export type Ride = {
 
 export const RIDES: Ride[] = [
   {
+    slug: "spokeys-2009-london-to-paris",
+    title: "Spokeys 2009 - London to Paris",
+    date: "2009-05-30",
+    //file: `${base}rides/Spokeys2011.gpx`,
+    riders: ["Anita", "Darren", "Steve Gee", "Others tbc"],
+    description:
+      "The first Spokeys ride, from London to Paris.",
+    photos: [
+    ],
+    color: "#f82500d5",
+    // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
+  },
+  {
+    slug: "spokeys-2010-vienna-to-budapest",
+    title: "Spokeys 2010 - Viennato Budapest",
+    date: "2010-05-30",
+  //  file: `${base}rides/Spokeys2011.gpx`,
+    riders: ["Anita", "Darren", "Others tbc"],
+    description:
+      "The second Spokeys ride, from Vienna to Budapest.",
+    photos: [
+    ],
+    color: "#f82500d5",
+    // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
+  },    
+  {
     slug: "Dunwich-dynamo",
     title: "Spokeys Dunwich Dynamo 2010, 2011, 2013, 2014",
     date: "2011-05-30",
@@ -412,6 +438,50 @@ export const RIDES: Ride[] = [
     ],
     color: "#ed098a",
     blogUrl: "https://rollbikeroll.wordpress.com/2015/09/30/wild-horses-and-wild-camping/",
+  },
+  {
+    slug: "spokeys-2016-f2f",
+    title: "Spokeys 2016 - Forest to Forest",
+    date: "2016-05-30",
+ //   file: `${base}rides/Nightride_2015_Guildford_to_Christchurch.gpx`,
+    riders: ["Stu", "Anita", "Steve E", "Darren", "Ciaran", "Pete", "Nick"],
+    description:
+      "The F2F -New Forest to the Forest of Dean",
+    photos: [
+      `${base}photos/spokeys-2016-f2f/big_bike.jpg`,
+      `${base}photos/spokeys-2016-f2f/bell.jpg`,      
+      `${base}photos/spokeys-2016-f2f/wye-valley.jpg`,
+      `${base}photos/spokeys-2016-f2f/lydney.jpg`,
+    ],
+    color: "#ed098a",
+    blogUrl: "https://rollbikeroll.wordpress.com/2016/06/01/forest-to-forest/",
+  },
+  {
+    slug: "spokeys-2017-caledonia-way",
+    title: "Spokeys 2017 - Caledonia Way",
+    date: "2017-05-30",
+ //   file: `${base}rides/Nightride_2015_Guildford_to_Christchurch.gpx`,
+    riders: ["Gary", "Anita", "Steve E", "Darren", "Nick", "Ciaran"],
+    description:
+      "The F2F -New Forest to the Forest of Dean",
+    photos: [
+      `${base}photos/spokeys-2017-caledonia-way/img_1542.jpg`,
+      `${base}photos/spokeys-2017-caledonia-way/img_1539.jpg`,      
+      `${base}photos/spokeys-2017-caledonia-way/img_1465.jpg`,
+      `${base}photos/spokeys-2017-caledonia-way/img_1544.jpg`,
+      `${base}photos/spokeys-2017-caledonia-way/img_1545.jpg`,
+      `${base}photos/spokeys-2017-caledonia-way/img_1546.jpg`,
+      `${base}photos/spokeys-2017-caledonia-way/img_1500.jpg`,
+      `${base}photos/spokeys-2017-caledonia-way/img_1555.jpg`,
+      `${base}photos/spokeys-2017-caledonia-way/img_1507.jpg`,
+      `${base}photos/spokeys-2017-caledonia-way/img_1519.jpg`,
+      `${base}photos/spokeys-2017-caledonia-way/img_1551.jpg`,
+      `${base}photos/spokeys-2017-caledonia-way/img_1550.jpg`,
+      `${base}photos/spokeys-2017-caledonia-way/img_1533.jpg`,
+      `${base}photos/spokeys-2017-caledonia-way/img_1528.jpg`,
+    ],
+    color: "#ed098a",
+    blogUrl: "https://rollbikeroll.wordpress.com/2017/06/03/caledonia-way/",
   },
   {
     slug: "spokeys-2018-coast-and-castles",
