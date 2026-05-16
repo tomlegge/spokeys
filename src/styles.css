@@ -206,6 +206,19 @@ a:hover {
 .ride-error {
   color: var(--danger);
 }
+.ride-pending {
+  color: var(--muted);
+  font-style: italic;
+}
+.ride-pending-note {
+  margin: 0 0 1.5rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-style: italic;
+}
 
 .map-pane {
   position: relative;

@@ -40,6 +40,7 @@ export default function RideDetailPage() {
     if (!ride) return;
     setRoute(null);
     setError(null);
+    if (!ride.file) return; // no GPX yet — just skip the load
     loadRoute(ride.file)
       .then(setRoute)
       .catch((e) => setError(e instanceof Error ? e.message : String(e)));
@@ -86,6 +87,13 @@ export default function RideDetailPage() {
         )}
       </div>
 
+      {!ride.file && (
+        <p className="ride-pending-note">
+          Route map coming soon — no GPX uploaded for this ride yet.
+        </p>
+      )}
+
+      {ride.file && (
       <div className="ride-detail-grid">
         <div className="ride-map">
           <MapContainer
@@ -150,8 +158,9 @@ export default function RideDetailPage() {
           )}
         </aside>
       </div>
+      )}
 
-      {route && route.elevationSeries.length > 1 && (
+      {ride.file && route && route.elevationSeries.length > 1 && (
         <section className="ride-section">
           <h2>Elevation profile</h2>
           <ElevationChart

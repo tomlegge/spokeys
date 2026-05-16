@@ -8,7 +8,9 @@
  *   4. Commit & push — GitHub Actions deploys it
  *
  * `slug` becomes the URL: /rides/<slug>
- * `file` is relative to public/, so prefix is `/rides/...`
+ * `file` is relative to public/, so prefix is `/rides/...`. It's optional —
+ *   omit it (or leave it commented out) if you don't have a GPX/KML yet.
+ *   Rides without a `file` show up in the list but don't draw on the map.
  *
  * `blogUrl` (optional): full external URL to a blog post about the ride.
  * When set, the ride detail page renders a "Read the blog →" button that
@@ -24,7 +26,7 @@ export type Ride = {
   slug: string;
   title: string;
   date: string; // ISO date "YYYY-MM-DD"
-  file: string; // path under public/, relative to BASE_URL
+  file?: string; // path under public/, relative to BASE_URL. Omit if you don't have a GPX/KML yet.
   riders: string[];
   description: string;
   photos?: string[]; // paths under public/, relative to BASE_URL
