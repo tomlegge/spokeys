@@ -62,7 +62,7 @@ export const RIDES: Ride[] = [
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
   },    
   {
-    slug: "Dunwich-dynamo-2010",
+    slug: "dunwich-dynamo-2010",
     title: "Spokeys Dunwich Dynamo 2010",
     date: "2010-05-30",
     file: `${base}rides/DunwichDynamo_2010.gpx`,
@@ -70,8 +70,6 @@ export const RIDES: Ride[] = [
     description:
       "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
     photos: [
-      `${base}photos/Dunwich-dynamo/IMG_1450.JPG`,
-      `${base}photos/Dunwich-dynamo/IMG_1453.JPG`,
     ],
     color: "#f800ba",
   //  blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
@@ -131,6 +129,24 @@ export const RIDES: Ride[] = [
     ],
     color: "#f82500d5",
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
+  },
+  {
+    slug: "dunwich-dynamo-2012",
+    title: "Spokeys Dunwich Dynamo 2012",
+    date: "2012-05-30",
+    file: `${base}rides/DunwichDynamo_2012.gpx`,
+    riders: ["Steve Gee", "Tom", "Jamie", "Stu", "Anita", "Darren"],
+    description:
+      "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
+    photos: [
+      `${base}photos/dunwich-dynamo-2012/1.jpg`,
+      `${base}photos/dunwich-dynamo-2012/2.jpg`,
+      `${base}photos/dunwich-dynamo-2012/3.jpg`,
+      `${base}photos/dunwich-dynamo-2012/4.jpg`,
+      `${base}photos/dunwich-dynamo-2012/5.jpg`,
+    ],
+    color: "#ccac2a",
+    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/"
   },
   {
     slug: "spokeys-2013-prague-to-berlin",
@@ -374,7 +390,7 @@ export const RIDES: Ride[] = [
   },
   {
     slug: "spokeys-2013-vattern",
-    title: "Spokeys 2013 - Halv Vattern Runden",
+    title: "Spokeys 2013 - Halvvättern",
     date: "2013-09-05",
     file: `${base}rides/Spokeys2013-vattern.gpx`,
     riders: ["Stu", "Anita", "Tom", "James","Jamie"],
@@ -396,16 +412,14 @@ export const RIDES: Ride[] = [
     blogUrl: "https://rollbikeroll.wordpress.com/2012/07/14/116/",
   },
   {
-    slug: "Dunwich-dynamo-2013",
+    slug: "dunwich-dynamo-2013",
     title: "Spokeys Dunwich Dynamo 2013",
     date: "2013-05-30",
     file: `${base}rides/DunwichDynamo_2013.gpx`,
-    riders: ["Anita", "Tom", "Darren", "Jamie", "Stu"],
+    riders: ["Anita", "Tom", "Darren", "Jamie"],
     description:
       "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
     photos: [
-      `${base}photos/Dunwich-dynamo/IMG_1450.JPG`,
-      `${base}photos/Dunwich-dynamo/IMG_1453.JPG`,
     ],
     color: "#0021f8",
  //   blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
@@ -452,7 +466,7 @@ export const RIDES: Ride[] = [
     blogUrl: "https://rollbikeroll.wordpress.com/2014/12/30/bike-highlights-of-2014/",
   },
   {
-    slug: "Dunwich-dynamo-2014",
+    slug: "dunwich-dynamo-2014",
     title: "Spokeys Dunwich Dynamo 2014",
     date: "2014-05-30",
     file: `${base}rides/DunwichDynamo_2014.gpx`,
@@ -491,7 +505,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2015-loire-valley/spokeys_2015_loire_valley (14).jpeg`,
     ],
     color: "#0595f5",
-    // blogUrl: "https://example.com/blog/spokeys-2015-loire-valley",
+    blogUrl: "https://rollbikeroll.wordpress.com/2015/12/31/roll-and-reflect/",
   },
   {
     slug: "spokeys-2015-nightride",
@@ -500,7 +514,7 @@ export const RIDES: Ride[] = [
     file: `${base}rides/Nightride_2015_Guildford_to_Christchurch.gpx`,
     riders: ["Stu", "Anita", "Tom"],
     description:
-      "A nightride from Guildford to Christchurch, going via the New Forest and finishing on the beach and Christchurch.",
+      "A nightride from Guildford to Christchurch, going via the New Forest and finishing on the beach at Christchurch.",
     photos: [
       `${base}photos/spokeys-2015-nightride/pub.jpeg`,
       `${base}photos/spokeys-2015-nightride/road.jpeg`,      
@@ -509,7 +523,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2015-nightride/christchurch-beach.jpg`,
     ],
     color: "#ed098a",
-    blogUrl: "https://rollbikeroll.wordpress.com/2015/09/30/wild-horses-and-wild-camping/",
+    blogUrl: "https://rollbikeroll.wordpress.com/2015/06/22/overnight-ride-to-the-sea/",
   },
   {
     slug: "spokeys-2016-f2f",
@@ -669,6 +683,8 @@ export const RIDES: Ride[] = [
     description:
       "The coast-to-coast ride between Plymouth and Ilfracombe.",
     photos: [
+    `${base}photos/spokeys-2024-devon-c2c/img_9417.jpg`,
+    `${base}photos/spokeys-2024-devon-c2c/tom_darren_anita.jpg`,
     `${base}photos/spokeys-2024-devon-c2c/spokeys_2024_1.jpg`,
     `${base}photos/spokeys-2024-devon-c2c/spokeys_2024_2.jpg`,
     `${base}photos/spokeys-2024-devon-c2c/spokeys_2024_3.jpg`,
