@@ -385,7 +385,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (227).JPG`,
       `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (228).JPG`,
     ],
-    color: "#00ecf8e9",
+    color: "#f86300e9",
     // blogUrl: "https://example.com/blog/spokeys-2013-prague-to-berlin",
   },
   {
