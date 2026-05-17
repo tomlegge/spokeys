@@ -5,6 +5,11 @@ import L, { LatLngBoundsExpression } from "leaflet";
 import { RIDES } from "../data/rides";
 import { formatKm, formatM } from "../utils/routeLoader";
 import { useRideRoutes } from "../utils/useRideRoutes";
+import { countRealRiders } from "../utils/riders";
+
+// Equatorial circumference of the Earth in kilometres. Source: WGS 84 /
+// commonly cited figure (~40,075 km).
+const EARTH_CIRCUMFERENCE_KM = 40_075;
 
 export default function HomePage() {
   const loaded = useRideRoutes();
@@ -39,6 +44,24 @@ export default function HomePage() {
     [loaded],
   );
 
+  // Combined "person-distance": for every loaded ride, multiply its distance
+  // by the number of riders who actually rode. Excludes BBQ-only / non-riding
+  // entries so the figure reflects real kilometres pedalled.
+  const combinedRiderDistanceKm = useMemo(
+    () =>
+      loaded.reduce(
+        (sum, lr) =>
+          lr.status === "ready" && lr.data
+            ? sum + lr.data.stats.distanceKm * countRealRiders(lr.ride)
+            : sum,
+        0,
+      ),
+    [loaded],
+  );
+
+  const earthPercent =
+    (combinedRiderDistanceKm / EARTH_CIRCUMFERENCE_KM) * 100;
+
   return (
     <div className="home">
       <aside className="ride-sidebar">
@@ -49,9 +72,28 @@ export default function HomePage() {
             {isLoading ? " · loading…" : ""}
           </p>
           <p className="sidebar-total">
-            <span className="sidebar-total-label">Total distance</span>
+            <span className="sidebar-total-label">Total route distance</span>
             <span className="sidebar-total-value">
               {formatKm(totalDistanceKm)}
+            </span>
+          </p>
+          <p className="sidebar-total">
+            <span className="sidebar-total-label">Combined rider distance</span>
+            <span className="sidebar-total-value">
+              {formatKm(combinedRiderDistanceKm)}
+            </span>
+          </p>
+          <p className="sidebar-earth">
+            <span className="sidebar-earth-bar" aria-hidden>
+              <span
+                className="sidebar-earth-fill"
+                style={{
+                  width: `${Math.min(100, earthPercent).toFixed(2)}%`,
+                }}
+              />
+            </span>
+            <span className="sidebar-earth-text">
+              {formatPercent(earthPercent)} of the way around the Earth 🌍
             </span>
           </p>
         </div>
@@ -165,4 +207,13 @@ function formatDate(iso: string): string {
     month: "short",
     day: "numeric",
   });
+}
+
+function formatPercent(p: number): string {
+  if (!isFinite(p) || p <= 0) return "0%";
+  // Use more precision for small numbers so we don't display "0%" for, say,
+  // 0.04% — show "0.04%" instead. For values ≥ 1, one decimal is plenty.
+  if (p < 1) return `${p.toFixed(2)}%`;
+  if (p < 10) return `${p.toFixed(1)}%`;
+  return `${Math.round(p)}%`;
 }

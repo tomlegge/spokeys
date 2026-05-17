@@ -1,37 +1,7 @@
 import { useMemo } from "react";
 import { formatKm } from "../utils/routeLoader";
 import { useRideRoutes } from "../utils/useRideRoutes";
-
-/**
- * Rider entries in rides.ts sometimes carry parentheticals.
- *
- * Some indicate that the person didn't actually ride (e.g. "Tom (BBQ only)",
- * "Anita (not riding this year)"). Those should be excluded from per-rider
- * distance totals.
- *
- * Others are just contextual info (e.g. "Iris (child of Tania and Kostas)").
- * Those should count as normal riders.
- *
- * Heuristic: skip riders whose name contains any of these markers (case-
- * insensitive). Anything else counts. The display name has any trailing
- * parenthetical stripped so "Iris (child of ...)" shows as "Iris".
- */
-const NON_RIDER_MARKERS = [
-  "not riding",
-  "bbq only",
-  "did not ride",
-  "didn't ride",
-];
-
-function isNonRider(name: string): boolean {
-  const lower = name.toLowerCase();
-  return NON_RIDER_MARKERS.some((m) => lower.includes(m));
-}
-
-function displayName(name: string): string {
-  // Strip a single trailing "(...)" group so "Iris (child of X)" → "Iris".
-  return name.replace(/\s*\([^)]*\)\s*$/, "").trim();
-}
+import { displayName, isNonRider } from "../utils/riders";
 
 type RiderTotals = {
   name: string;

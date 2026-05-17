@@ -133,11 +133,14 @@ a:hover {
   align-items: baseline;
   justify-content: space-between;
   gap: 0.75rem;
-  margin: 0.85rem 0 0.25rem;
+  margin: 0.5rem 0 0;
   padding: 0.55rem 0.75rem;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+}
+.sidebar-total:first-of-type {
+  margin-top: 0.85rem;
 }
 .sidebar-total-label {
   color: var(--muted);
@@ -150,6 +153,35 @@ a:hover {
   font-size: 1.15rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+}
+.sidebar-earth {
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.75rem 0.6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.sidebar-earth-bar {
+  display: block;
+  height: 6px;
+  width: 100%;
+  background: var(--bg);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.4rem;
+}
+.sidebar-earth-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #2a9d8f, var(--accent));
+  border-radius: 999px;
+  transition: width 0.5s ease-out;
+}
+.sidebar-earth-text {
+  display: block;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
 }
 
 .ride-list {
