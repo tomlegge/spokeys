@@ -50,7 +50,7 @@ export const RIDES: Ride[] = [
   },
   {
     slug: "spokeys-2010-vienna-to-budapest",
-    title: "Spokeys 2010 - Viennato Budapest",
+    title: "Spokeys 2010 - Vienna to Budapest",
     date: "2010-05-30",
   //  file: `${base}rides/Spokeys2011.gpx`,
     riders: ["Anita", "Darren", "Others tbc"],
@@ -81,7 +81,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2011 - Windor to Cardiff",
     date: "2011-05-30",
     file: `${base}rides/Spokeys2011.gpx`,
-    riders: ["Steve", "Charlie", "Anita", "Tom", "Claire", "Jamie", "Steve Moonie", "Mark", "Darren"],
+    riders: ["Steve Gee", "Charlie", "Anita", "Tom", "Claire", "Jamie", "Steve Moonie", "Mark", "Darren"],
     description:
       "A 3 day ride from Windor to Cardiff, including a very late arrival into Cardiff.",
     photos: [
@@ -90,7 +90,30 @@ export const RIDES: Ride[] = [
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
   },
   {
-    slug: "spokeys-2014-prague-to-berlin",
+    slug: "spokeys-2012-london-to-amsterdam",
+    title: "Spokeys 2012 - London to Amsterdam",
+    date: "2012-05-30",
+//    file: `${base}rides/Spokeys2011.gpx`,
+    riders: ["Steve Gee", "Catherine", "Anita", "Jamie", "Darren", "Nikki", "Steve Moonie", "Dom", "Tom", "James", "Stu"],
+    description:
+      "A 3 day ride from Windor to Cardiff, including a very late arrival into Cardiff.",
+    photos: [
+      `${base}photos/spokeys-2012-london-to-amsterdam/spokeys_2012 (1).jpg`,
+      `${base}photos/spokeys-2012-london-to-amsterdam/spokeys_2012 (2).jpg`,
+      `${base}photos/spokeys-2012-london-to-amsterdam/spokeys_2012 (3).jpg`,
+      `${base}photos/spokeys-2012-london-to-amsterdam/spokeys_2012 (4).jpg`,
+      `${base}photos/spokeys-2012-london-to-amsterdam/spokeys_2012 (5).jpg`,
+      `${base}photos/spokeys-2012-london-to-amsterdam/spokeys_2012 (6).jpg`,
+      `${base}photos/spokeys-2012-london-to-amsterdam/spokeys_2012 (7).jpg`,
+      `${base}photos/spokeys-2012-london-to-amsterdam/spokeys_2012 (8).jpg`,
+      `${base}photos/spokeys-2012-london-to-amsterdam/spokeys_2012 (9).jpg`,
+      `${base}photos/spokeys-2012-london-to-amsterdam/spokeys_2012 (10).jpg`,
+    ],
+    color: "#f82500d5",
+    // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
+  },
+  {
+    slug: "spokeys-2013-prague-to-berlin",
     title: "Spokeys 2013 - Prague to Berlin",
     date: "2013-05-30",
     file: `${base}rides/Spokeys2013.gpx`,
