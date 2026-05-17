@@ -384,6 +384,49 @@ a:hover {
   font-size: 0.92em;
 }
 
+.rider-table-note {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0 0 0.75rem;
+}
+.rider-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.rider-table th,
+.rider-table td {
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.rider-table thead th {
+  background: var(--bg);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  font-weight: 600;
+}
+.rider-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.rider-table tbody tr:hover {
+  background: var(--bg);
+}
+.rider-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.rider-table tbody tr:first-child td {
+  font-weight: 600;
+}
+
 /* ---------------- Responsive ---------------- */
 
 @media (max-width: 800px) {
