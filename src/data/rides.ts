@@ -94,15 +94,19 @@ export const RIDES: Ride[] = [
     title: "Spokeys Dunwich Dynamo 2011",
     date: "2011-05-30",
     file: `${base}rides/DunwichDynamo_2011.gpx`,
-    riders: ["Steve Gee",  "Anita", "Tom", "Darren", "Jamie", "Stu"],
+    riders: ["James",  "Anita", "Tom", "Darren", "Jamie", "Stu"],
     description:
       "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
     photos: [
-      `${base}photos/Dunwich-dynamo/IMG_1450.JPG`,
-      `${base}photos/Dunwich-dynamo/IMG_1453.JPG`,
+      `${base}photos/dunwich-dynamo-2011/1.jpg`,
+      `${base}photos/dunwich-dynamo-2011/2.jpg`, 
+      `${base}photos/dunwich-dynamo-2011/3.jpg`,
+      `${base}photos/dunwich-dynamo-2011/4.jpg`,
+      `${base}photos/dunwich-dynamo-2011/5.jpg`,
+      `${base}photos/dunwich-dynamo-2011/6.jpg`,                             
     ],
     color: "#f800ba",
-    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
+//    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
   },
   {
     slug: "spokeys-2012-london-to-amsterdam",
