@@ -62,11 +62,11 @@ export const RIDES: Ride[] = [
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
   },    
   {
-    slug: "Dunwich-dynamo",
-    title: "Spokeys Dunwich Dynamo 2010, 2011, 2013, 2014",
-    date: "2011-05-30",
+    slug: "Dunwich-dynamo-2010",
+    title: "Spokeys Dunwich Dynamo 2010",
+    date: "2010-05-30",
     file: `${base}rides/DunwichDynamo.gpx`,
-    riders: ["Steve (2010, 2011, 2014)", "Charlie (2011)", "Anita (2010, 2011, 2013)", "Tom (2011, 2012, 2014, 2014)", "Darren (2011, 2012, 2013)", "Jamie (2010, 2011, 2013, 2014)", "Stu (2013, 2014)", "Kostas (2014)", "James (2014)"],
+    riders: ["Steve Gee", "Charlie", "Anita", "Tom", "Darren", "Jamie"],
     description:
       "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
     photos: [
@@ -74,7 +74,7 @@ export const RIDES: Ride[] = [
       `${base}photos/Dunwich-dynamo/IMG_1453.JPG`,
     ],
     color: "#f800ba",
-    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
+  //  blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
   },
   {
     slug: "spokeys-2011-windor-to-cardiff",
@@ -88,6 +88,21 @@ export const RIDES: Ride[] = [
     ],
     color: "#f82500d5",
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
+  },
+  {
+    slug: "Dunwich-dynamo-2011",
+    title: "Spokeys Dunwich Dynamo 2011",
+    date: "2011-05-30",
+    file: `${base}rides/DunwichDynamo.gpx`,
+    riders: ["Steve Gee",  "Anita", "Tom", "Darren", "Jamie", "Stu"],
+    description:
+      "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
+    photos: [
+      `${base}photos/Dunwich-dynamo/IMG_1450.JPG`,
+      `${base}photos/Dunwich-dynamo/IMG_1453.JPG`,
+    ],
+    color: "#f800ba",
+    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
   },
   {
     slug: "spokeys-2012-london-to-amsterdam",
@@ -375,7 +390,21 @@ export const RIDES: Ride[] = [
     color: "#f80000a7",
     blogUrl: "https://rollbikeroll.wordpress.com/2012/07/14/116/",
   },
-
+  {
+    slug: "Dunwich-dynamo-2013",
+    title: "Spokeys Dunwich Dynamo 2013",
+    date: "2013-05-30",
+    file: `${base}rides/DunwichDynamo.gpx`,
+    riders: ["Anita", "Tom", "Darren", "Jamie", "Stu"],
+    description:
+      "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
+    photos: [
+      `${base}photos/Dunwich-dynamo/IMG_1450.JPG`,
+      `${base}photos/Dunwich-dynamo/IMG_1453.JPG`,
+    ],
+    color: "#f800ba",
+ //   blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
+  },
   {
     slug: "spokeys-2014-c2c",
     title: "Spokeys 2014 - Coast to Coast",
@@ -416,6 +445,21 @@ export const RIDES: Ride[] = [
     ],
     color: "#00f895a7",
     blogUrl: "https://rollbikeroll.wordpress.com/2014/12/30/bike-highlights-of-2014/",
+  },
+  {
+    slug: "Dunwich-dynamo-2014",
+    title: "Spokeys Dunwich Dynamo 2014",
+    date: "2014-05-30",
+    file: `${base}rides/DunwichDynamo.gpx`,
+    riders: ["Steve Gee", "Tom", "Jamie", "Stu", "Kostas", "James"],
+    description:
+      "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
+    photos: [
+      `${base}photos/Dunwich-dynamo/IMG_1450.JPG`,
+      `${base}photos/Dunwich-dynamo/IMG_1453.JPG`,
+    ],
+    color: "#f800ba",
+//    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
   },
   {
     slug: "spokeys-2015-loire-valley",
