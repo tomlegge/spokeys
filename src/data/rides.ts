@@ -65,7 +65,7 @@ export const RIDES: Ride[] = [
     slug: "Dunwich-dynamo-2010",
     title: "Spokeys Dunwich Dynamo 2010",
     date: "2010-05-30",
-    file: `${base}rides/DunwichDynamo.gpx`,
+    file: `${base}rides/DunwichDynamo_2010.gpx`,
     riders: ["Steve Gee", "Charlie", "Anita", "Tom", "Darren", "Jamie"],
     description:
       "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
@@ -93,7 +93,7 @@ export const RIDES: Ride[] = [
     slug: "Dunwich-dynamo-2011",
     title: "Spokeys Dunwich Dynamo 2011",
     date: "2011-05-30",
-    file: `${base}rides/DunwichDynamo.gpx`,
+    file: `${base}rides/DunwichDynamo_2011.gpx`,
     riders: ["Steve Gee",  "Anita", "Tom", "Darren", "Jamie", "Stu"],
     description:
       "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
@@ -394,7 +394,7 @@ export const RIDES: Ride[] = [
     slug: "Dunwich-dynamo-2013",
     title: "Spokeys Dunwich Dynamo 2013",
     date: "2013-05-30",
-    file: `${base}rides/DunwichDynamo.gpx`,
+    file: `${base}rides/DunwichDynamo_2013.gpx`,
     riders: ["Anita", "Tom", "Darren", "Jamie", "Stu"],
     description:
       "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
@@ -450,7 +450,7 @@ export const RIDES: Ride[] = [
     slug: "Dunwich-dynamo-2014",
     title: "Spokeys Dunwich Dynamo 2014",
     date: "2014-05-30",
-    file: `${base}rides/DunwichDynamo.gpx`,
+    file: `${base}rides/DunwichDynamo_2014.gpx`,
     riders: ["Steve Gee", "Tom", "Jamie", "Stu", "Kostas", "James"],
     description:
       "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
