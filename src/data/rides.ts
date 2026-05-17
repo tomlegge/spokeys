@@ -534,7 +534,7 @@ export const RIDES: Ride[] = [
     description:
       "The F2F -New Forest to the Forest of Dean",
     photos: [
-      `${base}photos/spokeys-2016-f2f/big_bike.jpg`,
+      `${base}photos/spokeys-2016-f2f/big-bike.jpg`,
       `${base}photos/spokeys-2016-f2f/bell.jpg`,      
       `${base}photos/spokeys-2016-f2f/wye-valley.jpg`,
       `${base}photos/spokeys-2016-f2f/lydney.jpg`,
