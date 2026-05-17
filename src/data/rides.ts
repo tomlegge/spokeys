@@ -94,7 +94,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys Dunwich Dynamo 2011",
     date: "2011-05-30",
     file: `${base}rides/DunwichDynamo_2011.gpx`,
-    riders: ["James",  "Anita", "Tom", "Darren", "Jamie", "Stu"],
+    riders: ["James",  "Anita", "Tom", "Darren", "Jamie", "Stu", "Steve Gee"],
     description:
       "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
     photos: [
@@ -532,7 +532,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2017 - Caledonia Way",
     date: "2017-05-30",
     file: `${base}rides/Spokeys2017.gpx`,
-    riders: ["Gary", "Anita", "Steve E", "Darren", "Nick", "Ciaran"],
+    riders: ["Gary", "Anita", "Steve Etches", "Darren", "Nick", "Ciaran"],
     description:
       "The F2F -New Forest to the Forest of Dean",
     photos: [
@@ -559,7 +559,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2018 - Newcastle to Edinburgh - Coast and Castles",
     date: "2018-05-30",
     file: `${base}rides/Spokeys2018.gpx`,
-    riders: ["Darren", "Anita", "Tom", "Gary", "Steve E", "Ciaran", "Peter", "Stu", "Nick"],
+    riders: ["Darren", "Anita", "Tom", "Gary", "Steve Etches", "Ciaran", "Peter", "Stu", "Nick"],
     description:
       "A ride from Newcastle to Edinburgh, with a night sleeping on the floor of Stew's friend Si in Walsend, a campsite overlooking Lindisfarne, a campsite by a river and a final night wild camping on the beach at Dunbar.",
     photos: [
@@ -610,7 +610,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2019 - Lord Whisky Sportive",
     date: "2019-05-30",
     file: `${base}rides/Spokeys2019.gpx`,
-    riders: ["Darren", "Anita (not riding this year)", "Charlie", "Steve", "Steve E", "Gary", "Peter", "Tom (BBQ only)"],
+    riders: ["Darren", "Anita (not riding this year)", "Charlie", "Steve Gee", "Steve Etches", "Gary", "Peter", "Tom (BBQ only)"],
     description:
       "A sportive to celebrate the 10th anniverary of Spokeys with a BBQ at Charlie and Claire's house the night before",
     photos: [
@@ -644,7 +644,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2021 - Jurassic Coast",
     date: "2021-05-30",
     file: `${base}rides/Spokeys2021.gpx`,
-    riders: ["Tom", "Darren", "Anita", "Charlie", "Gary", "Tim", "Aiden", "Steve", "Nick"],
+    riders: ["Tom", "Darren", "Anita", "Charlie", "Gary", "Tim", "Aiden", "Steve Gee", "Nick"],
     description:
       "The Jurassic Coast ride between Southampton and Exmouth, with support from Steve and Catherine",
     photos: [
