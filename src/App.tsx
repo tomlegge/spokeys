@@ -2,6 +2,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import RideDetailPage from "./pages/RideDetailPage";
 import AboutPage from "./pages/AboutPage";
+import PhotosPage from "./pages/PhotosPage";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         </Link>
         <nav className="app-nav">
           <Link to="/">Map</Link>
+          <Link to="/photos">Photos</Link>
           <Link to="/about">About</Link>
         </nav>
       </header>
@@ -20,6 +22,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/rides/:slug" element={<RideDetailPage />} />
+          <Route path="/photos" element={<PhotosPage />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>
       </main>

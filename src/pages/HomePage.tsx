@@ -96,6 +96,9 @@ export default function HomePage() {
               {formatPercent(earthPercent)} of the way around the Earth 🌍
             </span>
           </p>
+          <p className="sidebar-photos-link">
+            <Link to="/photos">Browse all photos →</Link>
+          </p>
         </div>
         <ul className="ride-list">
           {[...loaded].reverse().map((lr) => (
