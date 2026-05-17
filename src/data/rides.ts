@@ -90,7 +90,7 @@ export const RIDES: Ride[] = [
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
   },
   {
-    slug: "Dunwich-dynamo-2011",
+    slug: "dunwich-dynamo-2011",
     title: "Spokeys Dunwich Dynamo 2011",
     date: "2011-05-30",
     file: `${base}rides/DunwichDynamo_2011.gpx`,
@@ -103,9 +103,10 @@ export const RIDES: Ride[] = [
       `${base}photos/dunwich-dynamo-2011/3.jpg`,
       `${base}photos/dunwich-dynamo-2011/4.jpg`,
       `${base}photos/dunwich-dynamo-2011/5.jpg`,
-      `${base}photos/dunwich-dynamo-2011/6.jpg`,                             
+      `${base}photos/dunwich-dynamo-2011/6.jpg`,
+      `${base}photos/dunwich-dynamo-2011/7.jpg`,                             
     ],
-    color: "#f800ba",
+    color: "#cbf800",
 //    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
   },
   {
@@ -406,7 +407,7 @@ export const RIDES: Ride[] = [
       `${base}photos/Dunwich-dynamo/IMG_1450.JPG`,
       `${base}photos/Dunwich-dynamo/IMG_1453.JPG`,
     ],
-    color: "#f800ba",
+    color: "#0021f8",
  //   blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
   },
   {
@@ -462,7 +463,7 @@ export const RIDES: Ride[] = [
       `${base}photos/Dunwich-dynamo/IMG_1450.JPG`,
       `${base}photos/Dunwich-dynamo/IMG_1453.JPG`,
     ],
-    color: "#f800ba",
+    color: "#00e8f8",
 //    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
   },
   {
