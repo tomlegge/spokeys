@@ -17,10 +17,23 @@ export type LatLngEle = {
   time?: string; // ISO timestamp if present
 };
 
-export type RouteData = {
+export type RouteSegment = {
   name?: string;
   points: LatLngEle[];
+};
+
+export type RouteData = {
+  name?: string;
+  /**
+   * One entry per source file. For a single-file ride this has length 1.
+   * Render one polyline per segment so disconnected segments don't get
+   * joined by a fake line.
+   */
+  segments: RouteSegment[];
+  /** All points across all segments, concatenated in segment order. */
+  points: LatLngEle[];
   bounds: [[number, number], [number, number]]; // [[south, west], [north, east]]
+  /** Stats aggregated across segments — gaps between segments are NOT counted. */
   stats: RouteStats;
   elevationSeries: { distanceKm: number; ele: number }[];
 };
@@ -49,7 +62,31 @@ function haversineKm(a: LatLngEle, b: LatLngEle): number {
   return 2 * EARTH_RADIUS_KM * Math.asin(Math.sqrt(h));
 }
 
+/** Load a single GPX/KML file and parse it into a one-segment RouteData. */
 export async function loadRoute(fileUrl: string): Promise<RouteData> {
+  const segment = await loadSegment(fileUrl);
+  return combineSegments([segment]);
+}
+
+/**
+ * Load multiple GPX/KML files and combine them into a single RouteData with
+ * one segment per file. Use this for rides made up of several disconnected
+ * tracks (e.g. a tour where you trained between two stages, or where each
+ * day's track is a separate file).
+ *
+ * The segments are concatenated in the order given. Distance, elevation
+ * gain/loss, and duration are summed PER SEGMENT — the jumps between
+ * segments don't count toward any total.
+ */
+export async function loadRoutes(fileUrls: string[]): Promise<RouteData> {
+  if (fileUrls.length === 0) {
+    throw new Error("loadRoutes called with no file URLs");
+  }
+  const segments = await Promise.all(fileUrls.map(loadSegment));
+  return combineSegments(segments);
+}
+
+async function loadSegment(fileUrl: string): Promise<RouteSegment> {
   const res = await fetch(fileUrl);
   if (!res.ok) {
     throw new Error(`Failed to load route file ${fileUrl}: ${res.status}`);
@@ -77,12 +114,85 @@ export async function loadRoute(fileUrl: string): Promise<RouteData> {
     throw new Error(`Route at ${fileUrl} has fewer than 2 points`);
   }
 
+  return { name, points };
+}
+
+/**
+ * Stitch one or more segments into a single RouteData. The combined `points`
+ * array is the concatenation of every segment's points; `stats` are summed
+ * per-segment so gaps between segments are not counted; `elevationSeries`
+ * concatenates each segment's series, with cumulative distance flowing
+ * forward across segment boundaries (no fake mileage from the gap).
+ */
+function combineSegments(segments: RouteSegment[]): RouteData {
+  const allPoints: LatLngEle[] = [];
+  for (const seg of segments) allPoints.push(...seg.points);
+
+  // Per-segment stats, summed.
+  let distanceKm = 0;
+  let elevationGainM = 0;
+  let elevationLossM = 0;
+  let minEleM = Infinity;
+  let maxEleM = -Infinity;
+  let durationSec: number | undefined = undefined;
+  let anyMissingDuration = false;
+  for (const seg of segments) {
+    const s = computeStats(seg.points);
+    distanceKm += s.distanceKm;
+    elevationGainM += s.elevationGainM;
+    elevationLossM += s.elevationLossM;
+    if (Number.isFinite(s.minEleM) && s.minEleM < minEleM) minEleM = s.minEleM;
+    if (Number.isFinite(s.maxEleM) && s.maxEleM > maxEleM) maxEleM = s.maxEleM;
+    if (s.durationSec != null) {
+      durationSec = (durationSec ?? 0) + s.durationSec;
+    } else {
+      anyMissingDuration = true;
+    }
+  }
+  // Only report duration if EVERY segment had timestamps — otherwise the
+  // partial number would be misleading.
+  if (anyMissingDuration) durationSec = undefined;
+  const avgSpeedKmh =
+    durationSec && durationSec > 0 ? distanceKm / (durationSec / 3600) : undefined;
+
+  // Elevation series: each segment starts from the running cumulative km of
+  // segments before it. The chart shows a continuous x-axis representing the
+  // total distance pedalled, with no fake mileage for the gaps.
+  const elevationSeries: { distanceKm: number; ele: number }[] = [];
+  let cumulativeKm = 0;
+  for (const seg of segments) {
+    const segSeries = buildElevationSeries(seg.points);
+    for (const pt of segSeries) {
+      elevationSeries.push({ distanceKm: cumulativeKm + pt.distanceKm, ele: pt.ele });
+    }
+    cumulativeKm += computeStats(seg.points).distanceKm;
+  }
+  // Downsample combined series so very long multi-file rides stay snappy.
+  const TARGET = 400;
+  const downsampledSeries =
+    elevationSeries.length > TARGET
+      ? elevationSeries.filter(
+          (_, i) =>
+            i % Math.ceil(elevationSeries.length / TARGET) === 0 ||
+            i === elevationSeries.length - 1,
+        )
+      : elevationSeries;
+
   return {
-    name,
-    points,
-    bounds: computeBounds(points),
-    stats: computeStats(points),
-    elevationSeries: buildElevationSeries(points),
+    name: segments[0]?.name,
+    segments,
+    points: allPoints,
+    bounds: computeBounds(allPoints),
+    stats: {
+      distanceKm,
+      elevationGainM,
+      elevationLossM,
+      minEleM: minEleM === Infinity ? 0 : minEleM,
+      maxEleM: maxEleM === -Infinity ? 0 : maxEleM,
+      durationSec,
+      avgSpeedKmh,
+    },
+    elevationSeries: downsampledSeries,
   };
 }
 

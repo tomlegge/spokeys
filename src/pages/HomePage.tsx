@@ -156,25 +156,29 @@ export default function HomePage() {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {loaded.map((lr) =>
-            lr.status === "ready" && lr.data ? (
-              <Polyline
-                key={lr.ride.slug}
-                positions={lr.data.points.map((p) => [p.lat, p.lng])}
-                pathOptions={{
-                  color: lr.ride.color ?? "#0077b6",
-                  weight: selectedSlug === lr.ride.slug ? 6 : 4,
-                  opacity: selectedSlug && selectedSlug !== lr.ride.slug
-                    ? 0.4
-                    : 0.9,
-                }}
-                eventHandlers={{
-                  click: () => navigate(`/rides/${lr.ride.slug}`),
-                  mouseover: () => setSelectedSlug(lr.ride.slug),
-                  mouseout: () => setSelectedSlug(null),
-                }}
-              />
-            ) : null,
+          {loaded.flatMap((lr) =>
+            lr.status === "ready" && lr.data
+              ? lr.data.segments.map((seg, segIdx) => (
+                  // One polyline per segment so disconnected GPX files don't
+                  // get joined by a straight line across the map.
+                  <Polyline
+                    key={`${lr.ride.slug}#${segIdx}`}
+                    positions={seg.points.map((p) => [p.lat, p.lng])}
+                    pathOptions={{
+                      color: lr.ride.color ?? "#0077b6",
+                      weight: selectedSlug === lr.ride.slug ? 6 : 4,
+                      opacity: selectedSlug && selectedSlug !== lr.ride.slug
+                        ? 0.4
+                        : 0.9,
+                    }}
+                    eventHandlers={{
+                      click: () => navigate(`/rides/${lr.ride.slug}`),
+                      mouseover: () => setSelectedSlug(lr.ride.slug),
+                      mouseout: () => setSelectedSlug(null),
+                    }}
+                  />
+                ))
+              : [],
           )}
           <FitBoundsOnce bounds={initialBounds} />
         </MapContainer>

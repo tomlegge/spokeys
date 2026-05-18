@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { RIDES, type Ride } from "../data/rides";
-import { loadRoute, type RouteData } from "./routeLoader";
+import { RIDES, rideFiles, type Ride } from "../data/rides";
+import { loadRoutes, type RouteData } from "./routeLoader";
 
 export type LoadedRide = {
   ride: Ride;
@@ -13,8 +13,10 @@ export type LoadedRide = {
  * Loads every ride's GPX/KML in parallel on first render so pages can plot
  * routes on a map and read stats (distance, elevation, etc.).
  *
- * Rides without a `file` set get status "no-route" — they appear in the
- * list but don't trigger a load or show an error.
+ * Rides without any route file get status "no-route" — they appear in the
+ * list but don't trigger a load or show an error. Rides with multiple files
+ * (see `Ride.files`) are loaded together and end up with one segment per
+ * source file in their RouteData.
  *
  * For a small/medium number of rides (<50) this is fine. If your library
  * grows huge, switch to lazy-loading routes only when selected.
@@ -23,7 +25,7 @@ export function useRideRoutes(): LoadedRide[] {
   const [state, setState] = useState<LoadedRide[]>(() =>
     RIDES.map((r) => ({
       ride: r,
-      status: r.file ? "loading" : "no-route",
+      status: rideFiles(r).length > 0 ? "loading" : "no-route",
     })),
   );
 
@@ -31,11 +33,12 @@ export function useRideRoutes(): LoadedRide[] {
     let cancelled = false;
     Promise.all(
       RIDES.map(async (ride): Promise<LoadedRide> => {
-        if (!ride.file) {
+        const files = rideFiles(ride);
+        if (files.length === 0) {
           return { ride, status: "no-route" };
         }
         try {
-          const data = await loadRoute(ride.file);
+          const data = await loadRoutes(files);
           return { ride, status: "ready", data };
         } catch (err) {
           return {

@@ -2,12 +2,12 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { MapContainer, Marker, Polyline, TileLayer, useMap } from "react-leaflet";
 import L from "leaflet";
-import { RIDES } from "../data/rides";
+import { RIDES, rideFiles } from "../data/rides";
 import {
   formatDuration,
   formatKm,
   formatM,
-  loadRoute,
+  loadRoutes,
   type RouteData,
 } from "../utils/routeLoader";
 import ElevationChart from "../components/ElevationChart";
@@ -36,20 +36,35 @@ export default function RideDetailPage() {
   const [route, setRoute] = useState<RouteData | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // Build a stable key from the ride's file list so the effect re-runs only
+  // when the actual file set changes, not on every render.
+  const fileKey = ride ? rideFiles(ride).join("|") : "";
+
   useEffect(() => {
     if (!ride) return;
     setRoute(null);
     setError(null);
-    if (!ride.file) return; // no GPX yet — just skip the load
-    loadRoute(ride.file)
+    const files = rideFiles(ride);
+    if (files.length === 0) return; // no GPX yet — just skip the load
+    loadRoutes(files)
       .then(setRoute)
       .catch((e) => setError(e instanceof Error ? e.message : String(e)));
-  }, [ride?.file]);
+  }, [fileKey]);
 
-  const positions = useMemo(
+  // One array of [lat,lng] per segment so we can draw a polyline per segment
+  // (disconnected segments stay disconnected on the map).
+  const segmentPositions = useMemo(
+    () =>
+      route?.segments.map((seg) =>
+        seg.points.map((p) => [p.lat, p.lng] as [number, number]),
+      ) ?? [],
+    [route],
+  );
+  const allPositions = useMemo(
     () => route?.points.map((p) => [p.lat, p.lng] as [number, number]) ?? [],
     [route],
   );
+  const hasTrack = ride ? rideFiles(ride).length > 0 : false;
 
   if (!ride) {
     return (
@@ -87,13 +102,13 @@ export default function RideDetailPage() {
         )}
       </div>
 
-      {!ride.file && (
+      {!hasTrack && (
         <p className="ride-pending-note">
           Route map coming soon — no GPX uploaded for this ride yet.
         </p>
       )}
 
-      {ride.file && (
+      {hasTrack && (
       <div className="ride-detail-grid">
         <div className="ride-map">
           <MapContainer
@@ -106,22 +121,34 @@ export default function RideDetailPage() {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {positions.length > 0 && (
+            {segmentPositions.length > 0 && (
               <>
-                <Polyline
-                  positions={positions}
-                  pathOptions={{
-                    color: ride.color ?? "#0077b6",
-                    weight: 5,
-                    opacity: 0.9,
-                  }}
-                />
-                <Marker position={positions[0]} icon={startIcon} />
+                {segmentPositions.map((segPositions, i) => (
+                  <Polyline
+                    key={i}
+                    positions={segPositions}
+                    pathOptions={{
+                      color: ride.color ?? "#0077b6",
+                      weight: 5,
+                      opacity: 0.9,
+                    }}
+                  />
+                ))}
+                {/* Start marker on the first point of the first segment,
+                    end marker on the last point of the last segment. */}
                 <Marker
-                  position={positions[positions.length - 1]}
+                  position={segmentPositions[0][0]}
                   icon={startIcon}
                 />
-                <FitToRoute positions={positions} />
+                <Marker
+                  position={
+                    segmentPositions[segmentPositions.length - 1][
+                      segmentPositions[segmentPositions.length - 1].length - 1
+                    ]
+                  }
+                  icon={startIcon}
+                />
+                <FitToRoute positions={allPositions} />
               </>
             )}
           </MapContainer>
@@ -160,7 +187,7 @@ export default function RideDetailPage() {
       </div>
       )}
 
-      {ride.file && route && route.elevationSeries.length > 1 && (
+      {hasTrack && route && route.elevationSeries.length > 1 && (
         <section className="ride-section">
           <h2>Elevation profile</h2>
           <ElevationChart

@@ -2,15 +2,23 @@
  * The single source of truth for rides.
  *
  * To add a new ride:
- *   1. Drop your GPX or KML file into `public/rides/`
+ *   1. Drop your GPX or KML file(s) into `public/rides/`
  *   2. Drop any photos into `public/photos/<slug>/`
  *   3. Append a new entry to the array below
  *   4. Commit & push — GitHub Actions deploys it
  *
  * `slug` becomes the URL: /rides/<slug>
- * `file` is relative to public/, so prefix is `/rides/...`. It's optional —
- *   omit it (or leave it commented out) if you don't have a GPX/KML yet.
- *   Rides without a `file` show up in the list but don't draw on the map.
+ *
+ * Route files — pick ONE of these:
+ *   `file`  — a single GPX/KML path (use this for normal rides).
+ *   `files` — an array of GPX/KML paths for rides that span multiple, possibly
+ *             disconnected tracks (e.g. a tour where you took a train between
+ *             two days, or where you only have separate tracks per stage).
+ *             Each file is drawn as its own polyline on the map (no fake line
+ *             joining them), and the gap between segments does NOT count
+ *             toward total distance / elevation / duration.
+ *   Either is optional — omit both (or leave them commented out) if you don't
+ *   have a track yet. Rides without a track still show in the list.
  *
  * `blogUrl` (optional): full external URL to a blog post about the ride.
  * When set, the ride detail page renders a "Read the blog →" button that
@@ -26,13 +34,21 @@ export type Ride = {
   slug: string;
   title: string;
   date: string; // ISO date "YYYY-MM-DD"
-  file?: string; // path under public/, relative to BASE_URL. Omit if you don't have a GPX/KML yet.
+  file?: string; // single GPX/KML path under public/. Use for normal rides.
+  files?: string[]; // multiple GPX/KML paths under public/. Use when a ride spans disconnected tracks.
   riders: string[];
   description: string;
   photos?: string[]; // paths under public/, relative to BASE_URL
   color?: string; // route line color on the overview map
   blogUrl?: string; // optional external blog post about this ride
 };
+
+/** Resolve a ride's route files into a normalised array. Empty if no track. */
+export function rideFiles(ride: Ride): string[] {
+  if (ride.files && ride.files.length > 0) return ride.files;
+  if (ride.file) return [ride.file];
+  return [];
+}
 
 export const RIDES: Ride[] = [
   {
@@ -225,7 +241,11 @@ export const RIDES: Ride[] = [
     slug: "spokeys-2012-london-to-amsterdam",
     title: "Spokeys 2012 - London to Amsterdam",
     date: "2012-05-30",
-    file: `${base}rides/Spokeys2012.gpx`,
+//    file: `${base}rides/Spokeys2012.gpx`,
+    files: [
+      `${base}rides/Spokeys2012-Day1.gpx`,
+      `${base}rides/Spokeys2012-Day2.gpx`, 
+    ],
     riders: ["Steve Gee", "Catherine", "Anita", "Jamie", "Darren", "Nikki", "Steve Moonie", "Dom", "Tom", "James", "Stu"],
     description:
       "A 3 day ride from Windor to Cardiff, including a very late arrival into Cardiff.",
