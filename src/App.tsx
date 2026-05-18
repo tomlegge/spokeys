@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import RideDetailPage from "./pages/RideDetailPage";
 import AboutPage from "./pages/AboutPage";
 import PhotosPage from "./pages/PhotosPage";
+import StatsPage from "./pages/StatsPage";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <nav className="app-nav">
           <Link to="/">Map</Link>
           <Link to="/photos">Photos</Link>
+          <Link to="/stats">Stats</Link>
           <Link to="/about">About</Link>
         </nav>
       </header>
@@ -23,6 +25,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/rides/:slug" element={<RideDetailPage />} />
           <Route path="/photos" element={<PhotosPage />} />
+          <Route path="/stats" element={<StatsPage />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>
       </main>
