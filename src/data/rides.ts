@@ -529,7 +529,7 @@ export const RIDES: Ride[] = [
     slug: "spokeys-2016-f2f",
     title: "Spokeys 2016 - Forest to Forest",
     date: "2016-05-30",
- //   file: `${base}rides/Nightride_2015_Guildford_to_Christchurch.gpx`,
+    file: `${base}rides/Spokeys2016.gpx`,
     riders: ["Stu", "Anita", "Steve E", "Darren", "Ciaran", "Pete", "Nick"],
     description:
       "The F2F -New Forest to the Forest of Dean",
