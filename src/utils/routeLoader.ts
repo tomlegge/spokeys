@@ -236,11 +236,11 @@ function computeBounds(
  * Walk the points once, accumulating distance, elevation gain/loss,
  * and (if every point has a timestamp) duration.
  *
- * Elevation gain uses a small smoothing threshold (13m) so GPS jitter doesn't
+ * Elevation gain uses a small smoothing threshold (5m) so GPS jitter doesn't
  * inflate the climbing total — this matches what most route platforms do.
  */
 function computeStats(points: LatLngEle[]): RouteStats {
-  const ELE_NOISE_M = 13;
+  const ELE_NOISE_M = 5;
   let distance = 0;
   let gain = 0;
   let loss = 0;
