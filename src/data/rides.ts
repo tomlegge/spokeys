@@ -225,7 +225,7 @@ export const RIDES: Ride[] = [
     slug: "spokeys-2012-london-to-amsterdam",
     title: "Spokeys 2012 - London to Amsterdam",
     date: "2012-05-30",
-//    file: `${base}rides/Spokeys2011.gpx`,
+    file: `${base}rides/Spokeys2012.gpx`,
     riders: ["Steve Gee", "Catherine", "Anita", "Jamie", "Darren", "Nikki", "Steve Moonie", "Dom", "Tom", "James", "Stu"],
     description:
       "A 3 day ride from Windor to Cardiff, including a very late arrival into Cardiff.",
