@@ -16,6 +16,11 @@ const NON_RIDER_MARKERS = [
   "bbq only",
   "did not ride",
   "didn't ride",
+  "support",
+  "son",
+  "daughter",
+  "camping",
+  "just part"
 ];
 
 export function isNonRider(name: string): boolean {

@@ -56,12 +56,16 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2009 - London to Paris",
     date: "2009-05-30",
     //file: `${base}rides/Spokeys2011.gpx`,
+    files: [
+      `${base}rides/Spokeys2009-Day1.gpx`,
+      `${base}rides/Spokeys2009-Day2.gpx`, 
+    ],
     riders: ["Anita", "Darren", "Steve Gee", "Others tbc"],
     description:
       "The first Spokeys ride, from London to Paris.",
     photos: [
     ],
-    color: "#f82500d5",
+    color: "#0000f8d5",
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
   },
   {
@@ -248,7 +252,7 @@ export const RIDES: Ride[] = [
     ],
     riders: ["Steve Gee", "Catherine", "Anita", "Jamie", "Darren", "Nikki", "Steve Moonie", "Dom", "Tom", "James", "Stu"],
     description:
-      "A 3 day ride from Windor to Cardiff, including a very late arrival into Cardiff.",
+      "A ride from London (well, Chelmsford) to Amsterdam, including a ferry crossing and a route through the Netherlands that was almost entirely cycle paths.",
     photos: [
       `${base}photos/spokeys-2012-london-to-amsterdam/spokeys_2012 (1).jpg`,
       `${base}photos/spokeys-2012-london-to-amsterdam/spokeys_2012 (2).jpg`,
@@ -596,7 +600,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2014-c2c/spokeys_2014 (26).JPG`,
       `${base}photos/spokeys-2014-c2c/spokeys_2014 (27).JPG`,
     ],
-    color: "#00f895a7",
+    color: "#0000f8a7",
     blogUrl: "https://rollbikeroll.wordpress.com/2014/12/30/bike-highlights-of-2014/",
   },
   {
@@ -664,7 +668,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2016 - Forest to Forest",
     date: "2016-05-30",
     file: `${base}rides/Spokeys2016.gpx`,
-    riders: ["Stu", "Anita", "Steve Etches", "Darren", "Ciaran", "Pete", "Nick"],
+    riders: ["Stu", "Anita", "Steve Etches", "Darren", "Ciaran", "Peter", "Nick"],
     description:
       "The F2F -New Forest to the Forest of Dean",
     photos: [
@@ -673,7 +677,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2016-f2f/wye-valley.jpg`,
       `${base}photos/spokeys-2016-f2f/lydney.jpg`,
     ],
-    color: "#ed098a",
+    color: "#ed5d09",
     blogUrl: "https://rollbikeroll.wordpress.com/2016/06/01/forest-to-forest/",
   },
   {
