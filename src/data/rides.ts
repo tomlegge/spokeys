@@ -60,7 +60,7 @@ export const RIDES: Ride[] = [
       `${base}rides/Spokeys2009-Day1.gpx`,
       `${base}rides/Spokeys2009-Day2.gpx`, 
     ],
-    riders: ["Anita", "Darren", "Steve Gee", "Others tbc"],
+    riders: ["Anita", "Darren", "Steve Gee", "Charlie", "Rose", "Cameron", "James", "Alun", "Christian"],
     description:
       "The first Spokeys ride, from London to Paris.",
     photos: [
@@ -73,7 +73,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2010 - Vienna to Budapest",
     date: "2010-05-30",
     file: `${base}rides/Spokeys2010.gpx`,
-    riders: ["Anita", "Darren", "Steve Gee", "Charlie", "Ciaran", "Rose", "Mark", "others tbc"],
+    riders: ["Anita", "Darren", "Steve Gee", "Charlie", "Ciaran", "Rose", "Mark", "Elaine", "Helen"],
     description:
       "The second Spokeys ride, from Vienna to Budapest.",
     photos: [
