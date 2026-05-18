@@ -210,7 +210,7 @@ export const RIDES: Ride[] = [
   },
   {
     slug: "spokeys-2011-windor-to-cardiff",
-    title: "Spokeys 2011 - Windor to Cardiff",
+    title: "Spokeys 2011 - Windsor to Cardiff",
     date: "2011-05-30",
     file: `${base}rides/Spokeys2011.gpx`,
     riders: ["Steve Gee", "Charlie", "Anita", "Tom", "Claire", "Jamie", "Steve Moonie", "Mark", "Darren"],
