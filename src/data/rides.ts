@@ -52,8 +52,8 @@ export const RIDES: Ride[] = [
     slug: "spokeys-2010-vienna-to-budapest",
     title: "Spokeys 2010 - Vienna to Budapest",
     date: "2010-05-30",
-  //  file: `${base}rides/Spokeys2011.gpx`,
-    riders: ["Anita", "Darren", "Others tbc"],
+    file: `${base}rides/Spokeys2010.gpx`,
+    riders: ["Anita", "Darren", "Steve Gee", "Charlie", "Ciaran", "Rose", "Mark", "others tbc"],
     description:
       "The second Spokeys ride, from Vienna to Budapest.",
     photos: [
