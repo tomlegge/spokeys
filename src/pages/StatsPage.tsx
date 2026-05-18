@@ -1,11 +1,7 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { RIDES } from "../data/rides";
-import {
-  formatDuration,
-  formatKm,
-  formatM,
-} from "../utils/routeLoader";
+import { formatKm, formatM } from "../utils/routeLoader";
 import { useRideRoutes, type LoadedRide } from "../utils/useRideRoutes";
 import {
   countRealRiders,
@@ -51,11 +47,6 @@ export default function StatsPage() {
     () => ready.reduce((s, lr) => s + lr.data.stats.elevationGainM, 0),
     [ready],
   );
-  const totalDurationSec = useMemo(
-    () => ready.reduce((s, lr) => s + (lr.data.stats.durationSec ?? 0), 0),
-    [ready],
-  );
-
   const yearRange = useMemo(() => {
     const years = RIDES.map((r) => new Date(r.date).getFullYear()).filter(
       (y) => !Number.isNaN(y),
@@ -188,12 +179,6 @@ export default function StatsPage() {
                 : undefined
             }
           />
-          {totalDurationSec > 0 && (
-            <StatCard
-              label="Combined moving time"
-              value={formatDuration(totalDurationSec)}
-            />
-          )}
         </div>
       </section>
 
