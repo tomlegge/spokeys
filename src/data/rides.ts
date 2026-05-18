@@ -530,7 +530,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2016 - Forest to Forest",
     date: "2016-05-30",
     file: `${base}rides/Spokeys2016.gpx`,
-    riders: ["Stu", "Anita", "Steve E", "Darren", "Ciaran", "Pete", "Nick"],
+    riders: ["Stu", "Anita", "Steve Etches", "Darren", "Ciaran", "Pete", "Nick"],
     description:
       "The F2F -New Forest to the Forest of Dean",
     photos: [
@@ -659,7 +659,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2021 - Jurassic Coast",
     date: "2021-05-30",
     file: `${base}rides/Spokeys2021.gpx`,
-    riders: ["Tom", "Darren", "Anita", "Charlie", "Gary", "Tim", "Aiden", "Steve Gee", "Nick"],
+    riders: ["Tom", "Darren", "Anita", "Charlie", "Gary", "Tim", "Aiden (just part of the 2nd day)", "Steve Gee", "Nick", "Steve Etches (just camping / support)", "Catherine (just camping / support)"],
     description:
       "The Jurassic Coast ride between Southampton and Exmouth, with support from Steve and Catherine",
     photos: [
