@@ -41,6 +41,26 @@ export default function PhotosPage() {
         </p>
       </header>
 
+      {ridesWithPhotos.length > 1 && (
+        <nav className="photos-index" aria-label="Jump to album">
+          <h2 className="photos-index-title">Jump to album</h2>
+          <ul className="photos-index-list">
+            {ridesWithPhotos.map((ride) => (
+              <li key={ride.slug}>
+                <a href={`#${ride.slug}`} className="photos-index-link">
+                  <span className="photos-index-link-title">{ride.title}</span>
+                  <span className="photos-index-link-meta">
+                    {formatDate(ride.date)} ·{" "}
+                    {ride.photos?.length ?? 0} photo
+                    {(ride.photos?.length ?? 0) === 1 ? "" : "s"}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+
       {ridesWithPhotos.length === 0 ? (
         <p>No photos to show yet — add some to <code>public/photos/</code>.</p>
       ) : (

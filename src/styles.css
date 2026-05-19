@@ -640,6 +640,59 @@ a:hover {
   margin: 0 0 2.5rem;
   scroll-margin-top: 1rem;
 }
+
+/* Album index — jump links at the top of the photos page */
+.photos-index {
+  margin: 0 0 2rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface, rgba(0, 0, 0, 0.02));
+}
+.photos-index-title {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.photos-index-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+.photos-index-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.photos-index-link:hover,
+.photos-index-link:focus-visible {
+  background: var(--border);
+  color: var(--accent);
+  outline: none;
+}
+.photos-index-link-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.photos-index-link-meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+html {
+  scroll-behavior: smooth;
+}
 .photos-ride-head {
   display: flex;
   align-items: baseline;
