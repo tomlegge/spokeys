@@ -348,6 +348,80 @@ a:hover {
   font-size: 1.15rem;
 }
 
+/* ---------------- Blog content ---------------- */
+
+.blog-content {
+  max-width: 70ch;
+  margin: 0 auto;
+  line-height: 1.65;
+  color: var(--text, inherit);
+}
+.blog-content h1,
+.blog-content h2,
+.blog-content h3 {
+  margin: 1.5em 0 0.5em;
+  line-height: 1.25;
+}
+.blog-content h1 { font-size: 1.6rem; }
+.blog-content h2 { font-size: 1.3rem; }
+.blog-content h3 { font-size: 1.1rem; }
+.blog-content p {
+  margin: 0 0 1em;
+}
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1em auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+.blog-content blockquote {
+  margin: 1em 0;
+  padding: 0.25em 1em;
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: var(--radius);
+}
+.blog-content code {
+  background: var(--surface);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.blog-content pre {
+  background: var(--surface);
+  padding: 0.85em 1em;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+}
+.blog-content pre code {
+  background: transparent;
+  padding: 0;
+}
+.blog-content ul,
+.blog-content ol {
+  margin: 0 0 1em 1.25em;
+  padding: 0;
+}
+.blog-content li {
+  margin: 0.25em 0;
+}
+.blog-content table {
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+.blog-content th,
+.blog-content td {
+  border: 1px solid var(--border);
+  padding: 0.4em 0.7em;
+}
+.blog-content a {
+  color: var(--accent);
+}
+
 /* ---------------- Photos ---------------- */
 
 .photo-grid {

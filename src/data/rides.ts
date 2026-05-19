@@ -4,8 +4,10 @@
  * To add a new ride:
  *   1. Drop your GPX or KML file(s) into `public/rides/`
  *   2. Drop any photos into `public/photos/<slug>/`
- *   3. Append a new entry to the array below
- *   4. Commit & push — GitHub Actions deploys it
+ *   3. (Optional) Write a blog post at `public/blogs/<slug>.md` and set
+ *      `hasBlog: true` on the ride below
+ *   4. Append a new entry to the array below
+ *   5. Commit & push — GitHub Actions deploys it
  *
  * `slug` becomes the URL: /rides/<slug>
  *
@@ -24,6 +26,12 @@
  * When set, the ride detail page renders a "Read the blog →" button that
  * opens in a new tab. Leave it off (or commented out) if there's no post.
  *
+ * `hasBlog` (optional): set to `true` when you want to host the blog post
+ * directly on this site instead of linking out. Drop a markdown file at
+ * `public/blogs/<slug>.md` and the ride page will link to it at
+ * `/rides/<slug>/blog`. If both `blogUrl` and `hasBlog` are set, the external
+ * URL wins (so you can migrate gradually).
+ *
  * Use import.meta.env.BASE_URL so paths work in dev (`/`) AND on
  * GitHub Pages (`/spokeys/`). Don't hardcode the prefix.
  */
@@ -41,6 +49,7 @@ export type Ride = {
   photos?: string[]; // paths under public/, relative to BASE_URL
   color?: string; // route line color on the overview map
   blogUrl?: string; // optional external blog post about this ride
+  hasBlog?: boolean; // set true if a markdown post exists at public/blogs/<slug>.md
 };
 
 /** Resolve a ride's route files into a normalised array. Empty if no track. */
@@ -193,6 +202,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2010-vienna-to-budapest/flickr_4674061357.jpg`,
     ],
     color: "#f82500d5",
+    hasBlog: true,
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
   },    
   {

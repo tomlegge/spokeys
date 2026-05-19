@@ -1,6 +1,7 @@
 import { Link, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import RideDetailPage from "./pages/RideDetailPage";
+import RideBlogPage from "./pages/RideBlogPage";
 import AboutPage from "./pages/AboutPage";
 import PhotosPage from "./pages/PhotosPage";
 import StatsPage from "./pages/StatsPage";
@@ -24,6 +25,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/rides/:slug" element={<RideDetailPage />} />
+          <Route path="/rides/:slug/blog" element={<RideBlogPage />} />
           <Route path="/photos" element={<PhotosPage />} />
           <Route path="/stats" element={<StatsPage />} />
           <Route path="/about" element={<AboutPage />} />

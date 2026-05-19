@@ -89,7 +89,7 @@ export default function RideDetailPage() {
         {ride.description && (
           <p className="ride-description">{ride.description}</p>
         )}
-        {ride.blogUrl && (
+        {ride.blogUrl ? (
           <p className="ride-blog-link">
             <a
               href={ride.blogUrl}
@@ -99,7 +99,11 @@ export default function RideDetailPage() {
               Read the blog →
             </a>
           </p>
-        )}
+        ) : ride.hasBlog ? (
+          <p className="ride-blog-link">
+            <Link to={`/rides/${ride.slug}/blog`}>Read the blog →</Link>
+          </p>
+        ) : null}
       </div>
 
       {!hasTrack && (
