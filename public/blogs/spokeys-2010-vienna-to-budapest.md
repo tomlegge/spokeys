@@ -1,4 +1,4 @@
-# Ciarans Vienna to Budapest Blog
+# Ciaran's Vienna to Budapest Blog
 
 After saying goodbye to Kate I met three of my fellow cyclists at Rectory Road station at 7.45am on Saturday.  Anita and Darren I knew vaguely from volunteering at NLAH.  I hadn't met Steve before.  We discussed cycling to London Bridge to catch the train to Gatwick airport but decided to go by train.  It was quicker and we were all pretty tired because of the early start.  Despite the trip ahead of us I was the only one who hadn't had a big night out the day before.    
  
