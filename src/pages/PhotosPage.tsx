@@ -1,7 +1,21 @@
-import { useMemo } from "react";
+import { useMemo, type MouseEvent } from "react";
 import { Link } from "react-router-dom";
 import { RIDES } from "../data/rides";
 import PhotoGallery from "../components/PhotoGallery";
+
+/**
+ * Scrolls a ride section into view by slug. We can't rely on native
+ * `href="#slug"` anchor navigation because the app uses HashRouter, so
+ * `#slug` would be interpreted as a route (and fail to match, showing
+ * a blank page).
+ */
+function jumpToSlug(e: MouseEvent<HTMLAnchorElement>, slug: string) {
+  e.preventDefault();
+  const el = document.getElementById(slug);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
 
 /**
  * Stand-alone photo album: every ride that has photos, grouped by ride,
@@ -47,7 +61,11 @@ export default function PhotosPage() {
           <ul className="photos-index-list">
             {ridesWithPhotos.map((ride) => (
               <li key={ride.slug}>
-                <a href={`#${ride.slug}`} className="photos-index-link">
+                <a
+                  href={`#${ride.slug}`}
+                  onClick={(e) => jumpToSlug(e, ride.slug)}
+                  className="photos-index-link"
+                >
                   <span className="photos-index-link-title">{ride.title}</span>
                   <span className="photos-index-link-meta">
                     {formatDate(ride.date)} ·{" "}
