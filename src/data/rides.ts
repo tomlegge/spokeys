@@ -896,7 +896,10 @@ export const RIDES: Ride[] = [
   slug: "spokeys-2026-bristol-to-yatton",
   title: "Spokeys 2026 - Bristol to Yatton",
   date: "2026-05-01",
-  file: `${base}rides/Spokeys2026.gpx`,
+  files: [
+    `${base}rides/Spokeys2026-Darren2Yatton.gpx`,
+    `${base}rides/Spokeys2026.gpx`,
+  ],
   riders: ["Tom", "Anita", "Darren", "Charlie"],
   description: "Annual spokeys ride for 2026.",
   photos: [
