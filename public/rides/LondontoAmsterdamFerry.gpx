@@ -16,9 +16,9 @@ xmlns:os="https://ordnancesurvey.co.uk/public/schema/route/0.1">
     <trk>
         <name>londontohollandferry</name>
         <trkseg>
-            <trkpt lat="51.9376200" lon="1.2902900"/>
-            <trkpt lat="52.0274600" lon="3.9346600"/>
-            <trkpt lat="51.9771800" lon="4.1265800"/>
+            <trkpt lat="51.9376200" lon="1.2902900"><ele>4.0</ele></trkpt>
+            <trkpt lat="52.0274600" lon="3.9346600"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9771800" lon="4.1265800"><ele>5.0</ele></trkpt>
         </trkseg>
     </trk>
 </gpx>
