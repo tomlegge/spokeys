@@ -339,7 +339,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2012-london-to-amsterdam/anita-5.jpeg`,
     ],
     color: "#f82500d5",
-    // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
+    blogUrl: "https://rollbikeroll.wordpress.com/2012/06/26/london-essex-to-amsterdam/",
   },
   {
     slug: "dunwich-dynamo-2012",
