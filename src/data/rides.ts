@@ -380,8 +380,6 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2012-london-to-amsterdam/anita-5.jpeg`,
     ],
     color: "#f82500d5",
-    blogUrl: "https://rollbikeroll.wordpress.com/2012/06/26/london-essex-to-amsterdam/",
-
     blogUrl: [
       { url: "https://rollbikeroll.wordpress.com/2012/06/26/london-essex-to-amsterdam", name: "Anita's day 1 blog" },
       { url: "https://rollbikeroll.wordpress.com/2012/07/10/essex-to-amsterdam-2/", name: "Anita's day 2 blog" },
