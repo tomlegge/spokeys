@@ -6,19 +6,59 @@ xmlns:gs="http://www.topografix.com/GPX/gpx_style/0/2"
 xmlns:gh="https://graphhopper.com/public/schema/gpx/1.1"
 xmlns:os="https://ordnancesurvey.co.uk/public/schema/route/0.1">
     <metadata>
-        <name>londontohollandferry</name>
+        <name>Ferry-ldn-hoh</name>
         <desc></desc>
-        <bounds minlat="51.9376200" minlon="1.2902900" maxlat="52.0274600" maxlon="4.1265800"/>
+        <bounds minlat="51.8105800" minlon="1.2865700" maxlat="52.0298600" maxlon="4.1278400"/>
     </metadata>
-    <wpt lat="51.9376200" lon="1.2902900"/>
-    <wpt lat="52.0274600" lon="3.9346600"/>
-    <wpt lat="51.9771800" lon="4.1265800"/>
+    <wpt lat="51.9487100" lon="1.2865700"/>
+    <wpt lat="51.9501100" lon="1.2966800"/>
+    <wpt lat="51.9461400" lon="1.3028400"/>
+    <wpt lat="51.9310900" lon="1.3121400"/>
+    <wpt lat="51.9237500" lon="1.3269100"/>
+    <wpt lat="51.9310200" lon="1.3959700"/>
+    <wpt lat="51.9388100" lon="1.4917900"/>
+    <wpt lat="51.9373100" lon="1.5313600"/>
+    <wpt lat="51.9214000" lon="1.5567200"/>
+    <wpt lat="51.8927800" lon="1.5606100"/>
+    <wpt lat="51.8458300" lon="1.5779800"/>
+    <wpt lat="51.8151200" lon="1.7590200"/>
+    <wpt lat="51.8105800" lon="1.8601200"/>
+    <wpt lat="51.8882100" lon="2.1287700"/>
+    <wpt lat="51.9090900" lon="2.4011600"/>
+    <wpt lat="51.9291200" lon="2.6606800"/>
+    <wpt lat="51.9523600" lon="2.9640100"/>
+    <wpt lat="51.9689100" lon="3.1570200"/>
+    <wpt lat="51.9894000" lon="3.4084500"/>
+    <wpt lat="52.0066700" lon="3.6174700"/>
+    <wpt lat="52.0212900" lon="3.7951100"/>
+    <wpt lat="52.0298600" lon="3.8943300"/>
+    <wpt lat="51.9743000" lon="4.1278400"/>
     <trk>
-        <name>londontohollandferry</name>
+        <name>Ferry-ldn-hoh</name>
         <trkseg>
-            <trkpt lat="51.9376200" lon="1.2902900"><ele>4.0</ele></trkpt>
-            <trkpt lat="52.0274600" lon="3.9346600"><ele>0.0</ele></trkpt>
-            <trkpt lat="51.9771800" lon="4.1265800"><ele>5.0</ele></trkpt>
+            <trkpt lat="51.9487100" lon="1.2865700"/>
+            <trkpt lat="51.9501100" lon="1.2966800"/>
+            <trkpt lat="51.9461400" lon="1.3028400"/>
+            <trkpt lat="51.9310900" lon="1.3121400"/>
+            <trkpt lat="51.9237500" lon="1.3269100"/>
+            <trkpt lat="51.9310200" lon="1.3959700"/>
+            <trkpt lat="51.9388100" lon="1.4917900"/>
+            <trkpt lat="51.9373100" lon="1.5313600"/>
+            <trkpt lat="51.9214000" lon="1.5567200"/>
+            <trkpt lat="51.8927800" lon="1.5606100"/>
+            <trkpt lat="51.8458300" lon="1.5779800"/>
+            <trkpt lat="51.8151200" lon="1.7590200"/>
+            <trkpt lat="51.8105800" lon="1.8601200"/>
+            <trkpt lat="51.8882100" lon="2.1287700"/>
+            <trkpt lat="51.9090900" lon="2.4011600"/>
+            <trkpt lat="51.9291200" lon="2.6606800"/>
+            <trkpt lat="51.9523600" lon="2.9640100"/>
+            <trkpt lat="51.9689100" lon="3.1570200"/>
+            <trkpt lat="51.9894000" lon="3.4084500"/>
+            <trkpt lat="52.0066700" lon="3.6174700"/>
+            <trkpt lat="52.0212900" lon="3.7951100"/>
+            <trkpt lat="52.0298600" lon="3.8943300"/>
+            <trkpt lat="51.9743000" lon="4.1278400"/>
         </trkseg>
     </trk>
 </gpx>
