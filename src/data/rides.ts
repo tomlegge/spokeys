@@ -401,7 +401,9 @@ export const RIDES: Ride[] = [
       `${base}photos/dunwich-dynamo-2012/5.jpg`,
     ],
     color: "#ccac2a",
-    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/"
+    blogUrl: [
+      { url: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/", name: "Anita's Dunwich Dynamo Blog" },
+    ],
   },
   {
     slug: "spokeys-2013-prague-to-berlin",
@@ -641,7 +643,9 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (228).jpg`,
     ],
     color: "#f86300e9",
-    blogUrl: "https://rollbikeroll.wordpress.com/2013/05/26/bikes-on-a-plane-or-not/",
+    blogUrl: [
+      { url: "https://rollbikeroll.wordpress.com/2013/05/26/bikes-on-a-plane-or-not/", name: "Anita's blog" },
+    ],
   },
   {
     slug: "spokeys-2013-vattern",
@@ -664,7 +668,9 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2013-vattern/spokeys_vattern (10).JPG`,
     ],
     color: "#f80000a7",
-    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/14/116/",
+    blogUrl: [
+    { url: "https://rollbikeroll.wordpress.com/2012/07/14/116/", name: "Anita's blog" },
+    ],
   },
   {
     slug: "dunwich-dynamo-2013",
@@ -760,7 +766,9 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2015-loire-valley/spokeys_2015_loire_valley (14).jpeg`,
     ],
     color: "#0595f5",
-    blogUrl: "https://rollbikeroll.wordpress.com/2015/12/31/roll-and-reflect/",
+    blogUrl: [
+      { url: "https://rollbikeroll.wordpress.com/2015/12/31/roll-and-reflect/", name: "Anita's blog" },
+    ],
   },
   {
     slug: "spokeys-2015-nightride",
@@ -778,7 +786,9 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2015-nightride/christchurch-beach.jpg`,
     ],
     color: "#ed098a",
-    blogUrl: "https://rollbikeroll.wordpress.com/2015/06/22/overnight-ride-to-the-sea/",
+    blogUrl: [
+      { url: "https://rollbikeroll.wordpress.com/2015/06/22/overnight-ride-to-the-sea/", name: "Anita's Blog" },
+    ],
   },
   {
     slug: "spokeys-2016-f2f",
@@ -795,7 +805,9 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2016-f2f/lydney.jpg`,
     ],
     color: "#ed5d09",
-    blogUrl: "https://rollbikeroll.wordpress.com/2016/06/01/forest-to-forest/",
+    blogUrl: [
+      { url: "https://rollbikeroll.wordpress.com/2016/06/01/forest-to-forest/", name: "Anita's Forest to Forest Blog" },
+    ],
   },
   {
     slug: "spokeys-2017-caledonia-way",
@@ -804,7 +816,7 @@ export const RIDES: Ride[] = [
     file: `${base}rides/Spokeys2017.gpx`,
     riders: ["Gary", "Anita", "Steve Etches", "Darren", "Nick", "Ciaran"],
     description:
-      "The F2F -New Forest to the Forest of Dean",
+      "The first Spokeys ride in Scotland, from Campbeltown to Fort William, following the Caledonia Way route.  A great ride with some fantastic views and a lot of climbing.",
     photos: [
       `${base}photos/spokeys-2017-caledonia-way/img_1542.jpg`,
       `${base}photos/spokeys-2017-caledonia-way/img_1539.jpg`,      
@@ -822,7 +834,9 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2017-caledonia-way/img_1528.jpg`,
     ],
     color: "#ed098a",
-    blogUrl: "https://rollbikeroll.wordpress.com/2017/06/03/caledonia-way/",
+    blogUrl: [
+      { url: "https://rollbikeroll.wordpress.com/2017/06/03/caledonia-way/", name: "Anita's Caledonia Way Blog" },
+    ],
   },
   {
     slug: "spokeys-2018-coast-and-castles",
@@ -873,7 +887,9 @@ export const RIDES: Ride[] = [
     `${base}photos/spokeys-2018-coast-and-castles/spokeys2018 (38).jpeg`,    
     ],
     color: "#f46b09",
-    blogUrl: "https://rollbikeroll.wordpress.com/2018/06/04/coast-and-castles/",
+    blogUrl: [
+      { url: "https://rollbikeroll.wordpress.com/2018/06/04/coast-and-castles/", name: "Anita's Coast and Castles Blog" },
+    ],
   },
   {
     slug: "spokeys-2019-lord-whisky",
@@ -963,7 +979,9 @@ export const RIDES: Ride[] = [
     `${base}photos/spokeys-2024-devon-c2c/spokeys_2024_21.jpg`,
     ],
     color: "#e63946",
-    blogUrl: "https://rollbikeroll.wordpress.com/2024/05/30/devon-coast-to-coast-spokeys-returns/",
+    blogUrl: [
+      { url: "https://rollbikeroll.wordpress.com/2024/05/30/devon-coast-to-coast-spokeys-returns/", name: "Anita's Devon Coast to Coast Blog" },
+    ],
   },
   {
     slug: "spokeys-2025-wiltshire-way",
@@ -997,7 +1015,9 @@ export const RIDES: Ride[] = [
     `${base}photos/spokeys-2025-wiltshire-way/spokeys_2025_1 (21).jpg`, 
     ],
     color: "#26cd3a",
-    blogUrl: "https://rollbikeroll.wordpress.com/2025/06/01/wiltshire-way/",
+    blogUrl: [
+      { url: "https://rollbikeroll.wordpress.com/2025/06/01/wiltshire-way/", name: "Anita's Wiltshire Way Blog" }
+    ],
   },
   {
   slug: "spokeys-2026-bristol-to-yatton",
