@@ -828,7 +828,7 @@ export const RIDES: Ride[] = [
     `${base}photos/spokeys-2018-coast-and-castles/spokeys2018 (37).jpeg`,
     `${base}photos/spokeys-2018-coast-and-castles/spokeys2018 (38).jpeg`,    
     ],
-    color: "#093cf4",
+    color: "#f46b09",
     blogUrl: "https://rollbikeroll.wordpress.com/2018/06/04/coast-and-castles/",
   },
   {
