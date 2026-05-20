@@ -694,7 +694,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys Dunwich Dynamo 2013",
     date: "2013-05-30",
     file: `${base}rides/DunwichDynamo_2013.gpx`,
-    riders: ["Anita", "Tom", "Darren", "Jamie"],
+    riders: ["Anita", "Tom", "Darren", "Jamie", "Steve Gee"],
     description:
       "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
     photos: [
