@@ -36,29 +36,29 @@ xmlns:os="https://ordnancesurvey.co.uk/public/schema/route/0.1">
     <trk>
         <name>Ferry-ldn-hoh</name>
         <trkseg>
-            <trkpt lat="51.9487100" lon="1.2865700"/>
-            <trkpt lat="51.9501100" lon="1.2966800"/>
-            <trkpt lat="51.9461400" lon="1.3028400"/>
-            <trkpt lat="51.9310900" lon="1.3121400"/>
-            <trkpt lat="51.9237500" lon="1.3269100"/>
-            <trkpt lat="51.9310200" lon="1.3959700"/>
-            <trkpt lat="51.9388100" lon="1.4917900"/>
-            <trkpt lat="51.9373100" lon="1.5313600"/>
-            <trkpt lat="51.9214000" lon="1.5567200"/>
-            <trkpt lat="51.8927800" lon="1.5606100"/>
-            <trkpt lat="51.8458300" lon="1.5779800"/>
-            <trkpt lat="51.8151200" lon="1.7590200"/>
-            <trkpt lat="51.8105800" lon="1.8601200"/>
-            <trkpt lat="51.8882100" lon="2.1287700"/>
-            <trkpt lat="51.9090900" lon="2.4011600"/>
-            <trkpt lat="51.9291200" lon="2.6606800"/>
-            <trkpt lat="51.9523600" lon="2.9640100"/>
-            <trkpt lat="51.9689100" lon="3.1570200"/>
-            <trkpt lat="51.9894000" lon="3.4084500"/>
-            <trkpt lat="52.0066700" lon="3.6174700"/>
-            <trkpt lat="52.0212900" lon="3.7951100"/>
-            <trkpt lat="52.0298600" lon="3.8943300"/>
-            <trkpt lat="51.9743000" lon="4.1278400"/>
+            <trkpt lat="51.9487100" lon="1.2865700"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9501100" lon="1.2966800"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9461400" lon="1.3028400"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9310900" lon="1.3121400"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9237500" lon="1.3269100"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9310200" lon="1.3959700"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9388100" lon="1.4917900"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9373100" lon="1.5313600"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9214000" lon="1.5567200"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.8927800" lon="1.5606100"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.8458300" lon="1.5779800"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.8151200" lon="1.7590200"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.8105800" lon="1.8601200"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.8882100" lon="2.1287700"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9090900" lon="2.4011600"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9291200" lon="2.6606800"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9523600" lon="2.9640100"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9689100" lon="3.1570200"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9894000" lon="3.4084500"><ele>0.0</ele></trkpt>
+            <trkpt lat="52.0066700" lon="3.6174700"><ele>0.0</ele></trkpt>
+            <trkpt lat="52.0212900" lon="3.7951100"><ele>0.0</ele></trkpt>
+            <trkpt lat="52.0298600" lon="3.8943300"><ele>0.0</ele></trkpt>
+            <trkpt lat="51.9743000" lon="4.1278400"><ele>3.0</ele></trkpt>
         </trkseg>
     </trk>
 </gpx>
