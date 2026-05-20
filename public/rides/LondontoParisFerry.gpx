@@ -15,8 +15,8 @@ xmlns:os="https://ordnancesurvey.co.uk/public/schema/route/0.1">
     <trk>
         <name>London to Paris Ferry</name>
         <trkseg>
-            <trkpt lat="50.7899000" lon="-0.0093600"/>
-            <trkpt lat="49.9228700" lon="1.0771100"/>
+            <trkpt lat="50.7899000" lon="-0.0093600"><ele>0.0</ele></trkpt>
+            <trkpt lat="49.9228700" lon="1.0771100"><ele>10.0</ele></trkpt>
         </trkseg>
     </trk>
 </gpx>
