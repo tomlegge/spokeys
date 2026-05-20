@@ -654,7 +654,7 @@ export const RIDES: Ride[] = [
     file: `${base}rides/Spokeys2013-vattern.gpx`,
     riders: ["Stu", "Anita", "Tom", "James","Jamie"],
     description:
-      "The half Vattern Runden ride, near the town of Motala in Sweden.",
+      "The Halvvättern ride, near the town of Motala in Sweden. The mini version of the Vättern Runden",
     photos: [
       `${base}photos/spokeys-2013-vattern/spokeys_vattern (1).JPG`,
       `${base}photos/spokeys-2013-vattern/spokeys_vattern (2).JPG`,
@@ -666,6 +666,23 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2013-vattern/spokeys_vattern (8).JPG`,
       `${base}photos/spokeys-2013-vattern/spokeys_vattern (9).JPG`,
       `${base}photos/spokeys-2013-vattern/spokeys_vattern (10).JPG`,
+      `${base}photos/spokeys-2013-vattern/11.jpeg`,
+      `${base}photos/spokeys-2013-vattern/12.jpeg`,
+      `${base}photos/spokeys-2013-vattern/13.jpeg`,
+      `${base}photos/spokeys-2013-vattern/14.jpeg`,
+      `${base}photos/spokeys-2013-vattern/15.jpeg`,
+      `${base}photos/spokeys-2013-vattern/16.jpeg`,
+      `${base}photos/spokeys-2013-vattern/17.jpeg`,
+      `${base}photos/spokeys-2013-vattern/18.jpeg`,
+      `${base}photos/spokeys-2013-vattern/19.jpeg`,
+      `${base}photos/spokeys-2013-vattern/20.jpeg`,
+      `${base}photos/spokeys-2013-vattern/21.jpeg`,
+      `${base}photos/spokeys-2013-vattern/22.jpeg`,
+      `${base}photos/spokeys-2013-vattern/23.jpeg`,
+      `${base}photos/spokeys-2013-vattern/24.jpeg`,
+      `${base}photos/spokeys-2013-vattern/25.jpeg`,
+      `${base}photos/spokeys-2013-vattern/26.jpeg`,
+      `${base}photos/spokeys-2013-vattern/27.jpeg`,
     ],
     color: "#f80000a7",
     blogUrl: [
@@ -681,6 +698,10 @@ export const RIDES: Ride[] = [
     description:
       "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
     photos: [
+        `${base}photos/dunwich-dynamo-2013/1.jpeg`,
+        `${base}photos/dunwich-dynamo-2013/2.jpeg`,
+        `${base}photos/dunwich-dynamo-2013/3.jpeg`,
+        `${base}photos/dunwich-dynamo-2013/4.jpeg`,
     ],
     color: "#0021f8",
  //   blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
