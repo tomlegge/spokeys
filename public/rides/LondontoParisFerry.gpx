@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<gpx version="1.1" creator="OS Maps - Web" xmlns="http://www.topografix.com/GPX/1/1"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd"
+xmlns:gs="http://www.topografix.com/GPX/gpx_style/0/2"
+xmlns:gh="https://graphhopper.com/public/schema/gpx/1.1"
+xmlns:os="https://ordnancesurvey.co.uk/public/schema/route/0.1">
+    <metadata>
+        <name>London to Paris Ferry</name>
+        <desc></desc>
+        <bounds minlat="49.9228700" minlon="-0.0093600" maxlat="50.7899000" maxlon="1.0771100"/>
+    </metadata>
+    <wpt lat="50.7899000" lon="-0.0093600"/>
+    <wpt lat="49.9228700" lon="1.0771100"/>
+    <trk>
+        <name>London to Paris Ferry</name>
+        <trkseg>
+            <trkpt lat="50.7899000" lon="-0.0093600"/>
+            <trkpt lat="49.9228700" lon="1.0771100"/>
+        </trkseg>
+    </trk>
+</gpx>

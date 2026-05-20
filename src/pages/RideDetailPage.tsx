@@ -37,8 +37,14 @@ export default function RideDetailPage() {
   const [error, setError] = useState<string | null>(null);
 
   // Build a stable key from the ride's file list so the effect re-runs only
-  // when the actual file set changes, not on every render.
-  const fileKey = ride ? rideFiles(ride).join("|") : "";
+  // when the actual file set changes, not on every render. Include the
+  // transfer flag so flipping a segment between cycled and transfer also
+  // triggers a reload.
+  const fileKey = ride
+    ? rideFiles(ride)
+        .map((f) => `${f.url}${f.transfer ? "*" : ""}`)
+        .join("|")
+    : "";
 
   useEffect(() => {
     if (!ride) return;
@@ -127,17 +133,25 @@ export default function RideDetailPage() {
             />
             {segmentPositions.length > 0 && (
               <>
-                {segmentPositions.map((segPositions, i) => (
-                  <Polyline
-                    key={i}
-                    positions={segPositions}
-                    pathOptions={{
-                      color: ride.color ?? "#0077b6",
-                      weight: 5,
-                      opacity: 0.9,
-                    }}
-                  />
-                ))}
+                {segmentPositions.map((segPositions, i) => {
+                  const isTransfer = !!route?.segments[i]?.transfer;
+                  return (
+                    <Polyline
+                      key={i}
+                      positions={segPositions}
+                      pathOptions={{
+                        color: ride.color ?? "#0077b6",
+                        weight: isTransfer ? 3 : 5,
+                        opacity: isTransfer ? 0.7 : 0.9,
+                        // Dotted line for non-cycled transfers (ferries,
+                        // trains, lifts). Leaflet passes dashArray straight
+                        // through to the underlying SVG stroke-dasharray.
+                        dashArray: isTransfer ? "2 8" : undefined,
+                        lineCap: isTransfer ? "round" : "butt",
+                      }}
+                    />
+                  );
+                })}
                 {/* Start marker on the first point of the first segment,
                     end marker on the last point of the last segment. */}
                 <Marker

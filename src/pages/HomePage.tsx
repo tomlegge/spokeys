@@ -158,26 +158,32 @@ export default function HomePage() {
           />
           {loaded.flatMap((lr) =>
             lr.status === "ready" && lr.data
-              ? lr.data.segments.map((seg, segIdx) => (
+              ? lr.data.segments.map((seg, segIdx) => {
                   // One polyline per segment so disconnected GPX files don't
-                  // get joined by a straight line across the map.
-                  <Polyline
-                    key={`${lr.ride.slug}#${segIdx}`}
-                    positions={seg.points.map((p) => [p.lat, p.lng])}
-                    pathOptions={{
-                      color: lr.ride.color ?? "#0077b6",
-                      weight: selectedSlug === lr.ride.slug ? 6 : 4,
-                      opacity: selectedSlug && selectedSlug !== lr.ride.slug
-                        ? 0.4
-                        : 0.9,
-                    }}
-                    eventHandlers={{
-                      click: () => navigate(`/rides/${lr.ride.slug}`),
-                      mouseover: () => setSelectedSlug(lr.ride.slug),
-                      mouseout: () => setSelectedSlug(null),
-                    }}
-                  />
-                ))
+                  // get joined by a straight line across the map. Transfer
+                  // segments (ferries, train hops…) render as a dotted line.
+                  const isSelected = selectedSlug === lr.ride.slug;
+                  const dimmed = selectedSlug && !isSelected;
+                  const baseWeight = isSelected ? 6 : 4;
+                  return (
+                    <Polyline
+                      key={`${lr.ride.slug}#${segIdx}`}
+                      positions={seg.points.map((p) => [p.lat, p.lng])}
+                      pathOptions={{
+                        color: lr.ride.color ?? "#0077b6",
+                        weight: seg.transfer ? Math.max(2, baseWeight - 2) : baseWeight,
+                        opacity: dimmed ? 0.4 : seg.transfer ? 0.75 : 0.9,
+                        dashArray: seg.transfer ? "2 8" : undefined,
+                        lineCap: seg.transfer ? "round" : "butt",
+                      }}
+                      eventHandlers={{
+                        click: () => navigate(`/rides/${lr.ride.slug}`),
+                        mouseover: () => setSelectedSlug(lr.ride.slug),
+                        mouseout: () => setSelectedSlug(null),
+                      }}
+                    />
+                  );
+                })
               : [],
           )}
           <FitBoundsOnce bounds={initialBounds} />

@@ -22,6 +22,13 @@
  *   Either is optional — omit both (or leave them commented out) if you don't
  *   have a track yet. Rides without a track still show in the list.
  *
+ *   Transfers (ferries, trains, lifts — anything you didn't pedal):
+ *   Inside `files`, you can swap any plain string for an object like
+ *     { url: `${base}rides/Ferry.gpx`, transfer: true }
+ *   That segment will be drawn as a DOTTED line on the map and will NOT count
+ *   toward distance, elevation, duration, or the rider leaderboard. Plain
+ *   string entries continue to behave as normal cycled segments.
+ *
  * `blogUrl` (optional): full external URL to a blog post about the ride.
  * When set, the ride detail page renders a "Read the blog →" button that
  * opens in a new tab. Leave it off (or commented out) if there's no post.
@@ -38,12 +45,23 @@
 
 const base = import.meta.env.BASE_URL;
 
+/**
+ * One entry in a ride's `files` list. Plain strings are treated as a normal
+ * cycled segment. Objects let you flag a segment as a `transfer` — a
+ * non-cycled bit like a ferry crossing or a train hop — which is drawn as a
+ * dotted line and excluded from all distance / elevation / duration stats.
+ */
+export type RouteFile = {
+  url: string;
+  transfer?: boolean;
+};
+
 export type Ride = {
   slug: string;
   title: string;
   date: string; // ISO date "YYYY-MM-DD"
   file?: string; // single GPX/KML path under public/. Use for normal rides.
-  files?: string[]; // multiple GPX/KML paths under public/. Use when a ride spans disconnected tracks.
+  files?: (string | RouteFile)[]; // multiple GPX/KML paths under public/. Use when a ride spans disconnected tracks. Use the object form to mark a file as a non-cycled transfer (ferry, train, etc.).
   riders: string[];
   description: string;
   photos?: string[]; // paths under public/, relative to BASE_URL
@@ -52,10 +70,16 @@ export type Ride = {
   hasBlog?: boolean; // set true if a markdown post exists at public/blogs/<slug>.md
 };
 
-/** Resolve a ride's route files into a normalised array. Empty if no track. */
-export function rideFiles(ride: Ride): string[] {
-  if (ride.files && ride.files.length > 0) return ride.files;
-  if (ride.file) return [ride.file];
+/**
+ * Resolve a ride's route files into a normalised array of `RouteFile`
+ * objects. Plain string entries are wrapped into objects with `transfer:
+ * false`. Returns an empty array when no track has been uploaded.
+ */
+export function rideFiles(ride: Ride): RouteFile[] {
+  const normalise = (entry: string | RouteFile): RouteFile =>
+    typeof entry === "string" ? { url: entry } : entry;
+  if (ride.files && ride.files.length > 0) return ride.files.map(normalise);
+  if (ride.file) return [{ url: ride.file }];
   return [];
 }
 
@@ -67,6 +91,7 @@ export const RIDES: Ride[] = [
     //file: `${base}rides/Spokeys2011.gpx`,
     files: [
       `${base}rides/Spokeys2009-Day1.gpx`,
+      { url: `${base}rides/LondontoParisFerry.gpx`, transfer: true },
       `${base}rides/Spokeys2009-Day2.gpx`, 
     ],
     riders: ["Anita", "Darren", "Steve Gee", "Charlie", "Rose", "Cameron", "James", "Alun", "Christian"],

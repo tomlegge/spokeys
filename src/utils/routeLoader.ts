@@ -20,7 +20,27 @@ export type LatLngEle = {
 export type RouteSegment = {
   name?: string;
   points: LatLngEle[];
+  /**
+   * True for non-cycled portions (ferry crossings, train transfers, lifts…).
+   * Transfer segments are still drawn on the map (as dotted lines) but are
+   * EXCLUDED from distance / elevation / duration stats and from the
+   * elevation profile.
+   */
+  transfer?: boolean;
 };
+
+/**
+ * Input shape for {@link loadRoutes}. A bare string is treated as a normal
+ * cycled GPX/KML file; the object form lets callers flag a file as a
+ * non-cycled transfer. Mirrors `RouteFile` in src/data/rides.ts but kept here
+ * so this module has no dependency on the rides data file.
+ */
+export type RouteFileInput = string | { url: string; transfer?: boolean };
+
+function normaliseInput(input: RouteFileInput): { url: string; transfer: boolean } {
+  if (typeof input === "string") return { url: input, transfer: false };
+  return { url: input.url, transfer: !!input.transfer };
+}
 
 export type RouteData = {
   name?: string;
@@ -64,7 +84,7 @@ function haversineKm(a: LatLngEle, b: LatLngEle): number {
 
 /** Load a single GPX/KML file and parse it into a one-segment RouteData. */
 export async function loadRoute(fileUrl: string): Promise<RouteData> {
-  const segment = await loadSegment(fileUrl);
+  const segment = await loadSegment({ url: fileUrl, transfer: false });
   return combineSegments([segment]);
 }
 
@@ -74,19 +94,28 @@ export async function loadRoute(fileUrl: string): Promise<RouteData> {
  * tracks (e.g. a tour where you trained between two stages, or where each
  * day's track is a separate file).
  *
+ * Accepts either bare path strings or `{ url, transfer }` objects. When a
+ * file is flagged `transfer: true` (e.g. a ferry crossing), its segment is
+ * still drawn on the map but is excluded from distance, elevation, duration,
+ * and the elevation profile.
+ *
  * The segments are concatenated in the order given. Distance, elevation
- * gain/loss, and duration are summed PER SEGMENT — the jumps between
- * segments don't count toward any total.
+ * gain/loss, and duration are summed PER NON-TRANSFER SEGMENT — the jumps
+ * between segments don't count toward any total either.
  */
-export async function loadRoutes(fileUrls: string[]): Promise<RouteData> {
-  if (fileUrls.length === 0) {
+export async function loadRoutes(files: RouteFileInput[]): Promise<RouteData> {
+  if (files.length === 0) {
     throw new Error("loadRoutes called with no file URLs");
   }
-  const segments = await Promise.all(fileUrls.map(loadSegment));
+  const normalised = files.map(normaliseInput);
+  const segments = await Promise.all(normalised.map(loadSegment));
   return combineSegments(segments);
 }
 
-async function loadSegment(fileUrl: string): Promise<RouteSegment> {
+async function loadSegment(
+  file: { url: string; transfer: boolean },
+): Promise<RouteSegment> {
+  const { url: fileUrl, transfer } = file;
   const res = await fetch(fileUrl);
   if (!res.ok) {
     throw new Error(`Failed to load route file ${fileUrl}: ${res.status}`);
@@ -114,21 +143,21 @@ async function loadSegment(fileUrl: string): Promise<RouteSegment> {
     throw new Error(`Route at ${fileUrl} has fewer than 2 points`);
   }
 
-  return { name, points };
+  return { name, points, transfer };
 }
 
 /**
  * Stitch one or more segments into a single RouteData. The combined `points`
- * array is the concatenation of every segment's points; `stats` are summed
- * per-segment so gaps between segments are not counted; `elevationSeries`
- * concatenates each segment's series, with cumulative distance flowing
- * forward across segment boundaries (no fake mileage from the gap).
+ * array is the concatenation of every segment's points (including transfers
+ * — so the map can still draw them and fit to their bounds). Stats and the
+ * elevation profile, however, IGNORE transfer segments entirely — a ferry
+ * crossing or train hop adds zero distance and zero climbing.
  */
 function combineSegments(segments: RouteSegment[]): RouteData {
   const allPoints: LatLngEle[] = [];
   for (const seg of segments) allPoints.push(...seg.points);
 
-  // Per-segment stats, summed.
+  // Per-segment stats, summed. Transfer segments contribute nothing.
   let distanceKm = 0;
   let elevationGainM = 0;
   let elevationLossM = 0;
@@ -137,6 +166,7 @@ function combineSegments(segments: RouteSegment[]): RouteData {
   let durationSec: number | undefined = undefined;
   let anyMissingDuration = false;
   for (const seg of segments) {
+    if (seg.transfer) continue;
     const s = computeStats(seg.points);
     distanceKm += s.distanceKm;
     elevationGainM += s.elevationGainM;
@@ -149,18 +179,20 @@ function combineSegments(segments: RouteSegment[]): RouteData {
       anyMissingDuration = true;
     }
   }
-  // Only report duration if EVERY segment had timestamps — otherwise the
-  // partial number would be misleading.
+  // Only report duration if EVERY non-transfer segment had timestamps —
+  // otherwise the partial number would be misleading.
   if (anyMissingDuration) durationSec = undefined;
   const avgSpeedKmh =
     durationSec && durationSec > 0 ? distanceKm / (durationSec / 3600) : undefined;
 
-  // Elevation series: each segment starts from the running cumulative km of
-  // segments before it. The chart shows a continuous x-axis representing the
-  // total distance pedalled, with no fake mileage for the gaps.
+  // Elevation series: each NON-TRANSFER segment starts from the running
+  // cumulative km of previous non-transfer segments. The chart's x-axis is
+  // "kilometres pedalled" — ferries don't move the axis forward, and they
+  // don't show up as a flat line either.
   const elevationSeries: { distanceKm: number; ele: number }[] = [];
   let cumulativeKm = 0;
   for (const seg of segments) {
+    if (seg.transfer) continue;
     const segSeries = buildElevationSeries(seg.points);
     for (const pt of segSeries) {
       elevationSeries.push({ distanceKm: cumulativeKm + pt.distanceKm, ele: pt.ele });
