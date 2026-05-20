@@ -6,17 +6,19 @@ xmlns:gs="http://www.topografix.com/GPX/gpx_style/0/2"
 xmlns:gh="https://graphhopper.com/public/schema/gpx/1.1"
 xmlns:os="https://ordnancesurvey.co.uk/public/schema/route/0.1">
     <metadata>
-        <name>London to Paris Ferry</name>
+        <name>londontohollandferry</name>
         <desc></desc>
-        <bounds minlat="49.9334600" minlon="0.0551000" maxlat="50.7835300" maxlon="1.0834700"/>
+        <bounds minlat="51.9376200" minlon="1.2902900" maxlat="52.0274600" maxlon="4.1265800"/>
     </metadata>
-    <wpt lat="50.7835300" lon="0.0551000"/>
-    <wpt lat="49.9334600" lon="1.0834700"/>
+    <wpt lat="51.9376200" lon="1.2902900"/>
+    <wpt lat="52.0274600" lon="3.9346600"/>
+    <wpt lat="51.9771800" lon="4.1265800"/>
     <trk>
-        <name>London to Paris Ferry</name>
+        <name>londontohollandferry</name>
         <trkseg>
-            <trkpt lat="50.7835300" lon="0.0551000"/>
-            <trkpt lat="49.9334600" lon="1.0834700"/>
+            <trkpt lat="51.9376200" lon="1.2902900"/>
+            <trkpt lat="52.0274600" lon="3.9346600"/>
+            <trkpt lat="51.9771800" lon="4.1265800"/>
         </trkseg>
     </trk>
 </gpx>

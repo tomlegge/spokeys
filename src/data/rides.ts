@@ -315,6 +315,7 @@ export const RIDES: Ride[] = [
 //    file: `${base}rides/Spokeys2012.gpx`,
     files: [
       `${base}rides/Spokeys2012-Day1.gpx`,
+      { url: `${base}rides/LondontoAmsterdamFerry.gpx`, transfer: true },
       `${base}rides/Spokeys2012-Day2.gpx`, 
     ],
     riders: ["Steve Gee", "Catherine", "Anita", "Jamie", "Darren", "Nikki", "Steve Moonie", "Dom", "Tom", "James", "Stu"],
