@@ -29,15 +29,26 @@
  *   toward distance, elevation, duration, or the rider leaderboard. Plain
  *   string entries continue to behave as normal cycled segments.
  *
- * `blogUrl` (optional): full external URL to a blog post about the ride.
- * When set, the ride detail page renders a "Read the blog →" button that
- * opens in a new tab. Leave it off (or commented out) if there's no post.
+ * `blogUrl` (optional): one or more external blog posts about the ride.
+ * Three forms are accepted:
+ *   - a plain string URL — renders a single "Read the blog →" button
+ *       blogUrl: "https://example.com/post"
+ *   - an object with an optional name — renders a button with that name
+ *       blogUrl: { url: "https://example.com/post", name: "Anita's blog" }
+ *   - an array mixing either form — renders one button per entry, side by
+ *     side (use this when several people blogged about the same ride)
+ *       blogUrl: [
+ *         { url: "https://example.com/anita", name: "Anita's blog" },
+ *         { url: "https://example.com/tom",   name: "Tom's recap" },
+ *       ]
+ * Each button opens in a new tab. Leave the field off entirely (or commented
+ * out) if there's no external post.
  *
- * `hasBlog` (optional): set to `true` when you want to host the blog post
- * directly on this site instead of linking out. Drop a markdown file at
- * `public/blogs/<slug>.md` and the ride page will link to it at
- * `/rides/<slug>/blog`. If both `blogUrl` and `hasBlog` are set, the external
- * URL wins (so you can migrate gradually).
+ * `hasBlog` (optional): set to `true` when you also want to host a blog post
+ * directly on this site. Drop a markdown file at `public/blogs/<slug>.md`
+ * and the ride page will add an extra button linking to `/rides/<slug>/blog`
+ * alongside any external links. Internal and external links coexist now —
+ * both render as separate pills.
  *
  * Use import.meta.env.BASE_URL so paths work in dev (`/`) AND on
  * GitHub Pages (`/spokeys/`). Don't hardcode the prefix.
@@ -56,6 +67,22 @@ export type RouteFile = {
   transfer?: boolean;
 };
 
+/**
+ * One external blog post about a ride. `name` is shown on the button (e.g.
+ * "Anita's blog"); leave it off for a single link and the button falls back
+ * to "Read the blog →".
+ */
+export type BlogLink = {
+  url: string;
+  name?: string;
+};
+
+/** What `Ride.blogUrl` is allowed to be. See the file header for examples. */
+export type BlogUrlField =
+  | string
+  | BlogLink
+  | (string | BlogLink)[];
+
 export type Ride = {
   slug: string;
   title: string;
@@ -66,7 +93,7 @@ export type Ride = {
   description: string;
   photos?: string[]; // paths under public/, relative to BASE_URL
   color?: string; // route line color on the overview map
-  blogUrl?: string; // optional external blog post about this ride
+  blogUrl?: BlogUrlField; // one or more external blog posts. See file header for the three accepted shapes.
   hasBlog?: boolean; // set true if a markdown post exists at public/blogs/<slug>.md
 };
 
@@ -81,6 +108,20 @@ export function rideFiles(ride: Ride): RouteFile[] {
   if (ride.files && ride.files.length > 0) return ride.files.map(normalise);
   if (ride.file) return [{ url: ride.file }];
   return [];
+}
+
+/**
+ * Resolve a ride's `blogUrl` field into a normalised array of `BlogLink`s,
+ * regardless of which of the three accepted shapes it was written in. Empty
+ * array if the field is unset.
+ */
+export function rideBlogLinks(ride: Ride): BlogLink[] {
+  const raw = ride.blogUrl;
+  if (raw == null) return [];
+  const normaliseOne = (entry: string | BlogLink): BlogLink =>
+    typeof entry === "string" ? { url: entry } : entry;
+  if (Array.isArray(raw)) return raw.map(normaliseOne);
+  return [normaliseOne(raw)];
 }
 
 export const RIDES: Ride[] = [
@@ -340,6 +381,11 @@ export const RIDES: Ride[] = [
     ],
     color: "#f82500d5",
     blogUrl: "https://rollbikeroll.wordpress.com/2012/06/26/london-essex-to-amsterdam/",
+
+    blogUrl: [
+      { url: "https://rollbikeroll.wordpress.com/2012/06/26/london-essex-to-amsterdam", name: "Anita's day 1 blog" },
+      { url: "https://rollbikeroll.wordpress.com/2012/07/10/essex-to-amsterdam-2/", name: "Anita's day 2 blog" },
+    ],
   },
   {
     slug: "dunwich-dynamo-2012",
@@ -366,7 +412,7 @@ export const RIDES: Ride[] = [
     file: `${base}rides/Spokeys2013.gpx`,
     riders: ["Stu", "Anita", "Tom", "Alun","Jamie", "Darren"],
     description:
-      "The epic and incredible wet 5 day ride between Prague and Berlin.",
+      "The epic and incredibly wet 5 day ride between Prague and Berlin.",
     photos: [
       `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (1).JPG`,
       `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (2).JPG`,
@@ -597,7 +643,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2013-prague-to-berlin/spokeys_2013_prague_to_berlin (228).jpg`,
     ],
     color: "#f86300e9",
-    // blogUrl: "https://example.com/blog/spokeys-2013-prague-to-berlin",
+    blogUrl: "https://rollbikeroll.wordpress.com/2013/05/26/bikes-on-a-plane-or-not/",
   },
   {
     slug: "spokeys-2013-vattern",

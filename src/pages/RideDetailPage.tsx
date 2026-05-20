@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { MapContainer, Marker, Polyline, TileLayer, useMap } from "react-leaflet";
 import L from "leaflet";
-import { RIDES, rideFiles } from "../data/rides";
+import { RIDES, rideBlogLinks, rideFiles } from "../data/rides";
 import {
   formatDuration,
   formatKm,
@@ -95,21 +95,7 @@ export default function RideDetailPage() {
         {ride.description && (
           <p className="ride-description">{ride.description}</p>
         )}
-        {ride.blogUrl ? (
-          <p className="ride-blog-link">
-            <a
-              href={ride.blogUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Read the blog →
-            </a>
-          </p>
-        ) : ride.hasBlog ? (
-          <p className="ride-blog-link">
-            <Link to={`/rides/${ride.slug}/blog`}>Read the blog →</Link>
-          </p>
-        ) : null}
+        <BlogLinks ride={ride} />
       </div>
 
       {!hasTrack && (
@@ -252,4 +238,56 @@ function formatDate(iso: string): string {
     month: "long",
     day: "numeric",
   });
+}
+
+/**
+ * Renders the blog-link row beneath a ride's header. Each entry in
+ * `ride.blogUrl` becomes one external pill (opening in a new tab); if
+ * `ride.hasBlog` is true an internal pill is added on the end. Renders
+ * nothing if neither is set.
+ *
+ * Naming rule:
+ *   - If a link has an explicit `name`, that's the button label.
+ *   - Otherwise, when there's only ONE link in total, fall back to the
+ *     historical "Read the blog →" label so single-blog rides look the same
+ *     as they always have.
+ *   - When there are multiple unnamed links (unusual — really you should add
+ *     names), fall back to the link's hostname so they're at least
+ *     distinguishable.
+ */
+function BlogLinks({ ride }: { ride: import("../data/rides").Ride }) {
+  const external = rideBlogLinks(ride);
+  const internalCount = ride.hasBlog ? 1 : 0;
+  const total = external.length + internalCount;
+  if (total === 0) return null;
+
+  const labelFor = (link: { url: string; name?: string }): string => {
+    if (link.name && link.name.trim()) return link.name.trim();
+    if (total === 1) return "Read the blog →";
+    try {
+      return new URL(link.url).hostname.replace(/^www\./, "");
+    } catch {
+      return "Read the blog →";
+    }
+  };
+
+  return (
+    <div className="ride-blog-link">
+      {external.map((link) => (
+        <a
+          key={link.url}
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {labelFor(link)} ↗
+        </a>
+      ))}
+      {ride.hasBlog && (
+        <Link to={`/rides/${ride.slug}/blog`}>
+          {total === 1 ? "Read the blog →" : "Read on this site →"}
+        </Link>
+      )}
+    </div>
+  );
 }

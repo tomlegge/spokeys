@@ -287,6 +287,12 @@ a:hover {
 }
 .ride-blog-link {
   margin: 0 0 1.25rem;
+  /* Lay out one-or-more pill links as a wrapping row so multi-blog rides
+     stack nicely on narrow screens without any layout change for the
+     single-link case (a single flex child looks identical to an inline one). */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 .ride-blog-link a {
   display: inline-block;
