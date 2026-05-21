@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { MapContainer, Marker, Polyline, TileLayer, useMap } from "react-leaflet";
 import L from "leaflet";
-import { RIDES, rideBlogLinks, rideFiles } from "../data/rides";
+import { peopleInPhoto, RIDES, rideBlogLinks, rideFiles } from "../data/rides";
 import {
   formatDuration,
   formatKm,
@@ -204,7 +204,10 @@ export default function RideDetailPage() {
       {ride.photos && ride.photos.length > 0 && (
         <section className="ride-section">
           <h2>Photos</h2>
-          <PhotoGallery photos={ride.photos} />
+          <PhotoGallery
+            photos={ride.photos}
+            tagsFor={(src) => peopleInPhoto(ride, src)}
+          />
         </section>
       )}
     </div>

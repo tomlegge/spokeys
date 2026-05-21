@@ -50,6 +50,17 @@
  * alongside any external links. Internal and external links coexist now —
  * both render as separate pills.
  *
+ * `photoTags` (optional): record who appears in each photo, keyed by the
+ * photo's filename (NOT its full URL). Example:
+ *   photoTags: {
+ *     "flickr_4717959752.jpg": ["Anita", "Darren"],
+ *     "flickr_4717958966.jpg": ["Anita"],
+ *   }
+ * Tag names should match the rider's display name (e.g. "Anita", not
+ * "Anita (BBQ only)"). Untagged photos still show — they just don't match
+ * any rider filter on the Photos page. Hovering / opening a tagged photo
+ * surfaces the list of people in the lightbox.
+ *
  * Use import.meta.env.BASE_URL so paths work in dev (`/`) AND on
  * GitHub Pages (`/spokeys/`). Don't hardcode the prefix.
  */
@@ -92,6 +103,14 @@ export type Ride = {
   riders: string[];
   description: string;
   photos?: string[]; // paths under public/, relative to BASE_URL
+  /**
+   * Optional map of photo-filename → list of riders in the photo. Filename
+   * is just the basename (e.g. "flickr_4717959752.jpg"), NOT the full path
+   * — that way you only need to type it once even if you ever move the
+   * photos folder. Used to drive the rider filter on /photos and to caption
+   * the lightbox. See file header for an example.
+   */
+  photoTags?: Record<string, string[]>;
   color?: string; // route line color on the overview map
   blogUrl?: BlogUrlField; // one or more external blog posts. See file header for the three accepted shapes.
   hasBlog?: boolean; // set true if a markdown post exists at public/blogs/<slug>.md
@@ -122,6 +141,27 @@ export function rideBlogLinks(ride: Ride): BlogLink[] {
     typeof entry === "string" ? { url: entry } : entry;
   if (Array.isArray(raw)) return raw.map(normaliseOne);
   return [normaliseOne(raw)];
+}
+
+/**
+ * Extract just the filename from a photo URL. Tag lookups are keyed by
+ * basename so the user only needs to type the filename once in `photoTags`,
+ * not the full `${base}photos/<slug>/...` path that lives in `photos`.
+ */
+export function photoBasename(url: string): string {
+  const noQuery = url.split("?")[0].split("#")[0];
+  const idx = noQuery.lastIndexOf("/");
+  return idx >= 0 ? noQuery.slice(idx + 1) : noQuery;
+}
+
+/**
+ * Names of riders tagged in a given photo on a given ride, or `[]` if the
+ * photo is untagged. Lookup is by filename (see `photoBasename`).
+ */
+export function peopleInPhoto(ride: Ride, photoUrl: string): string[] {
+  const tags = ride.photoTags;
+  if (!tags) return [];
+  return tags[photoBasename(photoUrl)] ?? [];
 }
 
 export const RIDES: Ride[] = [
@@ -158,6 +198,23 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2009-london-to-paris/17.jpeg`,
       `${base}photos/spokeys-2009-london-to-paris/18.jpeg`,
     ],
+      photoTags: {
+       "1.jpeg":["Darren", "Anita", "Steve Gee", "Charlie", "Rose", "Cameron", "James", "Alun", "Christian"],
+       "2.jpeg":["Darren", "Anita", "Steve Gee", "Charlie", "Rose", "Cameron", "James", "Alun", "Christian"],
+       "3.jpeg":["Christian"],
+       "4.jpeg":["Christian", "Steve Gee", "James", "Charlie", "Darren"],
+       "5.jpeg":["Rose"],
+       "9.jpeg":["Darren", "Anita", "Steve Gee", "Charlie", "Rose", "Cameron", "James", "Alun", "Christian"],
+       "10.jpeg":["Steve Gee"],
+       "11.jpeg":["Darren", "Steve Gee", "Charlie", "Rose", "Cameron", "James", "Alun", "Christian"],
+       "12.jpeg":["Alun"],
+       "13.jpeg":["Anita"],
+       "14.jpeg":["Cameron"],
+       "15.jpeg":["Darren", "Anita", "Steve Gee", "Charlie", "Rose", "Cameron", "James", "Alun", "Christian"],
+       "16.jpeg":["Rose"],
+       "17.jpeg":["Darren", "Charlie", "Alun", "Christian", "Steve Gee", "Rose"],
+       "18.jpeg":["James", "Rose", "Anita", "Steve Gee", "Charlie", "Alun", "Darren"],
+  },
     color: "#0000f8d5",
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
   },

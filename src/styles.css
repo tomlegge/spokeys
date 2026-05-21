@@ -466,6 +466,25 @@ a:hover {
   max-height: 100%;
   border-radius: 6px;
 }
+.photo-lightbox-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%);
+  max-width: min(90%, 720px);
+  padding: 0.5rem 0.9rem;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  text-align: center;
+  pointer-events: auto;
+}
+.photo-lightbox-caption-label {
+  color: rgba(255, 255, 255, 0.7);
+  margin-right: 0.25rem;
+}
 .photo-close {
   position: absolute;
   top: 1rem;
@@ -641,6 +660,51 @@ a:hover {
   margin: 0.25rem 0 0;
   color: var(--muted);
   font-size: 0.95rem;
+}
+
+/* Rider filter — single dropdown above the album list. Only renders when
+   there's at least one tagged rider somewhere in the data. */
+.photos-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.5rem;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.photos-filter-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.photos-filter-select {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  max-width: 320px;
+}
+.photos-filter-clear {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+}
+.photos-filter-clear:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 .photos-ride-section {
   margin: 0 0 2.5rem;

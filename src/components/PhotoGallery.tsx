@@ -1,6 +1,15 @@
 import { useState, type SyntheticEvent } from "react";
 
-type Props = { photos: string[] };
+type Props = {
+  photos: string[];
+  /**
+   * Optional callback that returns the list of people in a given photo
+   * (typically `(src) => peopleInPhoto(ride, src)`). When provided and the
+   * list is non-empty, the lightbox shows an "In this photo: …" caption.
+   * Leave it off to use the gallery purely as a viewer.
+   */
+  tagsFor?: (src: string) => string[];
+};
 
 /**
  * Turn an original photo URL into the URL of its thumbnail. Thumbs live next
@@ -18,7 +27,7 @@ function thumbUrl(src: string): string {
   return `${src.slice(0, i)}/thumbs${src.slice(i)}`;
 }
 
-export default function PhotoGallery({ photos }: Props) {
+export default function PhotoGallery({ photos, tagsFor }: Props) {
   const [open, setOpen] = useState<string | null>(null);
 
   // If a thumb 404s (e.g. you added a new photo and forgot to regenerate
@@ -34,6 +43,8 @@ export default function PhotoGallery({ photos }: Props) {
     img.dataset.fallback = "true";
     img.src = original;
   };
+
+  const openTags = open && tagsFor ? tagsFor(open) : [];
 
   return (
     <>
@@ -64,6 +75,17 @@ export default function PhotoGallery({ photos }: Props) {
         >
           {/* Lightbox keeps using the full-resolution original. */}
           <img src={open} alt="" />
+          {openTags.length > 0 && (
+            <div
+              className="photo-lightbox-caption"
+              // Stop click-through so tapping a name doesn't dismiss the
+              // lightbox — feels broken otherwise.
+              onClick={(e) => e.stopPropagation()}
+            >
+              <span className="photo-lightbox-caption-label">In this photo:</span>{" "}
+              {openTags.join(", ")}
+            </div>
+          )}
           <button
             className="photo-close"
             onClick={() => setOpen(null)}
