@@ -879,6 +879,36 @@ html {
   font-weight: 600;
 }
 
+/* ---------------- Birthday banner ---------------- */
+
+.birthday-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.85rem 0.85rem 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #ffd166 0%, #ef476f 100%);
+  color: #1f2933;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  box-shadow: var(--shadow);
+}
+.birthday-banner-cake {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.birthday-banner-text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* In dark mode, white text reads better on the warm gradient. */
+[data-theme="dark"] .birthday-banner {
+  color: #1f2933;
+}
+
 /* ---------------- Theme toggle ---------------- */
 
 .app-header-right {

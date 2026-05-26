@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { MapContainer, Polyline, TileLayer, useMap } from "react-leaflet";
 import L, { LatLngBoundsExpression } from "leaflet";
 import { RIDES } from "../data/rides";
+import { todaysBirthdays } from "../data/birthdays";
 import { formatKm, formatM } from "../utils/routeLoader";
 import { useRideRoutes } from "../utils/useRideRoutes";
 import { countRealRiders } from "../utils/riders";
@@ -62,9 +63,21 @@ export default function HomePage() {
   const earthPercent =
     (combinedRiderDistanceKm / EARTH_CIRCUMFERENCE_KM) * 100;
 
+  // Memoised so we don't recompute on every render — the result only changes
+  // when the page is open across midnight, which we don't bother handling.
+  const birthdaysToday = useMemo(() => todaysBirthdays(), []);
+
   return (
     <div className="home">
       <aside className="ride-sidebar">
+        {birthdaysToday.length > 0 && (
+          <div className="birthday-banner" role="status" aria-live="polite">
+            <span className="birthday-banner-cake" aria-hidden>🎂</span>
+            <span className="birthday-banner-text">
+              Happy birthday {formatBirthdayNames(birthdaysToday.map((b) => b.name))}!
+            </span>
+          </div>
+        )}
         <div className="sidebar-head">
           <h1>Our rides</h1>
           <p className="sidebar-sub">
@@ -217,6 +230,19 @@ function formatDate(iso: string): string {
     month: "short",
     day: "numeric",
   });
+}
+
+/**
+ * Joins a list of names into a natural-language string:
+ *   ["Tom"]                → "Tom"
+ *   ["Tom", "Anita"]       → "Tom and Anita"
+ *   ["Tom", "Anita", "Stu"] → "Tom, Anita and Stu"
+ */
+function formatBirthdayNames(names: string[]): string {
+  if (names.length === 0) return "";
+  if (names.length === 1) return names[0];
+  if (names.length === 2) return `${names[0]} and ${names[1]}`;
+  return `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
 }
 
 function formatPercent(p: number): string {
