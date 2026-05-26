@@ -811,6 +811,7 @@ export const RIDES: Ride[] = [
     description:
       "The classic coast to coast ride from Whitehaven to Tynemouth, with a visit to Stu's Mum's house for lunch and a midnight curry in Newcastle.",
     photos: [
+      `${base}photos/spokeys-2014-c2c/spokeys_2014 (0).JPG`,
       `${base}photos/spokeys-2014-c2c/spokeys_2014 (1).jpeg`,
       `${base}photos/spokeys-2014-c2c/spokeys_2014 (1).JPG`,
       `${base}photos/spokeys-2014-c2c/spokeys_2014 (2).JPG`,
