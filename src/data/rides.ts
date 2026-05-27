@@ -63,6 +63,21 @@
  *
  * Use import.meta.env.BASE_URL so paths work in dev (`/`) AND on
  * GitHub Pages (`/spokeys/`). Don't hardcode the prefix.
+ * 
+ * 
+ * Ride colour palette - use the following colour codes:
+ * 
+ * Ocean: #0077b6
+ * Sky: #3a9bd5
+ * Teal: #00a896
+ * Emerald: #2d9e5f
+ * Amber: #f4a226
+ * Deep Orange: #e8630a
+ * Coral: #e8452e
+ * Crimson: #b5262e
+ * Violet: #7c4dbd
+ * Rose: #d93f6a
+ * 
  */
 
 const base = import.meta.env.BASE_URL;
@@ -215,7 +230,7 @@ export const RIDES: Ride[] = [
        "17.jpeg":["Darren", "Charlie", "Alun", "Christian", "Steve Gee", "Rose"],
        "18.jpeg":["James", "Rose", "Anita", "Steve Gee", "Charlie", "Alun", "Darren"],
   },
-    color: "#0000f8d5",
+    color: "##0077b6",
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
   },
   {
@@ -397,7 +412,7 @@ export const RIDES: Ride[] = [
     "flickr_4674062273.jpg": ["Anita"],
     "flickr_4674061357.jpg": ["Steve Gee", "Anita"],
   },
-    color: "#f82500d5",
+    color: "##3a9bd5",
     hasBlog: true,
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
   },    
@@ -411,7 +426,7 @@ export const RIDES: Ride[] = [
       "The famous overnight ride from London Fields, Hackney to Dunwich, Suffolk. 120 miles of fun.",
     photos: [
     ],
-    color: "#f800ba",
+    color: "#00a896",
   //  blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
   },
   {
@@ -454,7 +469,7 @@ export const RIDES: Ride[] = [
        "13.jpeg":["Darren", "Steve Gee", "Charlie", "Claire", "Mark", "Jamie", "Steve Moonie"],
        "14.jpeg":["Darren", "Steve Gee", "Charlie", "Claire", "Jamie", "Tom"],
   },
-    color: "#f82500d5",
+    color: "#2d9e5f",
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
   },
   {
@@ -482,7 +497,7 @@ export const RIDES: Ride[] = [
        "5.jpg":["Darren", "James", "Jamie", "Tom", "Stu"],
        "7.jpg":["Tom"],
   },
-    color: "#cbf800",
+    color: "#f4a226",
 //    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
   },
   {
@@ -530,7 +545,7 @@ export const RIDES: Ride[] = [
         "anita-4.jpeg":["Tom", "James"],
         "anita-5.jpeg":["James"],
     },
-    color: "#f82500d5",
+    color: "#e8630a",
     blogUrl: [
       { url: "https://rollbikeroll.wordpress.com/2012/06/26/london-essex-to-amsterdam", name: "Anita's day 1 blog" },
       { url: "https://rollbikeroll.wordpress.com/2012/07/10/essex-to-amsterdam-2/", name: "Anita's day 2 blog" },
@@ -554,7 +569,7 @@ export const RIDES: Ride[] = [
     photoTags: {
     "4.jpg": ["Jamie"],
   },
-    color: "#ccac2a",
+    color: "#e8452e",
     blogUrl: [
       { url: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/", name: "Anita's Dunwich Dynamo Blog" },
     ],
@@ -884,7 +899,7 @@ export const RIDES: Ride[] = [
     "spokeys_2013_prague_to_berlin (224).jpg": ["Anita"],
     "spokeys_2013_prague_to_berlin (226).jpg": ["Anita", "Tom", "Stu"],
   },
-    color: "#f86300e9",
+    color: "#0077b6",
     blogUrl: [
       { url: "https://rollbikeroll.wordpress.com/2013/05/26/bikes-on-a-plane-or-not/", name: "Anita's blog" },
     ],
@@ -948,7 +963,7 @@ export const RIDES: Ride[] = [
     "26.jpeg": ["Tom", "Stu", "James", "Jamie"],
     "27.jpeg": ["Anita"],
   },
-    color: "#f80000a7",
+    color: "#3a9bd5",
     blogUrl: [
     { url: "https://rollbikeroll.wordpress.com/2012/07/14/116/", name: "Anita's blog" },
     ],
@@ -973,7 +988,7 @@ export const RIDES: Ride[] = [
     "3.jpeg": ["Tom"],
     "4.jpeg": ["Steve Gee", "Darren", "Jamie"],
   },
-    color: "#0021f8",
+    color: "#00a896",
  //   blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
   },
   {
@@ -1029,7 +1044,7 @@ export const RIDES: Ride[] = [
     "spokeys_2014 (21).JPG": ["Anita", "Charlie", "Darren", "Jamie", "Stu"],
     "spokeys_2014 (22).JPG": ["Darren", "Anita", "Jamie"],
   },
-    color: "#0000f8a7",
+    color: "#2d9e5f",
     blogUrl: "https://rollbikeroll.wordpress.com/2014/12/30/bike-highlights-of-2014/",
   },
   {
@@ -1048,7 +1063,7 @@ export const RIDES: Ride[] = [
     "IMG_1450.JPG": ["James", "Jamie", "Kostas", "Steve Gee", "Stu"],
     "IMG_1453.JPG": ["Stu", "The Beast of the North Sea"],
   },
-    color: "#00e8f8",
+    color: "#f4a226",
 //    blogUrl: "https://rollbikeroll.wordpress.com/2012/07/10/dunwich-dynamo-2012/",
   },
   {
@@ -1086,7 +1101,7 @@ export const RIDES: Ride[] = [
     "spokeys_2015_loire_valley (13).jpeg": ["Anita"],
     "spokeys_2015_loire_valley (14).jpeg": ["Anita", "Tom"],
   },
-    color: "#0595f5",
+    color: "#e8630a",
     blogUrl: [
       { url: "https://rollbikeroll.wordpress.com/2015/12/31/roll-and-reflect/", name: "Anita's blog" },
     ],
@@ -1113,7 +1128,7 @@ export const RIDES: Ride[] = [
     "coffee.jpeg": ["Tom", "Stu"],
     "christchurch-beach.jpg": ["Anita"],
   },
-    color: "#ed098a",
+    color: "#e8452e",
     blogUrl: [
       { url: "https://rollbikeroll.wordpress.com/2015/06/22/overnight-ride-to-the-sea/", name: "Anita's Blog" },
     ],
@@ -1138,7 +1153,7 @@ export const RIDES: Ride[] = [
     "wye-valley.jpg": ["Steve Etches"],
     "lydney.jpg": ["Peter", "Steve Etches"],
   },
-    color: "#ed5d09",
+    color: "#0077b6",
     blogUrl: [
       { url: "https://rollbikeroll.wordpress.com/2016/06/01/forest-to-forest/", name: "Anita's Forest to Forest Blog" },
     ],
@@ -1177,7 +1192,7 @@ export const RIDES: Ride[] = [
     "img_1551.jpg": ["Anita", "Darren", "Nick", "Gary"],
     "img_1533.jpg": ["Nick", "Gary", "Darren", "Anita", "Steve Etches", "Ciaran"],
   },
-    color: "#ed098a",
+    color: "#3a9bd5",
     blogUrl: [
       { url: "https://rollbikeroll.wordpress.com/2017/06/03/caledonia-way/", name: "Anita's Caledonia Way Blog" },
     ],
@@ -1246,7 +1261,7 @@ export const RIDES: Ride[] = [
     "spokeys2018 (36).jpeg": ["Ciaran", "Darren", "Gary", "Nick", "Peter", "Steve Etches", "Stu", "Tom"],
     "spokeys2018 (38).jpeg": ["Steve Etches"],
   },
-    color: "#f46b09",
+    color: "#00a896",
     blogUrl: [
       { url: "https://rollbikeroll.wordpress.com/2018/06/04/coast-and-castles/", name: "Anita's Coast and Castles Blog" },
     ],
@@ -1302,7 +1317,7 @@ export const RIDES: Ride[] = [
     "Spokeys2019 (18).jpeg": ["Steve Gee"],
     "Spokeys2019 (21).jpeg": ["Charlie", "Peter"],
   },
-    color: "#f40921",
+    color: "#2d9e5f",
     // blogUrl: "https://example.com/blog/spokeys-2019-lord-whisky",
   },
   {
@@ -1329,7 +1344,7 @@ export const RIDES: Ride[] = [
     "spokeys_2021_5.jpg": ["Steve Gee", "Anita"],
     "spokeys_2021_6.jpg": ["Gary", "Steve Gee", "Nick", "Darren"],
   },
-    color: "#452b9b",
+    color: "#f4a226",
     // blogUrl: "https://example.com/blog/spokeys-2021-jurassic-coast",
   },
   {
@@ -1380,7 +1395,7 @@ export const RIDES: Ride[] = [
     "spokeys_2024_20.jpg": ["Anita", "Tom"],
     "spokeys_2024_21.jpg": ["Anita", "Tom"],
   },
-    color: "#e63946",
+    color: "#e8630a",
     blogUrl: [
       { url: "https://rollbikeroll.wordpress.com/2024/05/30/devon-coast-to-coast-spokeys-returns/", name: "Anita's Devon Coast to Coast Blog" },
     ],
@@ -1422,7 +1437,7 @@ export const RIDES: Ride[] = [
     "spokeys_2025_1 (11).jpg": ["Anita", "Tom"],
     "spokeys_2025_1 (18).jpg": ["Tom", "Charlie"],
   },
-    color: "#26cd3a",
+    color: "#e8452e",
     blogUrl: [
       { url: "https://rollbikeroll.wordpress.com/2025/06/01/wiltshire-way/", name: "Anita's Wiltshire Way Blog" }
     ],
@@ -1486,7 +1501,7 @@ export const RIDES: Ride[] = [
     "spokeys_2026_26.jpeg": ["Anita", "Tom"],
     "spokeys_2026_30.jpeg": ["Charlie", "Tom"],
   },
-  color: "#2a9d8f",
+  color: "#0077b6",
   // blogUrl: "https://example.com/blog/spokeys-2026-bristol-to-yatton",
 }
 ];
