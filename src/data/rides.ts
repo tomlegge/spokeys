@@ -230,7 +230,7 @@ export const RIDES: Ride[] = [
        "17.jpeg":["Darren", "Charlie", "Alun", "Christian", "Steve Gee", "Rose"],
        "18.jpeg":["James", "Rose", "Anita", "Steve Gee", "Charlie", "Alun", "Darren"],
   },
-    color: "##0077b6",
+    color: "#0077b6",
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
   },
   {
@@ -412,7 +412,7 @@ export const RIDES: Ride[] = [
     "flickr_4674062273.jpg": ["Anita"],
     "flickr_4674061357.jpg": ["Steve Gee", "Anita"],
   },
-    color: "##3a9bd5",
+    color: "#3a9bd5",
     hasBlog: true,
     // blogUrl: "https://example.com/blog/spokeys-2011-windsor-to-cardiff",
   },    
