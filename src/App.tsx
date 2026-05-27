@@ -6,6 +6,7 @@ import RideBlogPage from "./pages/RideBlogPage";
 import AboutPage from "./pages/AboutPage";
 import PhotosPage from "./pages/PhotosPage";
 import StatsPage from "./pages/StatsPage";
+import TaggingPage from "./pages/TaggingPage";
 
 type Theme = "light" | "dark";
 
@@ -72,6 +73,7 @@ export default function App() {
           <Route path="/photos" element={<PhotosPage />} />
           <Route path="/stats" element={<StatsPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/tag" element={<TaggingPage />} />
         </Routes>
       </main>
       <footer className="app-footer">
