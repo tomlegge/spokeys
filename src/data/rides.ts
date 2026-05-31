@@ -1071,7 +1071,7 @@ export const RIDES: Ride[] = [
     title: "Spokeys 2015 - Loire Valley",
     date: "2015-05-20",
     file: `${base}rides/Spokeys2015.gpx`,
-    riders: ["Stu", "Anita", "Tom", "Darren", "Tania", "Kostas", "Iris (child of Tania and Kostas)", "Ciaran"],
+    riders: ["Stu", "Anita", "Tom", "Darren", "Tania", "Kostas", "Iris (child of Tania and Kostas)", "Ciaran", "Dagna"],
     description:
       "A ride along the Loire Valley, starting in Tours",
     photos: [
@@ -1120,7 +1120,7 @@ export const RIDES: Ride[] = [
       `${base}photos/spokeys-2015-loire-valley/anita_loire_photos (29).jpeg`,
       `${base}photos/spokeys-2015-loire-valley/anita_loire_photos (30).jpeg`,      
     ],
-    photoTags: {
+photoTags: {
     "spokeys_2015_loire_valley (6).jpeg": ["Ciaran", "Anita"],
     "spokeys_2015_loire_valley (5).jpeg": ["Darren"],
     "spokeys_2015_loire_valley (7).jpeg": ["Kostas", "Tania"],
@@ -1130,6 +1130,22 @@ export const RIDES: Ride[] = [
     "spokeys_2015_loire_valley (12).jpeg": ["Anita"],
     "spokeys_2015_loire_valley (13).jpeg": ["Anita"],
     "spokeys_2015_loire_valley (14).jpeg": ["Anita", "Tom"],
+    "anita_loire_photos (3).jpeg": ["Darren", "Ciaran"],
+    "anita_loire_photos (5).jpeg": ["Darren", "Stu", "Tom", "Dagna"],
+    "anita_loire_photos (7).jpeg": ["Ciaran", "Tom", "Kostas", "Tania", "Darren"],
+    "anita_loire_photos (9).jpeg": ["Ciaran"],
+    "anita_loire_photos (10).jpeg": ["Tom"],
+    "anita_loire_photos (12).jpeg": ["Tom", "Anita"],
+    "anita_loire_photos (13).jpeg": ["Tom"],
+    "anita_loire_photos (16).jpeg": ["Tom"],
+    "anita_loire_photos (19).jpeg": ["Tom", "Ciaran"],
+    "anita_loire_photos (21).jpeg": ["Tom", "Stu", "Darren", "Dagna"],
+    "anita_loire_photos (23).jpeg": ["Stu", "Tom", "Darren", "Anita"],
+    "anita_loire_photos (26).jpeg": ["Stu", "Darren", "Tom", "Tania", "Kostas", "Ciaran", "Dagna"],
+    "anita_loire_photos (27).jpeg": ["Stu"],
+    "anita_loire_photos (28).jpeg": ["Tania", "Stu", "Dagna"],
+    "anita_loire_photos (29).jpeg": ["Stu", "Ciaran", "Tom", "Darren"],
+    "anita_loire_photos (30).jpeg": ["Stu", "Kostas", "Darren", "Ciaran", "Tom", "Dagna"],
   },
     color: "#e8630a",
     blogUrl: [
