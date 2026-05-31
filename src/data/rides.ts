@@ -1146,6 +1146,7 @@ photoTags: {
     "anita_loire_photos (28).jpeg": ["Tania", "Stu", "Dagna"],
     "anita_loire_photos (29).jpeg": ["Stu", "Ciaran", "Tom", "Darren"],
     "anita_loire_photos (30).jpeg": ["Stu", "Kostas", "Darren", "Ciaran", "Tom", "Dagna"],
+    "anita_loire_photos (24).jpeg": ["Dagna", "Darren", "Stu", "Tom"],
   },
     color: "#e8630a",
     blogUrl: [
