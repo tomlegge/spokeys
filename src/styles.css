@@ -891,7 +891,12 @@ html {
 @media (max-width: 800px) {
   .home {
     grid-template-columns: 1fr;
-    grid-template-rows: 320px 1fr;
+    /* Sidebar fixed; map gets the rest but never collapses below 300px
+       on short screens (the row scrolls instead of crushing the map). */
+    grid-template-rows: 320px minmax(300px, 1fr);
+  }
+  .map-pane {
+    min-height: 300px;
   }
   .ride-sidebar {
     border-right: 0;
