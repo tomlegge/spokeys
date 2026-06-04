@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MapContainer, Polyline, TileLayer, useMap } from "react-leaflet";
 import L, { LatLngBoundsExpression } from "leaflet";
@@ -7,6 +7,7 @@ import { todaysBirthdays } from "../data/birthdays";
 import { formatKm, formatM } from "../utils/routeLoader";
 import { useRideRoutes } from "../utils/useRideRoutes";
 import { countRealRiders } from "../utils/riders";
+import { useFullscreen } from "../utils/useFullscreen";
 
 // Equatorial circumference of the Earth in kilometres. Source: WGS 84 /
 // commonly cited figure (~40,075 km).
@@ -67,24 +68,7 @@ export default function HomePage() {
   // when the page is open across midnight, which we don't bother handling.
   const birthdaysToday = useMemo(() => todaysBirthdays(), []);
 
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const mapPaneRef = useRef<HTMLDivElement>(null);
-
-  const toggleFullscreen = useCallback(() => {
-    const el = mapPaneRef.current;
-    if (!el) return;
-    if (!document.fullscreenElement) {
-      el.requestFullscreen().catch(console.error);
-    } else {
-      document.exitFullscreen().catch(console.error);
-    }
-  }, []);
-
-  useEffect(() => {
-    const handler = () => setIsFullscreen(!!document.fullscreenElement);
-    document.addEventListener("fullscreenchange", handler);
-    return () => document.removeEventListener("fullscreenchange", handler);
-  }, []);
+  const { ref: mapPaneRef, isFullscreen, toggle: toggleFullscreen } = useFullscreen();
 
   return (
     <div className="home">

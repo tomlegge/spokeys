@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { MapContainer, Marker, Polyline, TileLayer, useMap } from "react-leaflet";
 import L from "leaflet";
 import { peopleInPhoto, RIDES, rideBlogLinks, rideFiles } from "../data/rides";
+import { useFullscreen } from "../utils/useFullscreen";
 import {
   formatDuration,
   formatKm,
@@ -35,24 +36,7 @@ export default function RideDetailPage() {
 
   const [route, setRoute] = useState<RouteData | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const mapWrapperRef = useRef<HTMLDivElement>(null);
-
-  const toggleFullscreen = useCallback(() => {
-    const el = mapWrapperRef.current;
-    if (!el) return;
-    if (!document.fullscreenElement) {
-      el.requestFullscreen().catch(console.error);
-    } else {
-      document.exitFullscreen().catch(console.error);
-    }
-  }, []);
-
-  useEffect(() => {
-    const handler = () => setIsFullscreen(!!document.fullscreenElement);
-    document.addEventListener("fullscreenchange", handler);
-    return () => document.removeEventListener("fullscreenchange", handler);
-  }, []);
+  const { ref: mapWrapperRef, isFullscreen, toggle: toggleFullscreen } = useFullscreen();
 
   // Build a stable key from the ride's file list so the effect re-runs only
   // when the actual file set changes, not on every render. Include the

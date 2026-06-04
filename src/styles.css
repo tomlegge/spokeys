@@ -259,9 +259,15 @@ a:hover {
   height: 100%;
 }
 
-.map-pane--fullscreen {
-  height: 100vh !important;
+.map-pane--fullscreen,
+.ride-map--fullscreen {
+  position: fixed !important;
+  inset: 0 !important;
+  height: 100dvh !important;
   width: 100vw !important;
+  z-index: 9999;
+  border-radius: 0 !important;
+  border: none !important;
 }
 
 /* ---------------- Ride detail ---------------- */
@@ -331,12 +337,6 @@ a:hover {
   position: relative;
 }
 
-.ride-map--fullscreen {
-  height: 100vh !important;
-  width: 100vw !important;
-  border-radius: 0;
-  border: none;
-}
 
 .ride-map-fullscreen-btn {
   position: absolute;
