@@ -106,13 +106,13 @@ export default function HomePage() {
           <p className="sidebar-total">
             <span className="sidebar-total-label">Total route distance</span>
             <span className="sidebar-total-value">
-              {formatKm(totalDistanceKm)}
+              {`${Math.round(totalDistanceKm)} km`}
             </span>
           </p>
           <p className="sidebar-total">
             <span className="sidebar-total-label">Combined rider distance</span>
             <span className="sidebar-total-value">
-              {formatKm(combinedRiderDistanceKm)}
+              {`${Math.round(combinedRiderDistanceKm)} km`}
             </span>
           </p>
           <p className="sidebar-earth">
