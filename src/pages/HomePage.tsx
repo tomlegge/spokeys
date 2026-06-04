@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MapContainer, Polyline, TileLayer, useMap } from "react-leaflet";
 import L, { LatLngBoundsExpression } from "leaflet";
@@ -66,6 +66,25 @@ export default function HomePage() {
   // Memoised so we don't recompute on every render — the result only changes
   // when the page is open across midnight, which we don't bother handling.
   const birthdaysToday = useMemo(() => todaysBirthdays(), []);
+
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const mapPaneRef = useRef<HTMLDivElement>(null);
+
+  const toggleFullscreen = useCallback(() => {
+    const el = mapPaneRef.current;
+    if (!el) return;
+    if (!document.fullscreenElement) {
+      el.requestFullscreen().catch(console.error);
+    } else {
+      document.exitFullscreen().catch(console.error);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handler = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener("fullscreenchange", handler);
+    return () => document.removeEventListener("fullscreenchange", handler);
+  }, []);
 
   return (
     <div className="home">
@@ -158,7 +177,18 @@ export default function HomePage() {
         </ul>
       </aside>
 
-      <div className="map-pane">
+      <div
+        className={`map-pane${isFullscreen ? " map-pane--fullscreen" : ""}`}
+        ref={mapPaneRef}
+      >
+        <button
+          className="ride-map-fullscreen-btn"
+          onClick={toggleFullscreen}
+          title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+          aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+        >
+          {isFullscreen ? "✕ Exit" : "⤢ Fullscreen"}
+        </button>
         <MapContainer
           center={[51.5, -0.1]} // London-ish fallback
           zoom={6}
@@ -200,6 +230,7 @@ export default function HomePage() {
               : [],
           )}
           <FitBoundsOnce bounds={initialBounds} />
+          <InvalidateSize trigger={isFullscreen} />
         </MapContainer>
       </div>
     </div>
@@ -210,6 +241,15 @@ export default function HomePage() {
  * Fits the map to the supplied bounds the FIRST time they're available.
  * Doesn't refit later, so user pan/zoom isn't clobbered.
  */
+function InvalidateSize({ trigger }: { trigger: boolean }) {
+  const map = useMap();
+  useEffect(() => {
+    const id = setTimeout(() => map.invalidateSize(), 150);
+    return () => clearTimeout(id);
+  }, [trigger, map]);
+  return null;
+}
+
 function FitBoundsOnce({ bounds }: { bounds?: LatLngBoundsExpression }) {
   const map = useMap();
   const [done, setDone] = useState(false);

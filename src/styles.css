@@ -259,6 +259,11 @@ a:hover {
   height: 100%;
 }
 
+.map-pane--fullscreen {
+  height: 100vh !important;
+  width: 100vw !important;
+}
+
 /* ---------------- Ride detail ---------------- */
 
 .ride-detail {
