@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { MapContainer, Marker, Polyline, TileLayer, useMap } from "react-leaflet";
 import L from "leaflet";
@@ -35,6 +35,24 @@ export default function RideDetailPage() {
 
   const [route, setRoute] = useState<RouteData | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const mapWrapperRef = useRef<HTMLDivElement>(null);
+
+  const toggleFullscreen = useCallback(() => {
+    const el = mapWrapperRef.current;
+    if (!el) return;
+    if (!document.fullscreenElement) {
+      el.requestFullscreen().catch(console.error);
+    } else {
+      document.exitFullscreen().catch(console.error);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handler = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener("fullscreenchange", handler);
+    return () => document.removeEventListener("fullscreenchange", handler);
+  }, []);
 
   // Build a stable key from the ride's file list so the effect re-runs only
   // when the actual file set changes, not on every render. Include the
@@ -106,7 +124,18 @@ export default function RideDetailPage() {
 
       {hasTrack && (
       <div className="ride-detail-grid">
-        <div className="ride-map">
+        <div
+          className={`ride-map${isFullscreen ? " ride-map--fullscreen" : ""}`}
+          ref={mapWrapperRef}
+        >
+          <button
+            className="ride-map-fullscreen-btn"
+            onClick={toggleFullscreen}
+            title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+            aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+          >
+            {isFullscreen ? "✕ Exit" : "⤢ Fullscreen"}
+          </button>
           <MapContainer
             center={[51.5, -0.1]}
             zoom={12}
@@ -153,6 +182,7 @@ export default function RideDetailPage() {
                   icon={startIcon}
                 />
                 <FitToRoute positions={allPositions} />
+                <InvalidateSize trigger={isFullscreen} />
               </>
             )}
           </MapContainer>
@@ -221,6 +251,16 @@ function Stat({ label, value }: { label: string; value: string }) {
       <div className="stat-value">{value}</div>
     </div>
   );
+}
+
+function InvalidateSize({ trigger }: { trigger: boolean }) {
+  const map = useMap();
+  useEffect(() => {
+    // Small delay lets the CSS transition finish before Leaflet recalculates.
+    const id = setTimeout(() => map.invalidateSize(), 150);
+    return () => clearTimeout(id);
+  }, [trigger, map]);
+  return null;
 }
 
 function FitToRoute({ positions }: { positions: [number, number][] }) {
