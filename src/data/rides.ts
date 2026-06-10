@@ -1549,6 +1549,6 @@ photoTags: {
     "spokeys_2026_30.jpeg": ["Charlie", "Tom"],
   },
   color: "#0077b6",
-  // blogUrl: "https://example.com/blog/spokeys-2026-bristol-to-yatton",
+  blogUrl: "https://rollbikeroll.wordpress.com/2026/05/03/tor-de-somerset/",
 }
 ];
