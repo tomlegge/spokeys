@@ -101,6 +101,17 @@ a:hover {
   background: var(--surface);
   border-top: 1px solid var(--border);
 }
+.app-footer-left {
+  display: flex;
+  gap: 1rem;
+}
+.app-footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+.app-footer a:hover {
+  color: var(--text);
+}
 
 /* ---------------- Home page (map + sidebar) ---------------- */
 

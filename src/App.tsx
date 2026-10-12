@@ -20,7 +20,6 @@ export default function App() {
             <Link to="/">Map</Link>
             <Link to="/photos">Photos</Link>
             <Link to="/stats">Stats</Link>
-            <Link to="/about">About</Link>
           </nav>
         </div>
       </header>
@@ -36,7 +35,10 @@ export default function App() {
         </Routes>
       </main>
       <footer className="app-footer">
-        <span>© {new Date().getFullYear()} Spokeys cycling group</span>
+        <span className="app-footer-left">
+          <span>© {new Date().getFullYear()} Spokeys cycling group</span>
+          <Link to="/about">About</Link>
+        </span>
         <span>Map data © OpenStreetMap contributors</span>
       </footer>
     </div>
