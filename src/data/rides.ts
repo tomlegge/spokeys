@@ -1550,5 +1550,35 @@ photoTags: {
   },
   color: "#0077b6",
   blogUrl: "https://rollbikeroll.wordpress.com/2026/05/03/tor-de-somerset/",
-}
+},
+{
+slug: "anita-birthday-ride-2026",
+title: "Day Ride - Anita Birthday 2026",
+date: "2026-10-10",
+files: [
+  `${base}rides/AnitaBirthdayRide2026.gpx`,
+],
+riders: ["Tom", "Anita", "Darren"],
+description: "A day ride into the Chilterns in celebration of Anita's Birthday.",
+photos: [
+  `${base}photos/anita-birthday-ride-2026/tom.jpeg`,
+  `${base}photos/anita-birthday-ride-2026/anita_and_tom.jpeg`,
+  `${base}photos/anita-birthday-ride-2026/anita_and_darren.jpeg`,
+  `${base}photos/anita-birthday-ride-2026/anita_darren_tom_riding.jpeg`,
+  `${base}photos/anita-birthday-ride-2026/anita.jpeg`,
+  `${base}photos/anita-birthday-ride-2026/horizon.jpeg`,
+  `${base}photos/anita-birthday-ride-2026/song.jpeg`,
+  `${base}photos/anita-birthday-ride-2026/anita_darren_tom_post_ride.jpeg`,
+],
+photoTags: {
+  "tom.jpeg": ["Tom"],
+  "anita_and_tom.jpeg": ["Anita", "Tom"],
+  "anita_and_darren.jpeg": ["Anita", "Darren"],
+  "anita_darren_tom_riding.jpeg": ["Anita", "Tom", "Darren"],
+  "anita.jpeg": ["Anita"],
+  "horizon.jpeg": ["Tom"],
+  "anita_darren_tom_post_ride.jpeg": ["Anita", "Tom", "Darren"]
+},
+color: "#e8452e",
+},
 ];
