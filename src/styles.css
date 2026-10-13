@@ -378,7 +378,8 @@ a:hover {
   top: 10px;
   right: 10px;
   z-index: 1000;
-  background: white;
+  background: var(--surface);
+  color: var(--text);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 4px 10px;
@@ -390,7 +391,7 @@ a:hover {
 }
 
 .ride-map-fullscreen-btn:hover {
-  background: var(--surface-raised, #f5f5f5);
+  background: var(--code-bg);
 }
 
 .ride-stats {
