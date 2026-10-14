@@ -1580,5 +1580,6 @@ photoTags: {
   "anita_darren_tom_post_ride.jpeg": ["Anita", "Tom", "Darren"]
 },
 color: "#e8452e",
+blogUrl: "https://rollbikeroll.wordpress.com/2026/10/13/birthday-biking/",
 },
 ];
