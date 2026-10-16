@@ -121,14 +121,27 @@ async function loadSegment(
     throw new Error(`Failed to load route file ${fileUrl}: ${res.status}`);
   }
   const text = await res.text();
+  const { points, name } = parseRouteText(text, fileUrl);
+  return { name, points, transfer };
+}
+
+/**
+ * Parse the text of a GPX or KML file (type chosen by `fileName`'s
+ * extension). Uses the global DOMParser — the browser's, or a polyfill when
+ * run from the build script (scripts/build-route-summaries.ts).
+ */
+export function parseRouteText(
+  text: string,
+  fileName: string,
+): { points: LatLngEle[]; name?: string } {
   const dom = new DOMParser().parseFromString(text, "application/xml");
 
   const parserError = dom.querySelector("parsererror");
   if (parserError) {
-    throw new Error(`XML parse error in ${fileUrl}: ${parserError.textContent}`);
+    throw new Error(`XML parse error in ${fileName}: ${parserError.textContent}`);
   }
 
-  const lower = fileUrl.toLowerCase();
+  const lower = fileName.toLowerCase();
   let points: LatLngEle[];
   let name: string | undefined;
   if (lower.endsWith(".gpx")) {
@@ -136,14 +149,13 @@ async function loadSegment(
   } else if (lower.endsWith(".kml")) {
     ({ points, name } = parseKml(dom));
   } else {
-    throw new Error(`Unsupported file type: ${fileUrl}`);
+    throw new Error(`Unsupported file type: ${fileName}`);
   }
 
   if (points.length < 2) {
-    throw new Error(`Route at ${fileUrl} has fewer than 2 points`);
+    throw new Error(`Route at ${fileName} has fewer than 2 points`);
   }
-
-  return { name, points, transfer };
+  return { points, name };
 }
 
 /**
@@ -157,33 +169,12 @@ function combineSegments(segments: RouteSegment[]): RouteData {
   const allPoints: LatLngEle[] = [];
   for (const seg of segments) allPoints.push(...seg.points);
 
-  // Per-segment stats, summed. Transfer segments contribute nothing.
-  let distanceKm = 0;
-  let elevationGainM = 0;
-  let elevationLossM = 0;
-  let minEleM = Infinity;
-  let maxEleM = -Infinity;
-  let durationSec: number | undefined = undefined;
-  let anyMissingDuration = false;
-  for (const seg of segments) {
-    if (seg.transfer) continue;
-    const s = computeStats(seg.points);
-    distanceKm += s.distanceKm;
-    elevationGainM += s.elevationGainM;
-    elevationLossM += s.elevationLossM;
-    if (Number.isFinite(s.minEleM) && s.minEleM < minEleM) minEleM = s.minEleM;
-    if (Number.isFinite(s.maxEleM) && s.maxEleM > maxEleM) maxEleM = s.maxEleM;
-    if (s.durationSec != null) {
-      durationSec = (durationSec ?? 0) + s.durationSec;
-    } else {
-      anyMissingDuration = true;
-    }
-  }
-  // Only report duration if EVERY non-transfer segment had timestamps —
-  // otherwise the partial number would be misleading.
-  if (anyMissingDuration) durationSec = undefined;
-  const avgSpeedKmh =
-    durationSec && durationSec > 0 ? distanceKm / (durationSec / 3600) : undefined;
+  const stats = combineStats(
+    segments.map((seg) => ({
+      transfer: !!seg.transfer,
+      stats: seg.transfer ? undefined : computeStats(seg.points),
+    })),
+  );
 
   // Elevation series: each NON-TRANSFER segment starts from the running
   // cumulative km of previous non-transfer segments. The chart's x-axis is
@@ -215,16 +206,54 @@ function combineSegments(segments: RouteSegment[]): RouteData {
     segments,
     points: allPoints,
     bounds: computeBounds(allPoints),
-    stats: {
-      distanceKm,
-      elevationGainM,
-      elevationLossM,
-      minEleM: minEleM === Infinity ? 0 : minEleM,
-      maxEleM: maxEleM === -Infinity ? 0 : maxEleM,
-      durationSec,
-      avgSpeedKmh,
-    },
+    stats,
     elevationSeries: downsampledSeries,
+  };
+}
+
+/**
+ * Combine per-file stats into a ride total. Transfer parts contribute
+ * nothing. Shared by the ride page (full GPX load) and the overview pages
+ * (pre-computed per-file stats from route-summaries.json) so both always
+ * show identical numbers.
+ */
+export function combineStats(
+  parts: { transfer: boolean; stats?: RouteStats }[],
+): RouteStats {
+  let distanceKm = 0;
+  let elevationGainM = 0;
+  let elevationLossM = 0;
+  let minEleM = Infinity;
+  let maxEleM = -Infinity;
+  let durationSec: number | undefined = undefined;
+  let anyMissingDuration = false;
+  for (const part of parts) {
+    if (part.transfer || !part.stats) continue;
+    const s = part.stats;
+    distanceKm += s.distanceKm;
+    elevationGainM += s.elevationGainM;
+    elevationLossM += s.elevationLossM;
+    if (Number.isFinite(s.minEleM) && s.minEleM < minEleM) minEleM = s.minEleM;
+    if (Number.isFinite(s.maxEleM) && s.maxEleM > maxEleM) maxEleM = s.maxEleM;
+    if (s.durationSec != null) {
+      durationSec = (durationSec ?? 0) + s.durationSec;
+    } else {
+      anyMissingDuration = true;
+    }
+  }
+  // Only report duration if EVERY non-transfer segment had timestamps —
+  // otherwise the partial number would be misleading.
+  if (anyMissingDuration) durationSec = undefined;
+  const avgSpeedKmh =
+    durationSec && durationSec > 0 ? distanceKm / (durationSec / 3600) : undefined;
+  return {
+    distanceKm,
+    elevationGainM,
+    elevationLossM,
+    minEleM: minEleM === Infinity ? 0 : minEleM,
+    maxEleM: maxEleM === -Infinity ? 0 : maxEleM,
+    durationSec,
+    avgSpeedKmh,
   };
 }
 
@@ -355,7 +384,7 @@ function parseKmlCoordsBlob(blob: string): LatLngEle[] {
 // Geometry & stats
 // ---------------------------------------------------------------------------
 
-function computeBounds(
+export function computeBounds(
   points: LatLngEle[],
 ): [[number, number], [number, number]] {
   let minLat = Infinity,
@@ -381,7 +410,7 @@ function computeBounds(
  * Elevation gain uses a small smoothing threshold (5m) so GPS jitter doesn't
  * inflate the climbing total — this matches what most route platforms do.
  */
-function computeStats(points: LatLngEle[]): RouteStats {
+export function computeStats(points: LatLngEle[]): RouteStats {
   const ELE_NOISE_M = 5;
   let distance = 0;
   let gain = 0;

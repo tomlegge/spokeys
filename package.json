@@ -4,12 +4,14 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "predev": "tsx scripts/build-route-summaries.ts",
     "dev": "vite",
-    "prebuild": "node scripts/generate-thumbnails.mjs",
+    "prebuild": "node scripts/generate-thumbnails.mjs && tsx scripts/build-route-summaries.ts",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "add-elevation": "node scripts/add-elevation.mjs",
-    "thumbnails": "node scripts/generate-thumbnails.mjs"
+    "thumbnails": "node scripts/generate-thumbnails.mjs",
+    "route-summaries": "tsx scripts/build-route-summaries.ts"
   },
   "dependencies": {
     "chart.js": "^4.4.7",
@@ -27,7 +29,9 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
+    "linkedom": "^0.18.13",
     "sharp": "^0.33.5",
+    "tsx": "^4.23.15",
     "typescript": "~5.6.3",
     "vite": "^5.4.10"
   }

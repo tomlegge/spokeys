@@ -115,6 +115,7 @@ If you want `rides.example.com`:
 
 ## Caveats
 
+- The Map and Stats pages read `public/route-summaries.json`, generated from `public/rides/` by `scripts/build-route-summaries.ts` before every `npm run dev` and `npm run build` (or on demand with `npm run route-summaries`). It's gitignored. If you add or edit a GPX while the dev server is running, restart it to refresh the summary — new files not in the summary are loaded directly in the meantime.
 - Stats are computed from the GPX/KML in the browser. If your file has no elevation data, gain/loss/highest will be zero. If it has no `<time>` stamps, duration and avg speed are hidden.
 - The OSM tile servers used here are fine for personal use. If your site gets hammered, switch to a tile provider like [Stadia Maps](https://stadiamaps.com/) (still free up to ~200k requests/month) — you only need to change the `url` and `attribution` props on `<TileLayer>`.
 - KML support assumes a `<LineString>` or `<gx:Track>` inside your file. Multi-feature KMLs from Google Earth work fine; complex placemark trees may need a quick re-export as a single path.
