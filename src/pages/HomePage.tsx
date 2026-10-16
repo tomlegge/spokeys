@@ -4,7 +4,8 @@ import { MapContainer, Polyline, TileLayer, useMap } from "react-leaflet";
 import L, { LatLngBoundsExpression } from "leaflet";
 import { RIDES } from "../data/rides";
 import { todaysBirthdays } from "../data/birthdays";
-import { formatKm, formatM } from "../utils/routeLoader";
+import { formatM } from "../utils/routeLoader";
+import { useUnits } from "../utils/units";
 import { useRideRoutes } from "../utils/useRideRoutes";
 import { countRealRiders } from "../utils/riders";
 import { useFullscreen } from "../utils/useFullscreen";
@@ -17,6 +18,7 @@ export default function HomePage() {
   const loaded = useRideRoutes();
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { formatDistance } = useUnits();
 
   // Initial map view: bounds containing all routes, or fall back to UK.
   const initialBounds = useMemo<LatLngBoundsExpression | undefined>(() => {
@@ -90,13 +92,13 @@ export default function HomePage() {
           <p className="sidebar-total">
             <span className="sidebar-total-label">Total route distance</span>
             <span className="sidebar-total-value">
-              {`${Math.round(totalDistanceKm)} km`}
+              {formatDistance(totalDistanceKm, 0)}
             </span>
           </p>
           <p className="sidebar-total">
             <span className="sidebar-total-label">Combined rider distance</span>
             <span className="sidebar-total-value">
-              {`${Math.round(combinedRiderDistanceKm)} km`}
+              {formatDistance(combinedRiderDistanceKm, 0)}
             </span>
           </p>
           <p className="sidebar-earth">
@@ -141,7 +143,7 @@ export default function HomePage() {
                 <div className="ride-card-stats">
                   {lr.status === "ready" && lr.data && (
                     <>
-                      <span>{formatKm(lr.data.stats.distanceKm)}</span>
+                      <span>{formatDistance(lr.data.stats.distanceKm)}</span>
                       <span>↑ {formatM(lr.data.stats.elevationGainM)}</span>
                     </>
                   )}

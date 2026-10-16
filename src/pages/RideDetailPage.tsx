@@ -6,13 +6,13 @@ import { peopleInPhoto, RIDES, rideBlogLinks, rideFiles } from "../data/rides";
 import { useFullscreen } from "../utils/useFullscreen";
 import {
   formatDuration,
-  formatKm,
   formatM,
   loadRoutes,
   type RouteData,
 } from "../utils/routeLoader";
 import ElevationChart from "../components/ElevationChart";
 import PhotoGallery from "../components/PhotoGallery";
+import { useUnits } from "../utils/units";
 
 // Default Leaflet marker icons reference image files via relative URLs that
 // Vite doesn't resolve for us. Use a stable CDN copy so start/end markers show
@@ -37,6 +37,7 @@ export default function RideDetailPage() {
   const [route, setRoute] = useState<RouteData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { ref: mapWrapperRef, isFullscreen, toggle: toggleFullscreen } = useFullscreen();
+  const { formatDistance, formatSpeed } = useUnits();
 
   // Build a stable key from the ride's file list so the effect re-runs only
   // when the actual file set changes, not on every render. Include the
@@ -177,7 +178,7 @@ export default function RideDetailPage() {
           {!route && !error && <p>Loading route…</p>}
           {route && (
             <>
-              <Stat label="Distance" value={formatKm(route.stats.distanceKm)} />
+              <Stat label="Distance" value={formatDistance(route.stats.distanceKm)} />
               <Stat
                 label="Elevation gain"
                 value={`↑ ${formatM(route.stats.elevationGainM)}`}
@@ -196,7 +197,7 @@ export default function RideDetailPage() {
               {route.stats.avgSpeedKmh != null && (
                 <Stat
                   label="Avg speed"
-                  value={`${route.stats.avgSpeedKmh.toFixed(1)} km/h`}
+                  value={formatSpeed(route.stats.avgSpeedKmh)}
                 />
               )}
             </>

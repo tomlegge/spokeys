@@ -987,7 +987,71 @@ html {
   outline-offset: 2px;
 }
 
+/* km / mi segmented switch in the header */
+.units-toggle {
+  display: inline-flex;
+  height: 36px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+}
+.units-toggle-btn {
+  min-width: 2.25rem;
+  padding: 0 0.6rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.units-toggle-btn:hover {
+  color: var(--accent);
+}
+.units-toggle-btn.is-active {
+  background: var(--accent);
+  color: var(--surface);
+}
+.units-toggle-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 /* ---------------- Responsive ---------------- */
+
+/* Phone widths: tighten the header so brand, nav, units switch and theme
+   button all fit on one row without horizontal scroll. */
+@media (max-width: 520px) {
+  .app-header {
+    gap: 0.5rem;
+    padding: 0.75rem 0.75rem;
+  }
+  .app-header-right,
+  .app-nav {
+    gap: 0.6rem;
+  }
+  .units-toggle,
+  .theme-toggle {
+    height: 32px;
+  }
+  .theme-toggle {
+    width: 32px;
+  }
+  .units-toggle-btn {
+    min-width: 0;
+    padding: 0 0.45rem;
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 440px) {
+  /* Not enough room for the wordmark as well; the 🚴 mark still links home. */
+  .brand-text {
+    display: none;
+  }
+}
 
 @media (max-width: 800px) {
   .home {
