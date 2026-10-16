@@ -68,7 +68,7 @@ export default function AboutPage() {
         <code>public/rides/</code>. When you open a ride, the browser fetches the
         file and parses it on the fly — no pre-processing step — pulling out the
         track points, then computing distance, elevation gain/loss, highest
-        point and (if the file has timestamps) moving time and average speed.
+        point and (if the file has timestamps) elapsed time and average speed.
       </p>
       <p>
         A ride can be a single file or several. Multi-file rides are handy for

@@ -190,7 +190,7 @@ export default function RideDetailPage() {
               <Stat label="Highest point" value={formatM(route.stats.maxEleM)} />
               {route.stats.durationSec != null && (
                 <Stat
-                  label="Moving time"
+                  label="Elapsed time"
                   value={formatDuration(route.stats.durationSec)}
                 />
               )}
