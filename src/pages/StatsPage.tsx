@@ -1,7 +1,8 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { RIDES } from "../data/rides";
-import { formatKm, formatM } from "../utils/routeLoader";
+import { formatM } from "../utils/routeLoader";
+import { useUnits } from "../utils/units";
 import { useRideRoutes, type LoadedRide } from "../utils/useRideRoutes";
 import {
   countRealRiders,
@@ -26,6 +27,7 @@ function isReady(lr: LoadedRide): lr is ReadyRide {
 
 export default function StatsPage() {
   const loaded = useRideRoutes();
+  const { formatDistance } = useUnits();
   const isLoading = loaded.some((lr) => lr.status === "loading");
 
   const ready = useMemo(() => loaded.filter(isReady), [loaded]);
@@ -163,11 +165,11 @@ export default function StatsPage() {
           <StatCard label="Rides logged" value={RIDES.length.toString()} />
           <StatCard
             label="Total route distance"
-            value={formatKm(totalRouteKm)}
+            value={formatDistance(totalRouteKm)}
           />
           <StatCard
             label="Combined rider distance"
-            value={formatKm(combinedRiderKm)}
+            value={formatDistance(combinedRiderKm)}
             sub={`${formatPercent(earthPercent)} of the way around the Earth`}
           />
           <StatCard
@@ -192,7 +194,7 @@ export default function StatsPage() {
                 <Link to={`/rides/${longest.ride.slug}`}>
                   {longest.ride.title}
                 </Link>{" "}
-                — {formatKm(longest.data.stats.distanceKm)}
+                — {formatDistance(longest.data.stats.distanceKm)}
               </span>
             </li>
           )}
@@ -247,7 +249,7 @@ export default function StatsPage() {
                 <tr key={y.year}>
                   <td>{y.year}</td>
                   <td className="num">{y.rides}</td>
-                  <td className="num">{formatKm(y.distanceKm)}</td>
+                  <td className="num">{formatDistance(y.distanceKm)}</td>
                   <td className="year-bar-col">
                     <div className="year-bar-track">
                       <div
@@ -294,7 +296,7 @@ export default function StatsPage() {
                 <tr key={r.name}>
                   <td>{r.name}</td>
                   <td className="num">{r.rides}</td>
-                  <td className="num">{formatKm(r.totalKm)}</td>
+                  <td className="num">{formatDistance(r.totalKm)}</td>
                 </tr>
               ))}
             </tbody>

@@ -7,6 +7,7 @@ import AboutPage from "./pages/AboutPage";
 import PhotosPage from "./pages/PhotosPage";
 import StatsPage from "./pages/StatsPage";
 import TaggingPage from "./pages/TaggingPage";
+import { UnitsToggle } from "./utils/units";
 
 type Theme = "light" | "dark";
 
@@ -49,6 +50,7 @@ export default function App() {
             <Link to="/photos">Photos</Link>
             <Link to="/stats">Stats</Link>
           </nav>
+          <UnitsToggle />
           <button
             type="button"
             className="theme-toggle"

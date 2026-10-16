@@ -1,4 +1,5 @@
 import { Line } from "react-chartjs-2";
+import { useUnits } from "../utils/units";
 import {
   CategoryScale,
   Chart,
@@ -24,7 +25,8 @@ type Props = {
 };
 
 export default function ElevationChart({ series, color = "#0077b6" }: Props) {
-  const labels = series.map((p) => p.distanceKm.toFixed(1));
+  const { unit, toUnit } = useUnits();
+  const labels = series.map((p) => toUnit(p.distanceKm).toFixed(1));
   const data = {
     labels,
     datasets: [
@@ -49,14 +51,14 @@ export default function ElevationChart({ series, color = "#0077b6" }: Props) {
       legend: { display: false },
       tooltip: {
         callbacks: {
-          title: (items: any[]) => `km ${items[0].label}`,
+          title: (items: any[]) => `${items[0].label} ${unit}`,
           label: (ctx: any) => `${Math.round(ctx.parsed.y)} m`,
         },
       },
     },
     scales: {
       x: {
-        title: { display: true, text: "Distance (km)" },
+        title: { display: true, text: `Distance (${unit})` },
         ticks: { maxTicksLimit: 8, autoSkip: true },
       },
       y: {

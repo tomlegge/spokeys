@@ -464,10 +464,6 @@ export function formatDuration(sec?: number): string {
   return h > 0 ? `${h}h ${m}m` : `${m}m`;
 }
 
-export function formatKm(km: number): string {
-  return `${km.toFixed(1)} km`;
-}
-
 export function formatM(m: number): string {
   return `${Math.round(m)} m`;
 }
