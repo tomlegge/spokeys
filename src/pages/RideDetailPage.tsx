@@ -200,6 +200,7 @@ export default function RideDetailPage() {
                   value={formatSpeed(route.stats.avgSpeedKmh)}
                 />
               )}
+              <RouteDownloads ride={ride} />
             </>
           )}
         </aside>
@@ -234,6 +235,40 @@ function Stat({ label, value }: { label: string; value: string }) {
     <div className="stat">
       <div className="stat-label">{label}</div>
       <div className="stat-value">{value}</div>
+    </div>
+  );
+}
+
+/**
+ * Download link(s) for the ride's route file(s). Transfer segments (ferries,
+ * trains…) are skipped — nobody wants to "ride" a ferry track. A single file
+ * gets one button; multi-file rides get one link per file, labelled by
+ * filename (e.g. "Spokeys2012-Day1").
+ */
+function RouteDownloads({ ride }: { ride: import("../data/rides").Ride }) {
+  const files = rideFiles(ride).filter((f) => !f.transfer);
+  if (files.length === 0) return null;
+
+  const fileName = (url: string) => url.slice(url.lastIndexOf("/") + 1);
+  const ext = (url: string) =>
+    url.slice(url.lastIndexOf(".") + 1).toUpperCase();
+
+  if (files.length === 1) {
+    return (
+      <a className="route-download" href={files[0].url} download>
+        ↓ Download {ext(files[0].url)}
+      </a>
+    );
+  }
+
+  return (
+    <div className="route-downloads">
+      <div className="stat-label">Download route files</div>
+      {files.map((f) => (
+        <a key={f.url} className="route-download" href={f.url} download>
+          ↓ {fileName(f.url).replace(/\.[^.]+$/, "")}
+        </a>
+      ))}
     </div>
   );
 }

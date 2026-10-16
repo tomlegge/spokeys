@@ -417,6 +417,29 @@ a:hover {
   font-weight: 600;
 }
 
+.route-downloads {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+.route-download {
+  display: block;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.route-download:hover {
+  text-decoration: none;
+  background: var(--accent);
+  color: var(--surface);
+}
+
 .ride-section {
   margin-top: 1.75rem;
 }
