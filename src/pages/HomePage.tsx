@@ -22,14 +22,12 @@ export default function HomePage() {
 
   // Initial map view: bounds containing all routes, or fall back to UK.
   const initialBounds = useMemo<LatLngBoundsExpression | undefined>(() => {
-    const allPoints: [number, number][] = [];
+    const corners: [number, number][] = [];
     for (const lr of loaded) {
-      if (lr.status === "ready" && lr.data) {
-        for (const p of lr.data.points) allPoints.push([p.lat, p.lng]);
-      }
+      if (lr.status === "ready" && lr.data) corners.push(...lr.data.bounds);
     }
-    if (allPoints.length === 0) return undefined;
-    return L.latLngBounds(allPoints).pad(0.1);
+    if (corners.length === 0) return undefined;
+    return L.latLngBounds(corners).pad(0.1);
   }, [loaded]);
 
   const isLoading = loaded.some((lr) => lr.status === "loading");
@@ -197,7 +195,7 @@ export default function HomePage() {
                   return (
                     <Polyline
                       key={`${lr.ride.slug}#${segIdx}`}
-                      positions={seg.points.map((p) => [p.lat, p.lng])}
+                      positions={seg.points}
                       pathOptions={{
                         color: lr.ride.color ?? "#0077b6",
                         weight: seg.transfer ? Math.max(2, baseWeight - 2) : baseWeight,

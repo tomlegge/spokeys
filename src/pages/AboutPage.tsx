@@ -66,9 +66,16 @@ export default function AboutPage() {
       <p>
         Routes are stored as <code>GPX</code> (or <code>KML</code>) files in{" "}
         <code>public/rides/</code>. When you open a ride, the browser fetches the
-        file and parses it on the fly — no pre-processing step — pulling out the
-        track points, then computing distance, elevation gain/loss, highest
-        point and (if the file has timestamps) moving time and average speed.
+        file and parses it on the fly, pulling out the track points, then
+        computing distance, elevation gain/loss, highest point and (if the file
+        has timestamps) elapsed time and average speed.
+      </p>
+      <p>
+        The map and stats pages don't need every track point, so at build time
+        the same code runs over every file once and saves a small summary —
+        each file's stats plus a simplified line for the overview map. That
+        page loads one small file instead of every GPX, and shows exactly the
+        same numbers.
       </p>
       <p>
         A ride can be a single file or several. Multi-file rides are handy for
