@@ -32,7 +32,9 @@
   color-scheme: dark;
 }
 
-[data-theme="dark"] .leaflet-tile-pane {
+/* Applied per tile layer (not the whole pane) so satellite imagery
+   is left untouched. See components/BaseLayers.tsx. */
+[data-theme="dark"] .basemap-invert {
   filter: var(--map-tile-filter);
 }
 

@@ -28,7 +28,8 @@ export default function AboutPage() {
       <ul>
         <li>
           <strong>Leaflet + react-leaflet</strong> draw the interactive maps,
-          using OpenStreetMap tiles (no API key needed).
+          with a choice of free basemaps (CyclOSM, OpenStreetMap, CARTO,
+          OpenTopoMap and Esri satellite imagery), no API keys needed.
         </li>
         <li>
           <strong>Chart.js</strong> renders the elevation profiles.
