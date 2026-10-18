@@ -180,7 +180,7 @@ export default function HomePage() {
           style={{ height: "100%", width: "100%" }}
           scrollWheelZoom
         >
-          <BaseLayers defaultLayer="Light" />
+          <BaseLayers />
           {loaded.flatMap((lr) =>
             lr.status === "ready" && lr.data
               ? lr.data.segments.map((seg, segIdx) => {
