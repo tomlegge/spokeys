@@ -128,7 +128,7 @@ export default function RideDetailPage() {
             style={{ height: "100%", width: "100%" }}
             scrollWheelZoom
           >
-            <BaseLayers defaultLayer="Cycle map" />
+            <BaseLayers />
             {segmentPositions.length > 0 && (
               <>
                 {segmentPositions.map((segPositions, i) => {

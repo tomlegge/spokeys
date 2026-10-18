@@ -28,7 +28,7 @@ export default function AboutPage() {
       <ul>
         <li>
           <strong>Leaflet + react-leaflet</strong> draw the interactive maps,
-          with a choice of free basemaps (CyclOSM, OpenStreetMap, CARTO,
+          with a choice of free basemaps (OpenStreetMap, CyclOSM,
           OpenTopoMap and Esri satellite imagery), no API keys needed.
         </li>
         <li>

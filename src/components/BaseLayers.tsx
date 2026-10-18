@@ -7,16 +7,9 @@ const OSM =
 // satellite imagery doesn't, as inverting a photo makes it unreadable.
 const INVERT = "basemap-invert";
 
-export type BaseLayerName = "Cycle map" | "Street" | "Light" | "Topo" | "Satellite";
+export type BaseLayerName = "Street" | "Cycle map" | "Topo" | "Satellite";
 
 const LAYERS: { name: BaseLayerName; url: string; attribution: string; maxZoom: number; className?: string }[] = [
-  {
-    name: "Cycle map",
-    url: "https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
-    attribution: `${OSM}, <a href="https://www.cyclosm.org">CyclOSM</a>`,
-    maxZoom: 20,
-    className: INVERT,
-  },
   {
     name: "Street",
     url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -25,9 +18,9 @@ const LAYERS: { name: BaseLayerName; url: string; attribution: string; maxZoom: 
     className: INVERT,
   },
   {
-    name: "Light",
-    url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-    attribution: `${OSM}, &copy; <a href="https://carto.com/attributions">CARTO</a>`,
+    name: "Cycle map",
+    url: "https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+    attribution: `${OSM}, <a href="https://www.cyclosm.org">CyclOSM</a>`,
     maxZoom: 20,
     className: INVERT,
   },
@@ -46,7 +39,7 @@ const LAYERS: { name: BaseLayerName; url: string; attribution: string; maxZoom: 
   },
 ];
 
-export default function BaseLayers({ defaultLayer = "Cycle map" }: { defaultLayer?: BaseLayerName }) {
+export default function BaseLayers({ defaultLayer = "Street" }: { defaultLayer?: BaseLayerName }) {
   return (
     <LayersControl position="topleft">
       {LAYERS.map((l) => (
