@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { MapContainer, Marker, Polyline, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, Polyline, useMap } from "react-leaflet";
 import L from "leaflet";
 import { peopleInPhoto, RIDES, rideBlogLinks, rideFiles } from "../data/rides";
 import { useFullscreen } from "../utils/useFullscreen";
+import BaseLayers from "../components/BaseLayers";
 import {
   formatDuration,
   formatM,
@@ -127,10 +128,7 @@ export default function RideDetailPage() {
             style={{ height: "100%", width: "100%" }}
             scrollWheelZoom
           >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+            <BaseLayers defaultLayer="Cycle map" />
             {segmentPositions.length > 0 && (
               <>
                 {segmentPositions.map((segPositions, i) => {

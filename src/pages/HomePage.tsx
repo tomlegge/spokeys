@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { MapContainer, Polyline, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Polyline, useMap } from "react-leaflet";
 import L, { LatLngBoundsExpression } from "leaflet";
 import { RIDES } from "../data/rides";
 import { todaysBirthdays } from "../data/birthdays";
@@ -9,6 +9,7 @@ import { useUnits } from "../utils/units";
 import { useRideRoutes } from "../utils/useRideRoutes";
 import { countRealRiders } from "../utils/riders";
 import { useFullscreen } from "../utils/useFullscreen";
+import BaseLayers from "../components/BaseLayers";
 
 // Equatorial circumference of the Earth in kilometres. Source: WGS 84 /
 // commonly cited figure (~40,075 km).
@@ -179,10 +180,7 @@ export default function HomePage() {
           style={{ height: "100%", width: "100%" }}
           scrollWheelZoom
         >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
+          <BaseLayers defaultLayer="Light" />
           {loaded.flatMap((lr) =>
             lr.status === "ready" && lr.data
               ? lr.data.segments.map((seg, segIdx) => {
